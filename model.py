@@ -1,17 +1,21 @@
+"""Models for lost and found pets app."""
+
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
 db = SQLAlchemy()
 
+
 class User(db.Model):
-    """Data model for the user"""
+    """Data model for the user."""
 
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    first_name = db.Column(db.String(50), nullable=True)
-    last_name = db.Column(db.String(50), nullable=True)
+    full_name = db.Column(db.String(50), nullable=True)
+    #first_name = db.Column(db.String(50), nullable=True)
+    #last_name = db.Column(db.String(50), nullable=True)
     phone_number = db.Column(db.String(50), nullable=True)
     email = db.Column(db.String(255), nullable=True)
     password = db.Column(db.String(255), nullable=True)
@@ -20,13 +24,14 @@ class User(db.Model):
     updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     # Foreign key(s)
-    pet_id = db.Column(db.Integer, db.ForeignKey('pets.pet_id'), nullable=False)
+    pet_id = db.Column(db.Integer, db.ForeignKey('pets.pet_id'), nullable=True)
 
     # Add relationship between users and pets
     #pets = db.relationship("Pet", backref="users")
 
     def __repr__(self):
-        """Display information about the user"""
+        """Display information about the user."""
+
 
         return f"<User user_id={self.user_id}\
                         first_name={self.first_name}\
@@ -34,7 +39,7 @@ class User(db.Model):
 
 
 class Pet(db.Model):
-    """Data model for the pet"""
+    """Data model for the pet."""
 
     __tablename__ = "pets"
 
@@ -49,14 +54,14 @@ class Pet(db.Model):
     updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     # Foreign key(s)
-    status_id = db.Column(db.Integer, db.ForeignKey('status.status_id'), nullable=False)
+    status_id = db.Column(db.Integer, db.ForeignKey('status.status_id'), nullable=True)
     #pet_image_id = db.Column(db.Integer, db.ForeignKey('pet_images.image_id'), nullable=False)
 
     # Add relationship between users and pets
     users = db.relationship("User", backref="pets")
 
     def __repr__(self):
-        """Show information about the pet"""
+        """Show information about the pet."""
 
         return f"<Pet pet_id={self.pet_id}\
                         pet_name={self.pet_name}\
@@ -68,7 +73,7 @@ class Pet(db.Model):
     
 
 class Status(db.Model):
-    """Data model for the status of the pet"""
+    """Data model for the status of the pet."""
 
     __tablename__ = "status"
 
@@ -76,20 +81,20 @@ class Status(db.Model):
     status = db.Column(db.String(50), nullable=True)
 
     #Foreign key(s)
-    location_id = db.Column(db.Integer, db.ForeignKey('locations.location_id'), nullable=False)
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.location_id'), nullable=True)
 
     # Add relationship between pets and their statuses
     pets = db.relationship("Pet", backref="status")
 
     def __repr__(self):
-        """Show information about the status of the pet"""
+        """Show information about the status of the pet."""
 
         return f"<Status status_id={self.status_id}\
                             status={self.status}>"
 
 
 class Location(db.Model):
-    """Data model for the location of the pet lost or found"""
+    """Data model for the location of the pet lost or found."""
 
     __tablename__ = "locations"
 
@@ -105,7 +110,7 @@ class Location(db.Model):
     status = db.relationship("Status", backref="locations")
 
     def __repr__(self):
-        """Show information about the location of the lost or found pet"""
+        """Show information about the location of the lost or found pet."""
 
         return f"<Location location_id={self.location_id}\
                             location_name={self.location_name}\
@@ -119,19 +124,21 @@ def sample_data():
     User.query.delete()
 
     # Add sample users data
-    alice = User(user_id=1, 
+    alice = User(user_id=101, 
                 pet_id=1, 
-                first_name="Alice",
-                last_name="Apple",
+                full_name="Alice Apple",
+                #first_name="Alice",
+                #last_name="Apple",
                 phone_number="415-555-1234",
                 email="alice@alice.com",
                 password="password123",
                 user_type="pet_owner")
 
-    betty = User(user_id=2, 
+    betty = User(user_id=102, 
                 pet_id=2,
-                first_name="Betty", 
-                last_name="Baker",
+                full_name="Betty Baker",
+                #first_name="Betty", 
+                #last_name="Baker",
                 phone_number="415-555-5678", 
                 email="betty@betty.com",
                 password="password456", 
@@ -183,21 +190,26 @@ def sample_data():
     db.session.commit()
 
 
-def connect_to_db(app):
-    """Connect the database to the Flask app"""
+def connect_to_db(flask_app):
+    """Connect the database to the Flask app."""
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///lost_found_pets"
-    app.config["SQLALCHEMY_ECHO"] = False
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    db.app = app
-    db.init_app(app)
+    flask_app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///lost_found_pets"
+    flask_app.config["SQLALCHEMY_ECHO"] = False
+    flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    
+    db.app = flask_app
+    db.init_app(flask_app)
     print("Conneced to db!")
+
+    print('Connected to the db!')
 
 
 if __name__ == "__main__":
 
-    from flask import Flask
-    app = Flask(__name__)
+    from server import app
+
+    # from flask import Flask
+    # app = Flask(__name__)
 
     # Connect to the database
     connect_to_db(app)
@@ -205,5 +217,5 @@ if __name__ == "__main__":
     # Create all tables
     db.create_all()
 
-    # Insert sample data
+    # Insert sample data (adding here for now. will move to tests.py)
     sample_data()
