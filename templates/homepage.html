@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Lost and Found Pets Home{% endblock %}
+
+{% block body %}
+  <h1>Lost | Found Pets</h1>
+
+  <h2>Welcome!</h2>
+  <!-- <ul>
+    <li><a href="/signup">Sign up</a></li>
+    <li><a href="/login">Log in</a></li>
+  </ul> -->
+
+  <h2>Create an Account</h2>
+  <form action="/users" method="POST">
+    <p>
+      Full Name <input type="text" name="full_name">
+    </p>
+    <p>
+      Phone Number <input type="text" name="phone_number">
+    </p>
+    <p>
+      Email <input type="text" name="email">
+    </p>
+    <p>
+      Password <input type="password" name="password">
+    </p>
+
+    <p>
+      <input type="submit">
+    </p>
+  </form>
+{% endblock %}
