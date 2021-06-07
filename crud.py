@@ -15,11 +15,22 @@ from model import db, User, Pet, Status, Location, connect_to_db
     # Location
 
 
-def create_user(full_name, phone_number, email, password):
+# def create_user(full_name, phone_number, email, password):
+#     """Create and return a new user."""
+
+#     user = User(full_name=full_name, phone_number=phone_number,
+#                 email=email, password=password)
+
+#     db.session.add(user)
+#     db.session.commit()
+
+#     return user
+
+
+def create_user(full_name, email, password):
     """Create and return a new user."""
 
-    user = User(full_name=full_name, phone_number=phone_number,
-                email=email, password=password)
+    user = User(full_name=full_name, email=email, password=password)
 
     db.session.add(user)
     db.session.commit()

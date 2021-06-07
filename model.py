@@ -32,10 +32,12 @@ class User(db.Model):
     def __repr__(self):
         """Display information about the user."""
 
+        return f"<User user_id={self.user_id} full_name={self.full_name}>"
 
-        return f"<User user_id={self.user_id}\
-                        first_name={self.first_name}\
-                        last_name={self.last_name}>"
+
+        # return f"<User user_id={self.user_id}\
+        #                 first_name={self.first_name}\
+        #                 last_name={self.last_name}>"
 
 
 class Pet(db.Model):
