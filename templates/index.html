@@ -1,36 +1,49 @@
 {% extends 'base.html' %}
-{% block title %}Lost and Found Pets Homepage{% endblock %}
+{% block title %}Find My Pet Homepage{% endblock %}
 
 {% block body %}
 
-  <h1>Find Fido & Friends</h1>
-    <h2>Welcome!</h2>
+  <h1>Find My Pet</h1>
     <div class="signup-signin-window" id="signup-sign-in-window">
         <div class="signup-form">
-            <form action="/users" method="POST">
-                <h3>Sign Up</h3>
+            <form action="/signup" method="POST">
+                <h3><label>Sign Up</label></h3>
                 <div>
-                    <input type="text" placeholder="Full Name" name="fullname">
-                    <input type="email" placeholder="Email" name="email">
-                    <input type="password" placeholder="Password" name="password">
+                    <p>
+                        <label for="name-input">Name:</label>
+                        <input type="text" placeholder="Full Name" name="fullname" id="name-input" />
+                    </p>
+                    <p>
+                        <label for="email-input">Email:</label>
+                        <input type="email" placeholder="Email" name="email" id="email-input" />
+                    </p>
+                    <p>
+                        <label for="password-input">Password:</label>
+                        <input type="password" placeholder="Password" name="password" id="password-input" />
+                    </p>
                 </div>
-                <p><input type="submit" value="Sign Up"></p>
+                <p>
+                    <input type="submit" value="Sign Up"  />
+                </p>
             </form>
         </div>
+
         <div class="signin-form">
-            <form action="/login" method="POST">
-                <h3>Sign In</h3>
+            <form action="/signin" method="POST">
+                <h3><label>Sign In</label></h3>
                 <div>
-                    <label>Sign In</label>
-                    <input type="email" placeholder="Email" name="email" required>
-                    <input type="password" placeholder="Password" name="password" required>
+                    <p>
+                        <label for="email-input">Email:</label>
+                        <input type="email" placeholder="Email" name="email" id="email-input" required />
+                    </p>
+                    <p>
+                        <label for="password-input">Password:</label>
+                        <input type="password" placeholder="Password" name="password" id="password-input" required />
+                    </p>
                 </div>
                 <p><input type="submit" value="Sign In"></p>
             </form>
         </div>
-       <!-- <div class="overlay-window">
-            ToDo later
-        </div> -->
     </div>
 
 {% endblock %}
