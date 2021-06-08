@@ -9,15 +9,20 @@
 
     {% block head %}{% endblock %}
   </head>
+
+  <style type="text/css">
+  /* TODO: Add css styles here */
+  </style>
+
   <body>
-    {% for msg in get_flashed_messages() %}
+<!--     {% for msg in get_flashed_messages() %}
       <p class="flash-msg">
         {{ msg }}
       </p>
-    {% endfor %}
+    {% endfor %} -->
 
     {% block body %}{% endblock %}
 
-    {% block after_body %}{% endblock %}
+<!--     {% block after_body %}{% endblock %} -->
   </body>
 </html>

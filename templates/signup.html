@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
-{% block title %}Find My Pet Homepage{% endblock %}
+{% block title %}Sign up page{% endblock %}
 
 {% block body %}
 
-  <h1>Find My Pet</h1>
-    <div class="signup-signin-window" id="signup-sign-in-window">
-        <div class="signup-form">
+<h1>Welcome!</h1>
+<h2>Please register by signing up here</h2>
+
+    <div class="sign-up-window" id="sign-up">
+        <div class="sign-up-form">
             <form action="/signup" method="POST">
-                <h3><label>Sign Up</label></h3>
+                <h4><label>Sign Up</label></h4>
                 <div>
                     <p>
                         <label for="name-input">Name:</label>
@@ -25,23 +27,6 @@
                 <p>
                     <input type="submit" value="Sign Up"  />
                 </p>
-            </form>
-        </div>
-
-        <div class="signin-form">
-            <form action="/signin" method="POST">
-                <h3><label>Sign In</label></h3>
-                <div>
-                    <p>
-                        <label for="email-input">Email:</label>
-                        <input type="email" placeholder="Email" name="email" id="email-input" required />
-                    </p>
-                    <p>
-                        <label for="password-input">Password:</label>
-                        <input type="password" placeholder="Password" name="password" id="password-input" required />
-                    </p>
-                </div>
-                <p><input type="submit" value="Sign In"></p>
             </form>
         </div>
     </div>

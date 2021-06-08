@@ -12,10 +12,16 @@ app.jinja_env.undefined = StrictUndefined
 
 
 @app.route('/')
-def homepage():
+def display_homepage():
     """Show the homepage."""
 
-    return render_template('index.html')
+    return render_template('homepage.html')
+
+@app.route('/signup')
+def display_sign_up():
+    """Show the sign-up page to create an account"""
+
+    return render_template('signup.html')
 
 
 @app.route('/signup', methods=['POST'])
@@ -36,6 +42,12 @@ def create_user():
 
     return redirect('/') # redirect back to homepage
 
+
+@app.route('/signin')
+def display_sign_in():
+    """Show the signin page to login."""
+
+    return render_template('signin.html')
 
 
 @app.route('/signin', methods=['POST'])
