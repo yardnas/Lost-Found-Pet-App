@@ -1,6 +1,6 @@
 """Server for the lost and found pet app."""
 
-from flask import (Flask, render_template, request, flash, session, redirect)
+from flask import Flask, render_template, request, flash, session, redirect
 from model import connect_to_db
 from jinja2 import StrictUndefined
 import crud
@@ -90,23 +90,6 @@ def welcome():
 
     return render_template('welcome.html')
 
-
-# @app.route('/users')
-# def all_users():
-#     """Show all users."""
-
-#     users = crud.get_users()
-
-#     return render_template('all_users.html', users=users)
-
-
-# @app.route('/user/<user_id>')
-# def show_user(user_id):
-#     """Display user's details"""
-
-#     user = crud.get_user_by_id(user_id)
-
-#     return render_template('user_details.html', user=user)
 
 
 if __name__ == '__main__':

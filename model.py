@@ -6,6 +6,13 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
+"""
+Data Model 
+    # User can have many Pets
+    # Pet can have one Status
+    # Status can have one Location
+"""
+
 
 class User(db.Model):
     """Data model for the user."""
@@ -13,9 +20,9 @@ class User(db.Model):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    full_name = db.Column(db.String(50), nullable=True)
-    #first_name = db.Column(db.String(50), nullable=True)
-    #last_name = db.Column(db.String(50), nullable=True)
+    #full_name = db.Column(db.String(50), nullable=True)
+    fname = db.Column(db.String(50), nullable=True)
+    lname = db.Column(db.String(50), nullable=True)
     phone_number = db.Column(db.String(50), nullable=True)
     email = db.Column(db.String(255), nullable=True)
     password = db.Column(db.String(255), nullable=True)
@@ -23,21 +30,14 @@ class User(db.Model):
     created_on = db.Column(db.DateTime, default=datetime.now)
     updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
-    # Foreign key(s)
+    # Foreign key between User and Pet
     pet_id = db.Column(db.Integer, db.ForeignKey('pets.pet_id'), nullable=True)
 
-    # Add relationship between users and pets
-    #pets = db.relationship("Pet", backref="users")
 
     def __repr__(self):
         """Display information about the user."""
 
-        return f"<User user_id={self.user_id} full_name={self.full_name}>"
-
-
-        # return f"<User user_id={self.user_id}\
-        #                 first_name={self.first_name}\
-        #                 last_name={self.last_name}>"
+        return f"<User user_id={self.user_id} email={self.email} fname={self.fname}>"
 
 
 class Pet(db.Model):
@@ -55,12 +55,13 @@ class Pet(db.Model):
     created_on = db.Column(db.DateTime, default=datetime.now)
     updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
-    # Foreign key(s)
+    # Foreign key between pet and status
     status_id = db.Column(db.Integer, db.ForeignKey('status.status_id'), nullable=True)
     #pet_image_id = db.Column(db.Integer, db.ForeignKey('pet_images.image_id'), nullable=False)
 
-    # Add relationship between users and pets
+    # Add relationship between user and pets
     users = db.relationship("User", backref="pets")
+
 
     def __repr__(self):
         """Show information about the pet."""
@@ -128,9 +129,9 @@ def sample_data():
     # Add sample users data
     alice = User(user_id=101, 
                 pet_id=1, 
-                full_name="Alice Apple",
-                #first_name="Alice",
-                #last_name="Apple",
+                #full_name="Alice Apple",
+                fname="Alice",
+                lname="Apple",
                 phone_number="415-555-1234",
                 email="alice@alice.com",
                 password="password123",
@@ -138,9 +139,9 @@ def sample_data():
 
     betty = User(user_id=102, 
                 pet_id=2,
-                full_name="Betty Baker",
-                #first_name="Betty", 
-                #last_name="Baker",
+                #full_name="Betty Baker",
+                fname="Betty", 
+                lname="Baker",
                 phone_number="415-555-5678", 
                 email="betty@betty.com",
                 password="password456", 
@@ -201,7 +202,6 @@ def connect_to_db(flask_app):
     
     db.app = flask_app
     db.init_app(flask_app)
-    print("Conneced to db!")
 
     print('Connected to the db!')
 
