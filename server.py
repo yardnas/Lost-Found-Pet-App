@@ -28,7 +28,9 @@ def display_sign_up():
 def create_user():
     """Register a new user."""
 
-    full_name = request.form.get('full_name')
+    # full_name = request.form.get('full_name')
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
     email = request.form.get('email')
     password = request.form.get('password')
 
@@ -37,7 +39,7 @@ def create_user():
     if user:
         flash('Email already exist. Please log in or try again.')
     else:
-        crud.create_user(full_name, email, password)
+        crud.create_user(fname, lname, email, password)
         flash('Account has been successfully created. Please sign in.')
 
     return redirect('/') # redirect back to homepage

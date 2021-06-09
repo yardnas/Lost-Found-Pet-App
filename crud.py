@@ -75,7 +75,6 @@ def create_location():
                         state=state, zipcode=zipcode, phone_number=phone_number)
 
 
-
 if __name__ == "__main__":
 
     from server import app
