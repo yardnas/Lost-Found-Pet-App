@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}Sign up page{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
 
 {% block body %}
 
@@ -11,17 +12,13 @@
             <form action="/signup" method="POST">
                 <h4><label>Sign Up</label></h4>
                 <div>
-                    <!-- <p>
-                        <label for="name-input">Name:</label>
-                        <input type="text" placeholder="Full Name" name="fullname" id="name-input" />
-                    </p> -->
                     <p>
                         <label for="name-input">First Name:</label>
                         <input type="text" placeholder="First Name" name="fname" id="name-input" />
                     </p>
                     <p>
                         <label for="name-input">Last Name:</label>
-                        <input type="text" placeholder="Last Name" name="fname" id="name-input" />
+                        <input type="text" placeholder="Last Name" name="lname" id="name-input" />
                     </p>
                     <p>
                         <label for="email-input">Email:</label>

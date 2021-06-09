@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}Welcome to Neighborhood Pets{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
 
 {% block body %}
 
-    <h1>Welcome to Neighborhood Pets!</h1>
-
+    <h1>Neighborhood Pets</h1>
     <h3>A community of pet lovers in your neighborhood</h3>
+
+    <h2>Welcome {{name}}!</h2>
 
     <h4>Let's register your pet</h4>
 

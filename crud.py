@@ -2,17 +2,13 @@
 
 from model import db, User, Pet, Status, Location, connect_to_db
 
-# Define the following functions
-    # crud.create_user(email, password)
-    # crud.get_user_by_email(email)
-    # crud.get_user_by_id(user_id)
-
 # Data model Classes
     # User
     # Pet
     # Status
     # Location
 
+#---------------------------------------------------------------------#
 
 def create_user(fname, lname, email, password): #y
     """Create and return a new user."""
@@ -28,23 +24,26 @@ def create_user(fname, lname, email, password): #y
 def get_users():
     """Return all the users."""
 
-    return User.query.all() 
-    #[<User user_id=1 first_name=Alice last_name=Apple>, 
-    # <User user_id=2 first_name=Betty last_name=Baker>]
+    return User.query.all() # [<User user_id=1 fname=Alice lname=Apple>, <User user_id=2 fname=Betty lname=Baker>]
 
 
 def get_user_by_id(user_id):
     """Return a user by their user_id (primary key)."""
 
-    return User.query.get(user_id)
-    # <User user_id=1 first_name=Alice last_name=Apple>
+    return User.query.get(user_id) # <User user_id=1 fname=Alice lname=Apple>
 
 
-def get_user_by_email(email): #y
+def get_user_by_email(email):
     """"Return a user by their email address."""
 
-    return User.query.filter(User.email == email).first()
-    # <User user_id=2 first_name=Betty last_name=Baker>
+    return User.query.filter(User.email == email).first() # <User user_id=2 fname=Betty lname=Baker>
+
+
+def get_fname_by_email(email):
+    """"Return a user by their first name."""
+
+    # return User.query.filter(User.fname == fname).first()  # <User user_id=2 fname=Betty lname=Baker>
+    return db.session.query(User.fname).filter(User.email == email).first()
 
 
 def create_pets():
@@ -58,6 +57,7 @@ def create_pets():
     db.session.commit()
 
     return pet
+
 
 def create_status():
     """Create the status of the respective pet"""

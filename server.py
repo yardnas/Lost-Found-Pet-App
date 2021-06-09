@@ -10,6 +10,7 @@ app = Flask(__name__)
 app.secret_key = '89qhfhje&*djfka8238420*2i#6'
 app.jinja_env.undefined = StrictUndefined
 
+#---------------------------------------------------------------------#
 
 @app.route('/')
 def display_homepage():
@@ -28,7 +29,6 @@ def display_sign_up():
 def create_user():
     """Register a new user."""
 
-    # full_name = request.form.get('full_name')
     fname = request.form.get('fname')
     lname = request.form.get('lname')
     email = request.form.get('email')
@@ -60,6 +60,8 @@ def process_login():
     password = request.form["password"]
 
     user = crud.get_user_by_email(email)
+    fname = crud.get_fname_by_email(email) # tuple: ('Alice',)
+    fname = fname[0] #'Alice'
 
     if not user:
         flash("Email does not exist. Please try again.")
@@ -72,12 +74,15 @@ def process_login():
     session["logged_user_in"] = user.email
     flash("You have logged in succesfully.")
 
-    return redirect('/welcome')
+    # return redirect('/welcome')
+    return render_template("welcome.html", name=fname)
 
 
 @app.route('/signout')
 def logout():
     """Log user out."""
+
+    #TODO: Not implemented yet
 
     del session["logged_user_in"]
 
@@ -99,6 +104,8 @@ def display_map():
 
     return render_template("map.html")
 
+
+#---------------------------------------------------------------------#
 
 if __name__ == '__main__':
 

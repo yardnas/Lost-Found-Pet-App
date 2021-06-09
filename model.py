@@ -6,13 +6,22 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
-"""
-Data Model 
-    # User can have many Pets
-    # Pet can have one Status
-    # Status can have one Location
-"""
+#---------------------------------------------------------------------#
+# Data Model 
+#     # User can have many Pets
+#     # Pet can have one Status
+#     # Status can have one Location
 
+# MVP
+#     # Sign-up | Sign-in
+#     # Post and store Pet info (desc, pics, location)
+#     # Show location on map (google api)
+
+# Nice-to-have
+#     # Pin location of nearest pet clinics
+#     # Send an alert email | text
+#     # Add chat feature
+#---------------------------------------------------------------------#
 
 class User(db.Model):
     """Data model for the user."""
@@ -20,7 +29,6 @@ class User(db.Model):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    #full_name = db.Column(db.String(50), nullable=True)
     fname = db.Column(db.String(50), nullable=True)
     lname = db.Column(db.String(50), nullable=True)
     phone_number = db.Column(db.String(50), nullable=True)
@@ -119,6 +127,7 @@ class Location(db.Model):
                             location_name={self.location_name}\
                             phone_number={self.phone_number}"
 
+#---------------------------------------------------------------------#
 
 def sample_data():
     """Create sample data for testing"""
@@ -205,6 +214,7 @@ def connect_to_db(flask_app):
 
     print('Connected to the db!')
 
+#---------------------------------------------------------------------#
 
 if __name__ == "__main__":
 
