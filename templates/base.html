@@ -1,24 +1,18 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>
-      {% block title %}Neighborhood Pets{% endblock %}
-    </title>
+    <title>{% block title %}Neighborhood Pets{% endblock %}</title>
 
-    <!-- <script
+    <script
       src="https://code.jquery.com/jquery-3.4.1.js"
       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
       crossorigin="anonymous">
-    </script> -->
+    </script>
 
     {% block head %}{% endblock %}
   </head>
-
-  <style type="text/css">
-  /* TODO: Add css styles here */
-  </style>
 
   <body>
     {% for msg in get_flashed_messages() %}
@@ -27,8 +21,7 @@
       </p>
     {% endfor %}
 
-    {% block body %}{% endblock %}
-
-<!--     {% block after_body %}{% endblock %} -->
+    {% block body %}
+    {% endblock %}
   </body>
 </html>

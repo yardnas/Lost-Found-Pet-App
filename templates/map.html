@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Map{% endblock %}
+
+{% block head %}
+    <script src="/static/js/map.js"></script>
+    <script
+        async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeDkSlpBZoTC5TToXy1tW3hehvfM3xWHQ&callback=initMap">
+    </script>
+
+    <!-- To handle the favicon.ico 404 error -->
+    <link rel="shortcut icon" href="#">
+
+    <style>
+        .map, #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+
+{% endblock %}
+
+{% block body %}
+
+    <h1>Map</h1>
+
+    <section class="map">
+        <div id="map"></div>
+    </section>
+
+{% endblock %}

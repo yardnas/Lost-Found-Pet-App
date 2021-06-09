@@ -93,6 +93,12 @@ def welcome():
     return render_template('welcome.html')
 
 
+@app.route('/map')
+def display_map():
+    """Placeholder for map-related code."""
+
+    return render_template("map.html")
+
 
 if __name__ == '__main__':
 
