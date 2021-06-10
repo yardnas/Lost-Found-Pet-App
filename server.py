@@ -1,6 +1,6 @@
 """Server for the lost and found pet app."""
 
-from flask import Flask, render_template, request, flash, session, redirect
+from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from model import connect_to_db
 from jinja2 import StrictUndefined
 import crud
@@ -60,8 +60,11 @@ def process_login():
     password = request.form["password"]
 
     user = crud.get_user_by_email(email)
-    fname = crud.get_fname_by_email(email) # tuple: ('Alice',)
-    fname = fname[0] #'Alice'
+
+    # # TODO: Investigate why this doesn't work as expected
+    # # Get value from first name for Jinja template
+    # fname = crud.get_fname_by_email(email) # tuple: ('Alice',)
+    # fname = fname[0] #'Alice'
 
     if not user:
         flash("Email does not exist. Please try again.")
@@ -74,11 +77,14 @@ def process_login():
     session["logged_user_in"] = user.email
     flash("You have logged in succesfully.")
 
-    # return redirect('/welcome')
-    return render_template("welcome.html", name=fname)
+    return redirect('/welcome')
+
+    # # TODO: Investigate why this doesn't work as expected
+    # # Not functioning properly. Need to redirect and render with variable.
+    # return render_template("welcome.html", name=fname) 
 
 
-@app.route('/signout')
+@app.route('/signout') # TODO
 def logout():
     """Log user out."""
 
