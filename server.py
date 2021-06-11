@@ -1,6 +1,7 @@
 """Server for the lost and found pet app."""
 
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from model import connect_to_db
 from jinja2 import StrictUndefined
 import crud
@@ -10,6 +11,10 @@ app = Flask(__name__)
 app.secret_key = '89qhfhje&*djfka8238420*2i#6'
 app.jinja_env.undefined = StrictUndefined
 
+# Create LoginManager and attach to the Flask app instance
+login_manager = LoginManager()
+login_manager.init_app(app)
+
 #---------------------------------------------------------------------#
 
 @app.route('/')
@@ -18,6 +23,59 @@ def display_homepage():
 
     return render_template('homepage.html')
 
+# Define callback function for login_manager.user_loader
+@login_manager.user_loader
+def load_user(user_id):
+    """Takes in user_id and return a User instance"""
+
+    # return User.query.get(user_id)
+    return crud.get_user_by_id(user_id)
+
+
+@app.route('/login')
+def display_login():
+    """Show the signin page to login."""
+
+    return render_template('login.html')
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    """Log user in."""
+
+    email = request.form["email"]
+    password = request.form["password"]
+
+    user = crud.get_user_by_email(email)
+    # user = User.query.filter_by(email=email).first()
+
+    # # TODO: Investigate why this doesn't work as expected
+    # # Get value from first name for Jinja template
+    # fname = crud.get_fname_by_email(email) # tuple: ('Alice',)
+    # fname = fname[0] #'Alice'
+
+    if not user:
+        flash("Email does not exist. Please try again.")
+        return redirect('/')
+
+    if user.password != password:
+        flash("Oops. Password is invalid. Please try again.")
+        return redirect('/')
+
+    # session["logged_user_in"] = user.email
+
+    # Call flask_login.login_user to login a user
+    login_user(user)
+
+    flash("You have logged in succesfully.")
+
+    return redirect('/dashboard')
+
+    # # TODO: Investigate why this doesn't work as expected
+    # # Not functioning properly. Need to redirect and render with variable.
+    # return render_template("welcome.html", name=fname) 
+
+
 @app.route('/signup')
 def display_sign_up():
     """Show the sign-up page to create an account"""
@@ -25,7 +83,7 @@ def display_sign_up():
     return render_template('signup.html')
 
 
-@app.route('/signup', methods=['POST'])
+@app.route('/signup', methods=['GET', 'POST'])
 def create_user():
     """Register a new user."""
 
@@ -45,66 +103,28 @@ def create_user():
     return redirect('/') # redirect back to homepage
 
 
-@app.route('/signin')
-def display_sign_in():
-    """Show the signin page to login."""
-
-    return render_template('signin.html')
-
-
-@app.route('/signin', methods=['POST'])
-def process_login():
-    """Log user in."""
-
-    email = request.form["email"]
-    password = request.form["password"]
-
-    user = crud.get_user_by_email(email)
-
-    # # TODO: Investigate why this doesn't work as expected
-    # # Get value from first name for Jinja template
-    # fname = crud.get_fname_by_email(email) # tuple: ('Alice',)
-    # fname = fname[0] #'Alice'
-
-    if not user:
-        flash("Email does not exist. Please try again.")
-        return redirect('/')
-
-    if user.password != password:
-        flash("Oops. Password is invalid. Please try again.")
-        return redirect('/')
-
-    session["logged_user_in"] = user.email
-    flash("You have logged in succesfully.")
-
-    return redirect('/welcome')
-
-    # # TODO: Investigate why this doesn't work as expected
-    # # Not functioning properly. Need to redirect and render with variable.
-    # return render_template("welcome.html", name=fname) 
-
-
-@app.route('/signout') # TODO
+@app.route('/logout') # TODO
 def logout():
-    """Log user out."""
+    """Logout user."""
 
-    #TODO: Not implemented yet
-
-    del session["logged_user_in"]
+    logout_user()
+    # del session["logged_user_in"]
 
     flash("Logged out successfully.")
 
     return redirect("/")
 
 
-@app.route('/welcome')
+@app.route('/dashboard')
+@login_required
 def welcome():
-    """Show the welcome page."""
+    """Show the welcome dashboard."""
 
-    return render_template('welcome.html')
+    return render_template('dashboard.html')
 
 
 @app.route('/map')
+@login_required
 def display_map():
     """Placeholder for map-related code."""
 

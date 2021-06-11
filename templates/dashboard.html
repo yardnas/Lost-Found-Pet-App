@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Map{% endblock %}
+{% block title %}Welcome to Neighborhood Pets{% endblock %}
 
 {% block head %}
     <script src="/static/js/map.js"></script>
@@ -13,7 +13,7 @@
 
     <style>
         .map, #map {
-            height: 700px;
+            height: 500px;
             width: 100%;
         }
     </style>
@@ -49,4 +49,17 @@
         <div id="map"></div>
     </section>
 
+    <!-- <br> placeholder until css -->
+    <br><br> 
+
+    <div>
+        <form action=/logout>
+            <label for="logout-submit">Logout</label>
+            <br>
+            <br>
+            <input type="submit" value="Logout" name="logout" id="logout-submit"></p>
+        </form>
+    </div>
+
+  
 {% endblock %}

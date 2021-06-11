@@ -1,6 +1,7 @@
 """Models for lost and found pets app."""
 
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin # for flask-login
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
@@ -23,7 +24,7 @@ db = SQLAlchemy()
 #     # Add chat feature
 #---------------------------------------------------------------------#
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     """Data model for the user."""
 
     __tablename__ = "users"
@@ -40,6 +41,11 @@ class User(db.Model):
 
     # Foreign key between User and Pet
     pet_id = db.Column(db.Integer, db.ForeignKey('pets.pet_id'), nullable=True)
+
+    def get_id(self):
+        """Override UserMixin.get_id."""
+
+        return str(self.user_id)
 
 
     def __repr__(self):
