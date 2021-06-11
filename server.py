@@ -47,9 +47,7 @@ def login():
     password = request.form["password"]
 
     user = crud.get_user_by_email(email)
-    # user = User.query.filter_by(email=email).first()
 
-    # # TODO: Investigate why this doesn't work as expected
     # # Get value from first name for Jinja template
     # fname = crud.get_fname_by_email(email) # tuple: ('Alice',)
     # fname = fname[0] #'Alice'
@@ -70,10 +68,6 @@ def login():
     flash("You have logged in succesfully.")
 
     return redirect('/dashboard')
-
-    # # TODO: Investigate why this doesn't work as expected
-    # # Not functioning properly. Need to redirect and render with variable.
-    # return render_template("welcome.html", name=fname) 
 
 
 @app.route('/signup')
@@ -103,7 +97,7 @@ def create_user():
     return redirect('/') # redirect back to homepage
 
 
-@app.route('/logout') # TODO
+@app.route('/logout')
 def logout():
     """Logout user."""
 
