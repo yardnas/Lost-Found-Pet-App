@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Find My Pet Homepage{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+
+{% block body %}
+
+    <header>
+        <h1>Neighborhood Lost Pets</h1>
+        <h2>Welcome!</h2>
+    </header>
+
+    <main>
+        <div class="login-register" id="login-register">
+            <div class="login-prompt">
+                <h4><label>Login</label></h4>
+
+                <button id="login-button">
+                    <a href="/login">Login</a>
+                </button>
+            </div>
+    
+            <div class="register-prompt">
+                <h4><label>Register</label></h4>
+
+                <button id="register-button">
+                    <a href="/register">Register</a>
+                </button>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

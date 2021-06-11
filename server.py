@@ -18,10 +18,10 @@ login_manager.init_app(app)
 #---------------------------------------------------------------------#
 
 @app.route('/')
-def display_homepage():
-    """Show the homepage."""
+def display_splash():
+    """Show the splash page."""
 
-    return render_template('homepage.html')
+    return render_template('index.html')
 
 # Define callback function for login_manager.user_loader
 @login_manager.user_loader
@@ -70,14 +70,14 @@ def login():
     return redirect('/dashboard')
 
 
-@app.route('/signup')
-def display_sign_up():
+@app.route('/register')
+def register_user():
     """Show the sign-up page to create an account"""
 
-    return render_template('signup.html')
+    return render_template('register.html')
 
 
-@app.route('/signup', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def create_user():
     """Register a new user."""
 
