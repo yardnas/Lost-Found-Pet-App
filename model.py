@@ -41,6 +41,11 @@ class User(db.Model, UserMixin):
     pet_id = db.Column(db.Integer, db.ForeignKey('pets.pet_id'), nullable=True)
 
 
+    # To address error: NotImplementedError: No 'id' attribute - override 'get_id'
+    def get_id(self):
+           return (self.user_id)
+           
+
     def __repr__(self):
         """Display information about the user."""
 
@@ -63,7 +68,7 @@ class Pet(db.Model):
     updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     # Foreign key between pet and location
-    location_id = db.Column(db.Integer, db.ForeignKey('locations.location_id'), nullable=False)
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.location_id'), nullable=True)
 
     # Add relationship between user and pets
     users = db.relationship("User", backref="pets")
@@ -91,7 +96,7 @@ class Location(db.Model):
     # pet_id = db.Column(db.Integer, db.ForeignKey('pet.pet_id'), nullable=True)
 
     # Add relationship between pet and location
-    pet = db.relationship("Pet", backref="locations")
+    pets = db.relationship("Pet", backref="locations")
 
 
     def __repr__(self):
@@ -109,49 +114,49 @@ def sample_data():
     User.query.delete()
 
     # Add sample users data
-    alice = User(user_id=1, 
-                pet_id=1, 
+    alice = User(user_id=101, 
+                pet_id=101, 
                 fname="Alice",
                 lname="Apple",
                 phone_number="415-555-1234",
                 email="alice@alice.com",
                 password="alice")
 
-    betty = User(user_id=2, 
-                pet_id=2,
+    betty = User(user_id=102, 
+                pet_id=102,
                 fname="Bobby", 
                 lname="Baker",
                 phone_number="415-555-5678", 
                 email="bobby@bobby.com",
                 password="bobby")
 
-    fido = Pet(pet_id=1, 
+    fido = Pet(pet_id=101, 
                 pet_name="Fido", 
                 pet_type="Dog",
                 pet_breed="Corgi",
                 pet_gender="Male",
                 pet_color="Brown with white spots",
                 pet_image="link to image",
-                location_id=1)
+                location_id=101)
 
-    kitty = Pet(pet_id=2, 
+    kitty = Pet(pet_id=102, 
                 pet_name="Kitty",
                 pet_type="Cat",
                 pet_breed="British Shorthair",
                 pet_gender="Female", 
                 pet_color="Gray with black stripe tail",
                 pet_image="link to image",
-                location_id=2)
+                location_id=102)
 
 
-    fido_location = Location(location_id=1,
+    fido_location = Location(location_id=101,
                             location_name="Burlingame Family Pet Hospital",
                             address="1808 Magnolia Avenue",
                             city="Burlingame",
                             state="CA",
                             zipcode="94010")
 
-    kitty_location = Location(location_id=2,
+    kitty_location = Location(location_id=102,
                             location_name="Starbucks",
                             address="54 E 4th Avenue",
                             city="San Mateo",
