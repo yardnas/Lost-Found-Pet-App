@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
-{% block title %}Find My Pet Homepage{% endblock %}
+{% block title %}Find Lost Neighborhood Pets Splash Page{% endblock %}
 {% block head %}{{ super() }}{% endblock %}
 
 {% block body %}
-
     <header>
-        <h1>Neighborhood Lost Pets</h1>
-        <h2>Welcome!</h2>
+        <!-- Welcome Section -->
+        <section class="splash-header">
+            <h1>Find Lost Neighborhood Pets</h1>
+            <h2>Welcome!</h2>
+        </section>
     </header>
 
     <main>
-        <div class="login-register" id="login-register">
+        <!-- Login | Register Splash Section -->
+        <section class="splash-window">
+
             <div class="login-prompt">
                 <h4><label>Login</label></h4>
 
@@ -26,7 +30,8 @@
                     <a href="/register">Register</a>
                 </button>
             </div>
-        </div>
+
+        </section>
     </main>
 
 {% endblock %}

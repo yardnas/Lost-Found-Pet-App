@@ -4,32 +4,35 @@
 
 {% block body %}
 
-<h1>Welcome!</h1>
-<h2>Please sign in</h1>
-    
-    <div class="login-window" id="login">
+    <header>
+        <!-- Welcome Section -->
+        <section class="login-header">
+            <h1>Welcome!</h1>
+            <h2>Please sign in</h1>
+        </section>
+    </header>
 
-        <div class="login-form">
-            
+    <main>
+        <!-- Login Section -->
+        <section class="login-form">
+
             <form action="/login" method="POST">
                 <h3><label>Login</label></h3>
 
                 <div>
-                    <p>
-                        <label for="email-input">Email:</label>
-                        <input type="email" placeholder="Email" name="email" id="email-input" required />
-                    </p>
-                    <p>
-                        <label for="password-input">Password:</label>
-                        <input type="password" placeholder="Password" name="password" id="password-input" required />
-                    </p>
-                </div>
+                    <label for="email-input">Email:</label>
+                    <input type="email" placeholder="Email" name="email" id="email-input" required />
+                </div><br> <!-- Placeholder <br> until css -->
 
-                <p><input type="submit" value="Login"></p>
+                <div>
+                    <label for="password-input">Password:</label>
+                    <input type="password" placeholder="Password" name="password" id="password-input" required />
+                </div><br> <!-- Placeholder <br> until css -->
+                
+                <button type="submit" value ="Submit" class="btn-login">Submit</button>
             </form>
 
-        </div>
-
-    </div>
+        </section>
+    </main>
 
 {% endblock %}

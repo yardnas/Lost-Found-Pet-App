@@ -3,37 +3,44 @@
 {% block head %}{{ super() }}{% endblock %}
 
 {% block body %}
+    <header>
+        <!-- Welcome Section -->
+        <section class="register-header">
+            <h1>Welcome!</h1>
+            <h2>Please sign up here</h2>
+        </section>
+    </header>
 
-<h1>Welcome!</h1>
-<h2>Please sign up here</h2>
+    <main>
+        <!-- Register Section -->
+        <section class="register-form">
 
-    <div class="register-window" id="register">
-        <div class="register-form">
             <form action="/register" method="POST">
                 <h4><label>Register</label></h4>
                 <div>
-                    <p>
-                        <label for="name-input">First Name:</label>
-                        <input type="text" placeholder="First Name" name="fname" id="name-input" />
-                    </p>
-                    <p>
-                        <label for="name-input">Last Name:</label>
-                        <input type="text" placeholder="Last Name" name="lname" id="name-input" />
-                    </p>
-                    <p>
-                        <label for="email-input">Email:</label>
-                        <input type="email" placeholder="Email" name="email" id="email-input" />
-                    </p>
-                    <p>
-                        <label for="password-input">Password:</label>
-                        <input type="password" placeholder="Password" name="password" id="password-input" />
-                    </p>
-                </div>
-                <p>
-                    <input type="submit" value="Sign Up"  />
-                </p>
+                    <label for="name-input">First Name:</label>
+                    <input type="text" placeholder="First Name" name="fname" id="name-input" />
+                </div><br> <!-- Placeholder <br> until css -->
+
+                <div>
+                    <label for="name-input">Last Name:</label>
+                    <input type="text" placeholder="Last Name" name="lname" id="name-input" />
+                </div><br> <!-- Placeholder <br> until css -->
+
+                <div>
+                    <label for="email-input">Email:</label>
+                    <input type="email" placeholder="Email" name="email" id="email-input" />
+                </div><br> <!-- Placeholder <br> until css -->
+
+                <div>
+                    <label for="password-input">Password:</label>
+                    <input type="password" placeholder="Password" name="password" id="password-input" />
+                </div><br> <!-- Placeholder <br> until css -->
+
+                <button type="submit" value ="Submit" class="btn-register">Submit</button>
             </form>
-        </div>
-    </div>
+
+        </section>
+    </main>
 
 {% endblock %}

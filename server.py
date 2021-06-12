@@ -6,7 +6,6 @@ from model import connect_to_db
 from jinja2 import StrictUndefined
 import crud
 
-
 app = Flask(__name__)
 app.secret_key = '89qhfhje&*djfka8238420*2i#6'
 app.jinja_env.undefined = StrictUndefined
@@ -48,10 +47,6 @@ def login():
 
     user = crud.get_user_by_email(email)
 
-    # # Get value from first name for Jinja template
-    # fname = crud.get_fname_by_email(email) # tuple: ('Alice',)
-    # fname = fname[0] #'Alice'
-
     if not user:
         flash("Email does not exist. Please try again.")
         return redirect('/')
@@ -72,7 +67,7 @@ def login():
 
 @app.route('/register')
 def register_user():
-    """Show the sign-up page to create an account"""
+    """Show the register page to create an account."""
 
     return render_template('register.html')
 
