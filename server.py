@@ -112,6 +112,40 @@ def welcome():
     return render_template('dashboard.html')
 
 
+@app.route('/dashboard', methods=['GET', 'POST'])
+def create_lost_pet():
+    """Register a lost pet"""
+
+    fname = request.form.get('fname')
+    email = request.form.get('email')
+    phone = request.form.get('phone')
+    pet_name = request.form.get('pet-name')
+    pet_type = request.form.get('pet-type')
+    pet_breed = request.form.get('pet-breed')
+    pet_gender = request.form.get('pet-gender')
+    pet_color = request.form.get('pet-color')
+    pet_picture = request.form.get('pet-picture')
+
+    user = crud.get_user_by_email(email)
+
+    # if user:
+    #     flash('Email already exist. Please log in or try again.')
+    # else:
+    #     crud.create_user(fname, lname, email, password)
+    #     flash('Account has been successfully created. Please sign in.')
+
+    if user:
+        created_user = crud.create_user(fname, lname, email, password)
+        if created_user == None: #if some of the fields are left empty, the function create_user will return none
+            flash("Please fill out all required fields.")
+            return redirect("/create_account")
+        else:   
+            flash('Account created successfully. Please log in.')
+            return redirect("/login")
+
+    return redirect('/') # redirect back to homepage
+
+
 @app.route('/map')
 @login_required
 def display_map():

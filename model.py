@@ -10,12 +10,11 @@ db = SQLAlchemy()
 #---------------------------------------------------------------------#
 # Data Model 
 #     # User can have many Pets
-#     # Pet can have one Status
-#     # Status can have one Location
+#     # Pet can have one Location
 
 # MVP
 #     # Sign-up | Sign-in
-#     # Post and store Pet info (desc, pics, location)
+#     # Store pet info (desc, pics, location)
 #     # Show location on map (google api)
 
 # Nice-to-have
@@ -35,17 +34,11 @@ class User(db.Model, UserMixin):
     phone_number = db.Column(db.String(50), nullable=True)
     email = db.Column(db.String(255), nullable=True)
     password = db.Column(db.String(255), nullable=True)
-    user_type = db.Column(db.String(50), nullable=True)
     created_on = db.Column(db.DateTime, default=datetime.now)
     updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     # Foreign key between User and Pet
     pet_id = db.Column(db.Integer, db.ForeignKey('pets.pet_id'), nullable=True)
-
-    def get_id(self):
-        """Override UserMixin.get_id."""
-
-        return str(self.user_id)
 
 
     def __repr__(self):
@@ -60,18 +53,17 @@ class Pet(db.Model):
     __tablename__ = "pets"
 
     pet_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    pet_name = db.Column(db.String(50), nullable=True)
-    pet_type = db.Column(db.String(50), nullable=True)
-    pet_breed = db.Column(db.String(50), nullable=True)
-    pet_gender = db.Column(db.String(20), nullable=True)
-    pet_desc = db.Column(db.Text, nullable=True)
-    lost_found = db.Column(db.String(20), nullable=True)
+    pet_name = db.Column(db.String(50), nullable=False)
+    pet_type = db.Column(db.String(50), nullable=False)
+    pet_breed = db.Column(db.String(50), nullable=False)
+    pet_gender = db.Column(db.String(50), nullable=False)
+    pet_color = db.Column(db.String(50), nullable=False)
+    pet_image = db.Column(db.Text, nullable=False)
     created_on = db.Column(db.DateTime, default=datetime.now)
     updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
-    # Foreign key between pet and status
-    status_id = db.Column(db.Integer, db.ForeignKey('status.status_id'), nullable=True)
-    #pet_image_id = db.Column(db.Integer, db.ForeignKey('pet_images.image_id'), nullable=False)
+    # Foreign key between pet and location
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.location_id'), nullable=False)
 
     # Add relationship between user and pets
     users = db.relationship("User", backref="pets")
@@ -80,34 +72,7 @@ class Pet(db.Model):
     def __repr__(self):
         """Show information about the pet."""
 
-        return f"<Pet pet_id={self.pet_id}\
-                        pet_name={self.pet_name}\
-                        pet_type={self.pet_type}>"
-
-
-# class PetImages(db.Model):
-#     # TODO: research methods to store images (cloud, text files)
-    
-
-class Status(db.Model):
-    """Data model for the status of the pet."""
-
-    __tablename__ = "status"
-
-    status_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    status = db.Column(db.String(50), nullable=True)
-
-    #Foreign key(s)
-    location_id = db.Column(db.Integer, db.ForeignKey('locations.location_id'), nullable=True)
-
-    # Add relationship between pets and their statuses
-    pets = db.relationship("Pet", backref="status")
-
-    def __repr__(self):
-        """Show information about the status of the pet."""
-
-        return f"<Status status_id={self.status_id}\
-                            status={self.status}>"
+        return f"<Pet pet_id={self.pet_id} pet_name={self.pet_name} pet_type={self.pet_type}>"
 
 
 class Location(db.Model):
@@ -121,17 +86,19 @@ class Location(db.Model):
     city = db.Column(db.String(100), nullable=True)
     state = db.Column(db.String(50), nullable=True)
     zipcode = db.Column(db.String(20), nullable=True)
-    phone_number = db.Column(db.String(50), nullable=True)
 
-    # Add relationship between status and location
-    status = db.relationship("Status", backref="locations")
+    # # Foreign key between pet and location
+    # pet_id = db.Column(db.Integer, db.ForeignKey('pet.pet_id'), nullable=True)
+
+    # Add relationship between pet and location
+    pet = db.relationship("Pet", backref="locations")
+
 
     def __repr__(self):
         """Show information about the location of the lost or found pet."""
 
-        return f"<Location location_id={self.location_id}\
-                            location_name={self.location_name}\
-                            phone_number={self.phone_number}"
+        return f"<Location location_id={self.location_id} location_name={self.location_name} phone_number={self.city}"
+
 
 #---------------------------------------------------------------------#
 
@@ -142,69 +109,56 @@ def sample_data():
     User.query.delete()
 
     # Add sample users data
-    alice = User(user_id=101, 
+    alice = User(user_id=1, 
                 pet_id=1, 
-                #full_name="Alice Apple",
                 fname="Alice",
                 lname="Apple",
                 phone_number="415-555-1234",
                 email="alice@alice.com",
-                password="password123",
-                user_type="pet_owner")
+                password="alice")
 
-    betty = User(user_id=102, 
+    betty = User(user_id=2, 
                 pet_id=2,
-                #full_name="Betty Baker",
-                fname="Betty", 
+                fname="Bobby", 
                 lname="Baker",
                 phone_number="415-555-5678", 
-                email="betty@betty.com",
-                password="password456", 
-                user_type="reporter")
+                email="bobby@bobby.com",
+                password="bobby")
 
     fido = Pet(pet_id=1, 
                 pet_name="Fido", 
                 pet_type="Dog",
                 pet_breed="Corgi",
                 pet_gender="Male",
-                pet_desc="Brown coat with three dark spots on the tail",
-                lost_found="Lost",
-                status_id=1)
+                pet_color="Brown with white spots",
+                pet_image="link to image",
+                location_id=1)
 
     kitty = Pet(pet_id=2, 
                 pet_name="Kitty",
                 pet_type="Cat",
                 pet_breed="British Shorthair",
                 pet_gender="Female", 
-                pet_desc="Gray coat with blue eyes",
-                lost_found="Lost",
-                status_id=2)
+                pet_color="Gray with black stripe tail",
+                pet_image="link to image",
+                location_id=2)
 
-    fido_status = Status(status_id=1, 
-                            status="Pet Found",
-                            location_id=1)
-
-    kitty_status = Status(status_id=2,
-                            status="Pet Lost",
-                            location_id=2)
 
     fido_location = Location(location_id=1,
                             location_name="Burlingame Family Pet Hospital",
                             address="1808 Magnolia Avenue",
                             city="Burlingame",
                             state="CA",
-                            zipcode="94010",
-                            phone_number="650-697-7234")
+                            zipcode="94010")
 
     kitty_location = Location(location_id=2,
                             location_name="Starbucks",
                             address="54 E 4th Avenue",
                             city="San Mateo",
                             state="CA",
-                            zipcode="94401",
-                            phone_number="650-548-1764")
+                            zipcode="94401")
 
-    db.session.add_all([alice, betty, fido, kitty, fido_status, kitty_status, fido_location, kitty_location])
+    db.session.add_all([alice, betty, fido, kitty, fido_location, kitty_location])
     db.session.commit()
 
 

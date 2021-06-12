@@ -15,7 +15,7 @@
         <!-- Welcome Section -->
         <section class="dashboard-header">
             <h1>Find Lost Neighborhood Pets</h1>
-            <p><h3>A community in your neighborhood to help find lost pets</h3></p>
+            <p><h4>A community in your neighborhood to help find lost pets</h4></p>
 
             <h2>
                 {% if current_user.is_authenticated %}
@@ -29,64 +29,54 @@
         <!-- Lost Pet Form Section -->
         <section class="pet-form">
             <h3>Did you lose your pet? Please fill out this form</h3>
+            <p>(TODO: Add CSS to form)</p>
 
             <form class="pet-register-form">
                 <div class="pet-form">
                     <div>
                         <label for="fname-input" class="form-label">First Name</label>
                         <input type="text" placeholder="First Name" name="fname" id="fname-input" />
-                    </div>
-
-                    <br> <!-- Placeholder <br> until css -->
+                    </div><br> <!-- Placeholder <br> until css -->
 
                     <div>
-                        <label for="lname-input" class="form-label">Last Name</label>
-                        <input type="text" placeholder="Last Name" name="lname" id="lname-input" />
-                    </div>
-
-                    <br> <!-- Placeholder <br> until css -->
+                        <label for="email-input" class="form-label">Email</label>
+                        <input type="email" placeholder="Email" name="email" id="email-input" />
+                    </div><br> <!-- Placeholder <br> until css -->
 
                     <div>
                         <label for="phone-input" class="form-label">Phone Number</label>
                         <input type="text" placeholder="Phone Number" name="phone" id="phone-input" />
-                    </div>
-
-                    <br> <!-- Placeholder <br> until css -->
+                    </div><br> <!-- Placeholder <br> until css -->
 
                     <div>
                         <label for="pet-name-input" class="form-label">Pet Name</label>
                         <input type="text" placeholder="Pet Name" name="pet-name" id="pet-name-input" />
-                    </div>
-
-                    <br> <!-- Placeholder <br> until css -->
+                    </div><br> <!-- Placeholder <br> until css -->
 
                     <div>
                         <label for="pet-type-input" class="form-label">Pet Type</label>
                         <input type="text" placeholder="Pet Type" name="pet-type" id="pet-type-input" />
-                    </div>
-
-                    <br> <!-- Placeholder <br> until css -->
+                    </div><br> <!-- Placeholder <br> until css -->
 
                     <div>
                         <label for="pet-breed-input" class="form-label">Pet Breed</label>
                         <input type="text" placeholder="Pet Breed" name="pet-breed" id="pet-breed-input" />
-                    </div>
-
-                    <br> <!-- Placeholder <br> until css -->
+                    </div><br> <!-- Placeholder <br> until css -->
 
                     <div>
                         <label for="pet-gender-input" class="form-label">Pet Gender</label>
                         <input type="text" placeholder="Pet Gender" name="pet-gender" id="pet-gender-input" />
-                    </div>
+                    </div><br> <!-- Placeholder <br> until css -->
 
-                    <br> <!-- Placeholder <br> until css -->
+                    <div>
+                        <label for="pet-color-input" class="form-label">Pet Color</label>
+                        <input type="text" placeholder="Pet Color" name="pet-color" id="pet-color-input" />
+                    </div><br> <!-- Placeholder <br> until css -->
 
                     <div>
                         <label for="pet-picture-input" class="form-label">Pet Picture</label>
-                        <input type="text" placeholder="Upload Picture Here" name="pet-picture" id="pet-picture-input" />
-                    </div>
-
-                    <br> <!-- Placeholder <br> until css -->
+                        <input type="text" placeholder="TODO: Upload Picture" name="pet-picture" id="pet-picture-input" />
+                    </div><br> <!-- Placeholder <br> until css -->
 
                     <button type="submit" value ="Submit" class="btn-pet">Submit</button>
                 </div>
@@ -106,6 +96,7 @@
     
     <footer>
         <!-- Logout Section -->
+        <!-- TODO: footer is probably not the right tag. May add this to top when CSS in place -->
         <section>
             <form action=/logout>
                 <label for="logout-submit">Ready to logout?</label>

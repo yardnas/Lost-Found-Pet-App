@@ -1,6 +1,6 @@
 """CRUD (Create, Read, Update, Delete) operations."""
 
-from model import db, User, Pet, Status, Location, connect_to_db
+from model import db, User, Pet, Location, connect_to_db
 
 # Data model Classes
     # User
@@ -13,7 +13,10 @@ from model import db, User, Pet, Status, Location, connect_to_db
 def create_user(fname, lname, email, password): #y
     """Create and return a new user."""
 
-    user = User(fname=fname, lname=lname, email=email, password=password)
+    user = User(fname=fname, 
+                lname=lname, 
+                email=email, 
+                password=password)
 
     db.session.add(user)
     db.session.commit()
@@ -42,16 +45,21 @@ def get_user_by_email(email):
 def get_fname_by_email(email):
     """"Return a user by their first name."""
 
-    # return User.query.filter(User.fname == fname).first()  # <User user_id=2 fname=Betty lname=Baker>
     return db.session.query(User.fname).filter(User.email == email).first()
 
 
 def create_pets():
     """Create and return a pet."""
 
-    pet = Pet(pet_name=pet_name, pet_type=pet_type, pet_breed=pet_breed, 
-                pet_gender=pet_gender, pet_desc=pet_desc, lost_found=lost_found,
-                status_id=status_id)
+    pet = Pet(pet_name=pet_name, 
+              pet_type=pet_type, 
+              pet_breed=pet_breed, 
+              pet_gender=pet_gender, 
+              pet_color=pet_color, 
+              #lost_found=lost_found,
+              pet_image=pet_image,
+              location_id=location_id)
+              #status_id=status_id)
 
     db.session.add(pet)
     db.session.commit()
@@ -59,20 +67,23 @@ def create_pets():
     return pet
 
 
-def create_status():
-    """Create the status of the respective pet"""
+# def create_status():
+#     """Create the status of the respective pet"""
 
-    status = Status(status=status, location_id=location_id)
+#     status = Status(status=status, location_id=location_id)
 
-    db.session.add(status)
-    db.session.commit()
+#     db.session.add(status)
+#     db.session.commit()
 
 
 def create_location():
     """Create the location of the respective pet/status"""
 
-    location = Location(location_name=location_name, address=address, city=city, 
-                        state=state, zipcode=zipcode, phone_number=phone_number)
+    location = Location(location_name=location_name, 
+                        address=address, 
+                        city=city, 
+                        state=state, 
+                        zipcode=zipcode)
 
 
 if __name__ == "__main__":
