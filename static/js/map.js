@@ -62,4 +62,34 @@ function initMap() {
         }
     }) (marker, count));
     }
+
+    // User to enter location where pet was last seen
+    // Geocode the location to get its coordinates and add a marker on the map
+    $('#geocode-pet-address').on('click', () => { //on click listening
+        const petLastAddress = prompt('Enter a location'); // prompt expecting something back
+
+        const geocoder = new google.maps.Geocoder(); // creating a new geocoder object
+        geocoder.geocode({ address: petLastAddress }, (results, status) => { //geocoder is the obj. geocode, 
+                                                                        //give an obj with has adderess in it, 
+                                                                        // results and status into the arrow function, 
+                                                                        //result is coming from geocoder.geocode
+        if (status === 'OK') {
+            // Get the coordinates of the user's location
+            const petLocation = results[0].geometry.location; //taking result[0] - getting back an array of results and grabbing the coordinate
+
+            // Create a marker
+            const petLocationMarker = new google.maps.Marker({
+            position: petLocation, // pet location marker, position is the lat/long coordinates. 
+                                    //for marker need position and map
+            map: map
+            });
+
+            // Zoom in on the geolocated location
+            map.setCenter(userLocation); // zooming into the location, search and then zoom. setting cetner of map to zoom locaftino
+            map.setZoom(10);
+        } else {
+            alert(`Geocode was unsuccessful for the following reason: ${status}`); // otherwise get the alert
+        }
+        });
+    });
 }

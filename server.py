@@ -146,13 +146,22 @@ def create_lost_pet():
 
     return render_template('dashboard.html')
 
+# @app.route('/get/pet-info')
+# @login_required
+# def get_pet_info():
+#     """Retrieve lost pet information and its last known location"""
 
-@app.route('/map')
-@login_required
-def display_map():
-    """Placeholder for map-related code."""
+#     #user_fname
+#     #user_phone
+#     #pet_name
+#     #pet_type
+#     #pet_breed
+#     #pet_color
+#     #pet_image
 
-    return render_template("map.html")
+
+
+    
 
 
 #---------------------------------------------------------------------#

@@ -190,7 +190,7 @@ if __name__ == "__main__":
     connect_to_db(app)
 
     # Create all tables
-    db.create_all()
+    #db.create_all()
 
     # Insert sample data (adding here for now. will move to tests.py)
-    sample_data()
+    #sample_data()

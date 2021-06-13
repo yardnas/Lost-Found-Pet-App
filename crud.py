@@ -74,15 +74,6 @@ def create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image)
     return pet
 
 
-# def create_status():
-#     """Create the status of the respective pet"""
-
-#     status = Status(status=status, location_id=location_id)
-
-#     db.session.add(status)
-#     db.session.commit()
-
-
 def update_user_pet_info(fname, email, phone, 
                          pet_name, pet_type, pet_breed, 
                          pet_gender, pet_color, pet_image):
@@ -117,6 +108,8 @@ def create_location():
                         city=city, 
                         state=state, 
                         zipcode=zipcode)
+
+#---------------------------------------------------------------------#
 
 
 if __name__ == "__main__":

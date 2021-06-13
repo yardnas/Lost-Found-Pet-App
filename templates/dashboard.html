@@ -14,8 +14,8 @@
     <header>
         <!-- Welcome Section -->
         <section class="dashboard-header">
-            <h1>Find Lost Neighborhood Pets</h1>
-            <p><h4>A community in your neighborhood to help find lost pets</h4></p>
+            <h1 align="center">Neighborhood Lost Pets</h1>
+            <h4 align="center">A community to find lost pets in your neighborhood</h4>
 
             <h2>
                 {% if current_user.is_authenticated %}
@@ -28,7 +28,8 @@
     <main>
         <!-- Lost Pet Form Section -->
         <section class="pet-form">
-            <h3>Did you lose your pet? Please fill out this form</h3>
+            <h3>Did you lose your pet?</h3>
+            <h4>Please fill out the form below:</h4>
             <p>(TODO: Add CSS to form)</p>
 
             <form class="pet-form-register" method="POST">
@@ -78,25 +79,41 @@
                         <input type="text" placeholder="TODO: Add image upload or link option" name="pet-image" id="pet-image-input" />
                     </div><br> <!-- Placeholder <br> until css -->
 
-                    <button type="submit" value ="Submit" class="btn-pet">Submit</button>
+                    <button type="submit" value ="Submit" class="btn-pet">Submit Form</button>
                 </div>
             </form>
+        </section>
+
+        <!-- Lost Pet Address Section -->
+        <section class="pet-address">
+            <div class="add-pet-address">
+                <h4>Enter the address where the pet was last seen:</h4>
+
+                <p>A marker will be added to the map</p>
+
+                <form class="pet-address" method="POST">
+                    <button type="submit" id="geocode-pet-address" value="Submit" class="btn-address">Enter Address</button>
+                </form>
+
+            </div>
         </section>
         
         <!-- Lost Pet Map Section -->
         <section class="marker-map">
-            <h3>To find a lost pet, please click below</h3>
+            <h3>To find a lost pet in your neighborhood, please click markers below:</h3>
                 <p>(TODO: Add marker/pin with information)</p>
+                  
+            <div class="map">
+                <div id="map"></div>
+            </div>
 
-            <div id="map"></div>
         </section>
-    </main>
+    </main><br> <!-- Placeholder <br> until css -->
 
-    <br>
-    
-    <footer>
+
+    <!-- TODO: footer is probably not the right tag. May add this to top when CSS in place -->
+    <footer> 
         <!-- Logout Section -->
-        <!-- TODO: footer is probably not the right tag. May add this to top when CSS in place -->
         <section>
             <form action=/logout>
                 <label for="logout-submit">Ready to logout?</label>
