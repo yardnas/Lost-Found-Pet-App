@@ -93,6 +93,7 @@ def create_user():
 
 
 @app.route('/logout')
+@login_required
 def logout():
     """Logout user."""
 
@@ -125,26 +126,25 @@ def create_lost_pet():
     pet_breed = request.form.get('pet-breed')
     pet_gender = request.form.get('pet-gender')
     pet_color = request.form.get('pet-color')
-    pet_picture = request.form.get('pet-picture')
+    pet_image = request.form.get('pet-image')
 
-    #user = crud.get_user_by_email(email)
+    user = crud.get_user_by_email(email)
 
-    # if user:
-    #     flash('Email already exist. Please log in or try again.')
-    # else:
-    #     crud.create_user(fname, lname, email, password)
-    #     flash('Account has been successfully created. Please sign in.')
+    # # Update database with pet's information
+    # crud.create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image)
 
-    # if user:
-    #     created_user = crud.create_user(fname, lname, email, password)
-    #     if created_user == None: #if some of the fields are left empty, the function create_user will return none
-    #         flash("Please fill out all required fields.")
-    #         return redirect("/create_account")
-    #     else:   
-    #         flash('Account created successfully. Please log in.')
-    #         return redirect("/login")
+    # Update database with user's information
+    if user:
+        flash('Successfully added')
+        # crud.update_user_info(fname, email, phone)
+        crud.update_user_pet_info(fname, email, phone, 
+                        pet_name, pet_type, pet_breed, 
+                        pet_gender, pet_color, pet_image)
+    else:
+        flash('Please register first and try again')
+        return redirect('/')
 
-    return redirect('/') # redirect back to homepage
+    return render_template('dashboard.html')
 
 
 @app.route('/map')

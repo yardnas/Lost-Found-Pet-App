@@ -10,7 +10,7 @@ from model import db, User, Pet, Location, connect_to_db
 
 #---------------------------------------------------------------------#
 
-def create_user(fname, lname, email, password): #y
+def create_user(fname, lname, email, password):
     """Create and return a new user."""
 
     user = User(fname=fname, 
@@ -48,18 +48,25 @@ def get_fname_by_email(email):
     return db.session.query(User.fname).filter(User.email == email).first()
 
 
-def create_pets():
+# def update_user_info(fname, email, phone):
+#     """Update users information"""
+
+#     user = User.query.filter(User.email==email).update({User.fname: fname, User.phone: phone})
+
+#     db.session.commit()
+
+#     return user
+
+
+def create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image):
     """Create and return a pet."""
 
     pet = Pet(pet_name=pet_name, 
               pet_type=pet_type, 
               pet_breed=pet_breed, 
-              pet_gender=pet_gender, 
+              pet_gender=pet_gender,
               pet_color=pet_color, 
-              #lost_found=lost_found,
-              pet_image=pet_image,
-              location_id=location_id)
-              #status_id=status_id)
+              pet_image=pet_image)
 
     db.session.add(pet)
     db.session.commit()
@@ -74,6 +81,32 @@ def create_pets():
 
 #     db.session.add(status)
 #     db.session.commit()
+
+
+def update_user_pet_info(fname, email, phone, 
+                         pet_name, pet_type, pet_breed, 
+                         pet_gender, pet_color, pet_image):
+    """Update users information"""
+
+    # TODO: 
+        # Not sure about this logic since its updating "id"
+        # Get review for correctness and efficiency
+
+    user = get_user_by_email(email)
+    user_id = user.user_id
+
+    pet = create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image)
+    pet_id = pet.pet_id
+
+    # Update user section
+    user_update= User.query.filter(User.email==email).update({User.fname: fname, User.phone: phone})
+
+    # Update pet section
+    pet_update = Pet.query.filter(Pet.pet_id==pet_id).update({Pet.user_id: user_id})
+
+    db.session.commit()
+
+    return pet_update
 
 
 def create_location():

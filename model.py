@@ -29,22 +29,20 @@ class User(db.Model, UserMixin):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
     fname = db.Column(db.String(50), nullable=True)
     lname = db.Column(db.String(50), nullable=True)
-    phone_number = db.Column(db.String(50), nullable=True)
+    phone = db.Column(db.String(50), nullable=True)
     email = db.Column(db.String(255), nullable=True)
     password = db.Column(db.String(255), nullable=True)
     created_on = db.Column(db.DateTime, default=datetime.now)
     updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
-    # Foreign key between User and Pet
-    pet_id = db.Column(db.Integer, db.ForeignKey('pets.pet_id'), nullable=True)
-
 
     # To address error: NotImplementedError: No 'id' attribute - override 'get_id'
     def get_id(self):
            return (self.user_id)
-           
+    
 
     def __repr__(self):
         """Display information about the user."""
@@ -58,21 +56,20 @@ class Pet(db.Model):
     __tablename__ = "pets"
 
     pet_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+
     pet_name = db.Column(db.String(50), nullable=False)
     pet_type = db.Column(db.String(50), nullable=False)
     pet_breed = db.Column(db.String(50), nullable=False)
     pet_gender = db.Column(db.String(50), nullable=False)
     pet_color = db.Column(db.String(50), nullable=False)
-    pet_image = db.Column(db.Text, nullable=False)
+    pet_image = db.Column(db.String(100), nullable=False)
     created_on = db.Column(db.DateTime, default=datetime.now)
     updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
-    # Foreign key between pet and location
-    location_id = db.Column(db.Integer, db.ForeignKey('locations.location_id'), nullable=True)
 
-    # Add relationship between user and pets
-    users = db.relationship("User", backref="pets")
-
+    # Add relationship between users and pets
+    users = db.relationship("User", backref="pet")
 
     def __repr__(self):
         """Show information about the pet."""
@@ -86,17 +83,18 @@ class Location(db.Model):
     __tablename__ = "locations"
 
     location_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    pet_id = db.Column(db.Integer, db.ForeignKey('pets.pet_id'))
+
     location_name = db.Column(db.String(255), nullable=True)
     address = db.Column(db.String(100), nullable=True)
     city = db.Column(db.String(100), nullable=True)
     state = db.Column(db.String(50), nullable=True)
     zipcode = db.Column(db.String(20), nullable=True)
 
-    # # Foreign key between pet and location
-    # pet_id = db.Column(db.Integer, db.ForeignKey('pet.pet_id'), nullable=True)
 
-    # Add relationship between pet and location
-    pets = db.relationship("Pet", backref="locations")
+
+    # # # Add relationship between pets and locations
+    pets = db.relationship("Pet", backref="location")
 
 
     def __repr__(self):
@@ -115,41 +113,40 @@ def sample_data():
 
     # Add sample users data
     alice = User(user_id=101, 
-                pet_id=101, 
                 fname="Alice",
                 lname="Apple",
-                phone_number="415-555-1234",
+                phone="415-555-1234",
                 email="alice@alice.com",
                 password="alice")
 
     betty = User(user_id=102, 
-                pet_id=102,
                 fname="Bobby", 
                 lname="Baker",
-                phone_number="415-555-5678", 
+                phone="415-555-5678", 
                 email="bobby@bobby.com",
                 password="bobby")
 
     fido = Pet(pet_id=101, 
+                user_id=101,
                 pet_name="Fido", 
                 pet_type="Dog",
                 pet_breed="Corgi",
                 pet_gender="Male",
                 pet_color="Brown with white spots",
-                pet_image="link to image",
-                location_id=101)
+                pet_image="link to image")
 
-    kitty = Pet(pet_id=102, 
+    kitty = Pet(pet_id=102,
+                user_id=102,
                 pet_name="Kitty",
                 pet_type="Cat",
                 pet_breed="British Shorthair",
                 pet_gender="Female", 
                 pet_color="Gray with black stripe tail",
-                pet_image="link to image",
-                location_id=102)
+                pet_image="link to image")
 
 
     fido_location = Location(location_id=101,
+                            pet_id=101,
                             location_name="Burlingame Family Pet Hospital",
                             address="1808 Magnolia Avenue",
                             city="Burlingame",
@@ -157,6 +154,7 @@ def sample_data():
                             zipcode="94010")
 
     kitty_location = Location(location_id=102,
+                            pet_id=102,
                             location_name="Starbucks",
                             address="54 E 4th Avenue",
                             city="San Mateo",
