@@ -9,9 +9,9 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeDkSlpBZoTC5TToXy1tW3hehvfM3xWHQ&callback=initMap"></script>
 {% endblock %}
 
-<br><br> <!-- <br> placeholder until CSS-->
-
 {% block body %}
+    <br> <!-- <br> placeholder until CSS-->
+
     <header align=center>
         <h2>
             {% if current_user.is_authenticated %}
@@ -24,12 +24,12 @@
         <!-- Lost Pet Form Section -->
         <section class="pet-form" align=center>
             <h3>Did you lose your pet?</h3>
-            <h4>Register your pet:</h4>
+            <!-- <h4>Register your pet:</h4> -->
 
             <div class="register-prompt">
                 <!-- <h4><label>Register</label></h4> -->
                 <button id="register-button">
-                    <a href="/pet_register">Register here</a>
+                    <a href="/pet_register">Register your pet here</a>
                 </button>
             </div>
         </section>
