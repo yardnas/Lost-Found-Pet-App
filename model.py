@@ -8,19 +8,40 @@ from datetime import datetime
 db = SQLAlchemy()
 
 #---------------------------------------------------------------------#
+#-------------------------- MVP Scope Section ------------------------#
+#---------------------------------------------------------------------#
 # Data Model 
-#     # User can have many Pets
-#     # Pet can have one Location
+    # User can have many Pets
+    # Pet can have one owner
+    # Instead of Location, added address to Pet
 
 # MVP
-#     # Sign-up | Sign-in
-#     # Store pet info (desc, pics, location)
-#     # Show location on map (google api)
+    # Sign-up | Sign-in | Log-out => used flask-login to achieve
+    # Store pet info (desc, pics, location) => stored in postgres db
+    # Show pet info & location on the map => utilize the google maps api
+
+# My MVP update on Mon, 6/14/21 (End of Sprint 1)
+    # I was behind and was catching up on lectures for things I need so I hit my MVP late yesterday (Sunday)
+    # My MVP are (list above)
+    # Today: will work on password hash and test.py to find bugs I'm sure I have => I may join the group chat with Maura
+    # Next feature if have time: dynamically pin location by entering "location" (golden gate bridge) opposed to entering the address
+    # Not block at the moment
 
 # Nice-to-have
-#     # Pin location of nearest pet clinics
-#     # Send an alert email | text
-#     # Add chat feature
+    # Dynamically pin location by entering location (opposed to filling out the registration page)
+        # - need to save pin/marker address from geocode form 
+        # - need to get real address from geocode input
+        # - need to store address in db
+        # - need to add pet info & address/location on map
+
+     # Add test and seed
+     # Add nearby places: vet clinics, police station
+     # Send an alert email | text
+     # Add chat feature
+
+
+#---------------------------------------------------------------------#
+#------------------------- Data Model Section ------------------------#
 #---------------------------------------------------------------------#
 
 class User(db.Model, UserMixin):
@@ -104,6 +125,8 @@ class Location(db.Model):
 
 
 #---------------------------------------------------------------------#
+#------------------------ Sample Data Section ------------------------#
+#---------------------------------------------------------------------#
 
 def sample_data():
     """Create sample data for testing"""
@@ -170,6 +193,10 @@ def sample_data():
     db.session.add_all([alice, betty, fido, kitty, fido_location, kitty_location])
     db.session.commit()
 
+
+#---------------------------------------------------------------------#
+#------------------- Connect to Database Section ---------------------#
+#---------------------------------------------------------------------#
 
 def connect_to_db(flask_app):
     """Connect the database to the Flask app."""

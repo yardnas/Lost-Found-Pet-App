@@ -9,6 +9,8 @@ from model import db, User, Pet, Location, connect_to_db
     # Location
 
 #---------------------------------------------------------------------#
+#--------------- CRUD functions for USERS Section --------------------#
+#---------------------------------------------------------------------#
 
 def create_user(fname, lname, email, password):
     """Create and return a new user."""
@@ -58,7 +60,11 @@ def get_fname_by_email(email):
 #     return user
 
 
-def create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image):
+#---------------------------------------------------------------------#
+#--------------- CRUD functions for PETS Section ---------------------#
+#---------------------------------------------------------------------#
+
+def create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image, last_address):
     """Create and return a pet."""
 
     pet = Pet(pet_name=pet_name, 
@@ -66,7 +72,8 @@ def create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image)
               pet_breed=pet_breed, 
               pet_gender=pet_gender,
               pet_color=pet_color,
-              pet_image=pet_image)
+              pet_image=pet_image,
+              last_address=last_address)
 
     db.session.add(pet)
     db.session.commit()
@@ -74,10 +81,10 @@ def create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image)
     return pet
 
 
-def update_user_pet_info(fname, email, phone, 
+def update_pet_user_info(fname, email, phone, 
                          pet_name, pet_type, pet_breed, 
-                         pet_gender, pet_color, pet_image):
-    """Update users information"""
+                         pet_gender, pet_color, pet_image, last_address):
+    """Update pet and pet owner's information"""
 
     # TODO: 
         # Not sure about this logic since its updating "id"
@@ -86,7 +93,10 @@ def update_user_pet_info(fname, email, phone,
     user = get_user_by_email(email)
     user_id = user.user_id
 
-    pet = create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image)
+    # TODO: Fix this to query db for pet_id opposed to using the create function
+    pet = create_pets(pet_name, pet_type, pet_breed, 
+                      pet_gender, pet_color, pet_image, last_address)
+
     pet_id = pet.pet_id
 
     # Update user section
@@ -99,6 +109,13 @@ def update_user_pet_info(fname, email, phone,
 
     return pet_update
 
+    # 800 S. El Camino Real, San Mateo, CA 94401
+    # /static/img/dog_foxhound.jpg
+    # Foxhound
+
+#---------------------------------------------------------------------#
+#---------------- LOCATION SECTION - May not need --------------------#
+#---------------------------------------------------------------------#
 
 def create_location():
     """Create the location of the respective pet/status"""
