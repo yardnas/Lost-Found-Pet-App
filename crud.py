@@ -58,14 +58,15 @@ def get_fname_by_email(email):
 #     return user
 
 
-def create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color):
+def create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image):
     """Create and return a pet."""
 
     pet = Pet(pet_name=pet_name, 
               pet_type=pet_type, 
               pet_breed=pet_breed, 
               pet_gender=pet_gender,
-              pet_color=pet_color)
+              pet_color=pet_color,
+              pet_image=pet_image)
 
     db.session.add(pet)
     db.session.commit()
