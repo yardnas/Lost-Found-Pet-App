@@ -63,10 +63,12 @@ class Pet(db.Model):
     pet_breed = db.Column(db.String(50), nullable=False)
     pet_gender = db.Column(db.String(50), nullable=False)
     pet_color = db.Column(db.String(50), nullable=False)
-    pet_image = db.Column(db.String(100), nullable=False)
+    pet_image = db.Column(db.String(50), nullable=True)
+    last_address = db.Column(db.String(100), nullable=True)
+    cap_lat = db.Column(db.Float, nullable=True)
+    cap_long = db.Column(db.Float, nullable=True)
     created_on = db.Column(db.DateTime, default=datetime.now)
     updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
-
 
     # Add relationship between users and pets
     users = db.relationship("User", backref="pet")
@@ -90,8 +92,6 @@ class Location(db.Model):
     city = db.Column(db.String(100), nullable=True)
     state = db.Column(db.String(50), nullable=True)
     zipcode = db.Column(db.String(20), nullable=True)
-
-
 
     # # # Add relationship between pets and locations
     pets = db.relationship("Pet", backref="location")
@@ -130,10 +130,13 @@ def sample_data():
                 user_id=101,
                 pet_name="Fido", 
                 pet_type="Dog",
-                pet_breed="Corgi",
+                pet_breed="Bulldog",
                 pet_gender="Male",
-                pet_color="Brown with white spots",
-                pet_image="link to image")
+                pet_color="White with blk spots on ears",
+                pet_image="/static/img/dog_bulldog.jpg",
+                last_address="54 E 4th Ave, San Mateo, CA 94401",
+                cap_lat=37.56446182680668,
+                cap_long=-122.32380125439246)
 
     kitty = Pet(pet_id=102,
                 user_id=102,
@@ -141,8 +144,11 @@ def sample_data():
                 pet_type="Cat",
                 pet_breed="British Shorthair",
                 pet_gender="Female", 
-                pet_color="Gray with black stripe tail",
-                pet_image="link to image")
+                pet_color="Grey with orange eyes",
+                pet_image="/static/img/cat_grey.jpg",
+                last_address="1230 Broadway, Burlingame, CA 94010",
+                cap_lat=37.587318157635195, 
+                cap_long=-122.36534330661382)
 
 
     fido_location = Location(location_id=101,
@@ -190,7 +196,7 @@ if __name__ == "__main__":
     connect_to_db(app)
 
     # Create all tables
-    #db.create_all()
+    db.create_all()
 
     # Insert sample data (adding here for now. will move to tests.py)
-    #sample_data()
+    sample_data()

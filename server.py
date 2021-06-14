@@ -1,8 +1,8 @@
 """Server for the lost and found pet app."""
 
-from flask import Flask, render_template, request, flash, session, redirect, jsonify
+from flask import Flask, render_template, request, flash, session, redirect, jsonify, send_from_directory
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from model import connect_to_db
+from model import connect_to_db, db, Pet
 from jinja2 import StrictUndefined
 import crud
 
@@ -87,7 +87,7 @@ def create_user():
         flash('Email already exist. Please log in or try again.')
     else:
         crud.create_user(fname, lname, email, password)
-        flash('Account has been successfully created. Please sign in.')
+        flash('Account has been successfully created. Please login')
 
     return redirect('/') # redirect back to homepage
 
@@ -102,7 +102,7 @@ def logout():
 
     flash("Logged out successfully.")
 
-    return redirect("/")
+    return redirect('/')
 
 
 @app.route('/dashboard')
@@ -146,22 +146,74 @@ def create_lost_pet():
 
     return render_template('dashboard.html')
 
-# @app.route('/get/pet-info')
-# @login_required
-# def get_pet_info():
-#     """Retrieve lost pet information and its last known location"""
 
-#     #user_fname
-#     #user_phone
-#     #pet_name
-#     #pet_type
-#     #pet_breed
-#     #pet_color
-#     #pet_image
+@app.route('/dashboard', methods=['POST'])
+@login_required
+def create_pet_location():
+    """Store pet location in database"""
+
+    return redirect('dashboard')
 
 
+@app.route('/pet_register')
+@login_required
+def show_pet_registration():
+    """Show the welcome dashboard."""
 
-    
+    return render_template('pet_register.html')
+
+
+@app.route('/pet_register', methods=['POST'])
+@login_required
+def register_pet_form():
+    """Show the register page to create an account."""
+
+    fname = request.form.get('fname')
+    email = request.form.get('email')
+    phone = request.form.get('phone')
+    pet_name = request.form.get('pet-name')
+    pet_type = request.form.get('pet-type')
+    pet_breed = request.form.get('pet-breed')
+    pet_gender = request.form.get('pet-gender')
+    pet_color = request.form.get('pet-color')
+    pet_image = request.form.get('pet-image')
+
+    user = crud.get_user_by_email(email)
+
+    # Update database with user's information
+    if user:
+        flash('Pet registration is complete')
+        crud.update_user_pet_info(fname, email, phone, 
+                        pet_name, pet_type, pet_breed, 
+                        pet_gender, pet_color, pet_image)
+    if not user:
+        flash('Oops. Please register first and try again')
+        return redirect('/')
+
+    return render_template('dashboard.html')
+
+
+@app.route("/get/pets")
+def pet_info():
+    """JSON information about pets."""
+
+    pets = [
+        {
+            "petId": pet.pet_id,
+            "userId": pet.user_id,
+            "petName": pet.pet_name,
+            "petType": pet.pet_type,
+            "petBreed": pet.pet_breed,
+            "petColor": pet.pet_color,
+            "petImage": pet.pet_image,
+            "lastAddress": pet.last_address,
+            "capLat": pet.cap_lat,
+            "capLong": pet.cap_long
+        }
+        for pet in Pet.query.limit(50)
+    ]
+
+    return jsonify(pets)
 
 
 #---------------------------------------------------------------------#

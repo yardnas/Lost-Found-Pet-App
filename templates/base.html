@@ -1,23 +1,31 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
 
-    <title>{% block title %}{% endblock %}</title>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width">
 
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+      <title>{% block title %}{% endblock %}</title>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+      <!-- Welcome Section -->
+      <section class="dashboard-header">
+        <h1 align="center">Neighborhood Lost Pets</h1>
+        <h4 align="center">Find lost pets in your neighborhood</h4>
+      </section>
 
     {% block head %}{% endblock %}
-  </head>
+    </head>
 
-  <body>
-    {% for msg in get_flashed_messages() %}
-      <p class="flash-msg">
-        {{ msg }}
-      </p>
-    {% endfor %}
+    <body>
+      {% for msg in get_flashed_messages() %}
+        <p align="center" class="flash-msg">
+          <i>{{ msg }}</i>
+        </p>
+      {% endfor %}
 
-    {% block body %}{% endblock %}
-  </body>
+      {% block body %}{% endblock %}
+   </body>
+
 </html>

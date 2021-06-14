@@ -9,99 +9,49 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeDkSlpBZoTC5TToXy1tW3hehvfM3xWHQ&callback=initMap"></script>
 {% endblock %}
 
+<br><br> <!-- <br> placeholder until CSS-->
 
 {% block body %}
-    <header>
-        <!-- Welcome Section -->
-        <section class="dashboard-header">
-            <h1 align="center">Neighborhood Lost Pets</h1>
-            <h4 align="center">A community to find lost pets in your neighborhood</h4>
-
-            <h2>
-                {% if current_user.is_authenticated %}
-                Welcome, {{ current_user.fname }}
-                {% endif %}
-            </h2>
-        </section>
+    <header align=center>
+        <h2>
+            {% if current_user.is_authenticated %}
+            Welcome, {{ current_user.fname }}
+            {% endif %}
+        </h2>
     </header>
 
     <main>
         <!-- Lost Pet Form Section -->
-        <section class="pet-form">
+        <section class="pet-form" align=center>
             <h3>Did you lose your pet?</h3>
-            <h4>Please fill out the form below:</h4>
-            <p>(TODO: Add CSS to form)</p>
+            <h4>Register your pet:</h4>
 
-            <form class="pet-form-register" method="POST">
-                <div class="pet-form">
-                    <div>
-                        <label for="fname-input" class="form-label">First Name</label>
-                        <input type="text" placeholder="First Name" name="fname" id="fname-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
-
-                    <div>
-                        <label for="email-input" class="form-label">Email</label>
-                        <input type="email" placeholder="Email" name="email" id="email-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
-
-                    <div>
-                        <label for="phone-input" class="form-label">Phone Number</label>
-                        <input type="text" placeholder="Phone Number" name="phone" id="phone-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
-
-                    <div>
-                        <label for="pet-name-input" class="form-label">Pet Name</label>
-                        <input type="text" placeholder="Pet Name" name="pet-name" id="pet-name-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
-
-                    <div>
-                        <label for="pet-type-input" class="form-label">Pet Type</label>
-                        <input type="text" placeholder="Pet Type" name="pet-type" id="pet-type-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
-
-                    <div>
-                        <label for="pet-breed-input" class="form-label">Pet Breed</label>
-                        <input type="text" placeholder="Pet Breed" name="pet-breed" id="pet-breed-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
-
-                    <div>
-                        <label for="pet-gender-input" class="form-label">Pet Gender</label>
-                        <input type="text" placeholder="Pet Gender" name="pet-gender" id="pet-gender-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
-
-                    <div>
-                        <label for="pet-color-input" class="form-label">Pet Color</label>
-                        <input type="text" placeholder="Pet Color" name="pet-color" id="pet-color-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
-
-                    <div>
-                        <label for="pet-image-input" class="form-label">Pet Picture</label>
-                        <input type="text" placeholder="TODO: Add image upload or link option" name="pet-image" id="pet-image-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
-
-                    <button type="submit" value ="Submit" class="btn-pet">Submit Form</button>
-                </div>
-            </form>
+            <div class="register-prompt">
+                <!-- <h4><label>Register</label></h4> -->
+                <button id="register-button">
+                    <a href="/pet_register">Register here</a>
+                </button>
+            </div>
         </section>
 
         <!-- Lost Pet Address Section -->
-        <section class="pet-address">
-            <div class="add-pet-address">
-                <h4>Enter the address where the pet was last seen:</h4>
+        <section class="pet-address" align=center>
+            <h4>Where was your pet last seen?</h4>
 
-                <p>A marker will be added to the map</p>
-
-                <form class="pet-address" method="POST">
-                    <button type="submit" id="geocode-pet-address" value="Submit" class="btn-address">Enter Address</button>
-                </form>
-
+            <div class="geocode-pet-address">
+                <input id="address" type="textbox" value="San Francisco, CA" />
+                <input id="submit" type="button" value="Submit" />
             </div>
+
+            <p>(TODO: Save marker and add information to the map)</p>
+
         </section>
+
+        <br><br> <!-- <br> placeholder until CSS-->
         
         <!-- Lost Pet Map Section -->
-        <section class="marker-map">
+        <section class="marker-map" align=center>
             <h3>To find a lost pet in your neighborhood, please click markers below:</h3>
-                <p>(TODO: Add marker/pin with information)</p>
                   
             <div class="map">
                 <div id="map"></div>
