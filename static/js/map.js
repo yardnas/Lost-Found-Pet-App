@@ -11,17 +11,18 @@
 /*------------ Map section using Google Maps API --------------------*/
 /*-------------------------------------------------------------------*/
 
-// Initialize google maps 
+// Initialize google maps
+//
 function initMap() {
   // For now, static coordinates
-  // TODO: set coordinates based on current location or submitted address
+  // TODO: set coords based on current location or submitted address
   //
   const sfCoords = {
       lat: 37.601773,
       lng: -122.202870
   };
 
-  // Create a new Google Maps called "map"
+  // Create a new instance of Google Maps called "map"
   //
   const map = new google.maps.Map(
       document.querySelector('#map'),
@@ -31,13 +32,13 @@ function initMap() {
       }
   );
 
-
   // Set info window to display the marker's information
   // Based on the jsonify "pets" data from server.py
   //
   const petInfo = new google.maps.InfoWindow({});
 
-  // Get request from server -> route will return a jsonify list of pets in server.py
+  // Get data from jsonify list of pets from server.py
+  // Use data from database to set marker on map
   //
   $.get('/get/pets', (pets) => { 
       for (const pet of pets) {
@@ -47,7 +48,7 @@ function initMap() {
         const petInfoContent = (` 
           <div class="window-content">
             <div class="pet-thumbnail">
-              <img src="${pet.petImage}" width="150" height="120"></img>
+              <img src="${pet.petImage}" width="150" height="130"></img>
             </div>
   
             <ul class="pet-info">
@@ -59,27 +60,20 @@ function initMap() {
           </div>
         `);
 
-          // To convert address to lat and long for marker
-          // Define the lat and long from given address using geocode to convert
+          // Define latitude and longitude needed for marker
+          // Use geocode to onvert an address to its latitude and longitude
           //
           const geocoder = new google.maps.Geocoder();
           const address = `${pet.lastAddress}`
 
-          // console.log(address) // for testing
-        
           geocoder.geocode( { 'address': address}, function(results, status) {
         
           if (status == google.maps.GeocoderStatus.OK) {
             const latitude = results[0].geometry.location.lat();
             const longitude = results[0].geometry.location.lng();
-            // alert('latitude is' + latitude + '' + 'longitude is' + longitude);
-            // console.log(latitude) // for testing
-            // console.log(typeof latitude) // for testing
-            // console.log(longitude) // for testing
-            // console.log(typeof longitude) // for testing
 
             // Define marker and set position by lat and long
-            // For marker: position is req (latlng) and map (optional) for which map
+            // For marker: position is required (latlng)
             //
             const petMarker = new google.maps.Marker({
               position: {
@@ -89,7 +83,6 @@ function initMap() {
               title: `Pet ID: ${pet.petId}`,
               map: map
             });
-            console.log(petMarker)
 
             // Define event handling when marker is clicked
             // To show pet information content for each marker
@@ -106,7 +99,10 @@ function initMap() {
         alert((`Not able to retrieve pet data`));
     });
 
-    // Use geocode form field to add event when location is submitted
+  /*-------------------------------------------------------------------*/
+
+    // Nice-to-have: Use geocode form field to add event when location is submitted
+    // Connect w/pet_register to append address to db and set marker on map
     //
     const geocoder = new google.maps.Geocoder();
 
@@ -117,9 +113,11 @@ function initMap() {
 }
 
 /*-------------------------------------------------------------------*/
+/*---------------------- Functions section --------------------------*/
+/*-------------------------------------------------------------------*/
 
-// Function to use geocode to add marker on the map interactively
-// TODO: Need to save the marker and store in database 
+// Nice-to-have: Function to use geocode to add marker on the map interactively
+// TODO: Need to save the marker and store in database.
 //
 // To geocode an address and place marker at the returned lat & long values
 function geocodeAddress(geocoder, resultsMap) {
@@ -138,7 +136,6 @@ function geocodeAddress(geocoder, resultsMap) {
       }
     });
   }
-
 
   /* 
   https://developers.google.com/maps/documentation/javascript/geocoding

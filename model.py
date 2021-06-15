@@ -21,8 +21,8 @@ db = SQLAlchemy()
     # Show pet info & location on the map => utilize the google maps api
 
 # My MVP update on Mon, 6/14/21 (End of Sprint 1)
-    # I was behind and was catching up on lectures for things I need so I hit my MVP late yesterday (Sunday)
-    # My MVP are (list above)
+    # I was behind and was catching up on lectures ==> hit MVP late yesterday (Sunday)
+    # My MVP (list above)
     # Today: will work on password hash and test.py to find bugs I'm sure I have => I may join the group chat with Maura
     # Next feature if have time: dynamically pin location by entering "location" (golden gate bridge) opposed to entering the address
     # Not block at the moment
@@ -86,8 +86,6 @@ class Pet(db.Model):
     pet_color = db.Column(db.String(50), nullable=False)
     pet_image = db.Column(db.String(50), nullable=True)
     last_address = db.Column(db.String(100), nullable=True)
-    cap_lat = db.Column(db.Float, nullable=True)
-    cap_long = db.Column(db.Float, nullable=True)
     created_on = db.Column(db.DateTime, default=datetime.now)
     updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
@@ -157,9 +155,7 @@ def sample_data():
                 pet_gender="Male",
                 pet_color="White with blk spots on ears",
                 pet_image="/static/img/dog_bulldog.jpg",
-                last_address="54 E 4th Ave, San Mateo, CA 94401",
-                cap_lat=37.56446182680668,
-                cap_long=-122.32380125439246)
+                last_address="54 E 4th Ave, San Mateo, CA 94401")
 
     kitty = Pet(pet_id=102,
                 user_id=102,
@@ -169,9 +165,7 @@ def sample_data():
                 pet_gender="Female", 
                 pet_color="Grey with orange eyes",
                 pet_image="/static/img/cat_grey.jpg",
-                last_address="1230 Broadway, Burlingame, CA 94010",
-                cap_lat=37.587318157635195, 
-                cap_long=-122.36534330661382)
+                last_address="1230 Broadway, Burlingame, CA 94010")
 
 
     fido_location = Location(location_id=101,

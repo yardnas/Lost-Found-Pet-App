@@ -15,6 +15,8 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 #---------------------------------------------------------------------#
+#--------------- Welcome Splash Page Section --------------#
+#---------------------------------------------------------------------#
 
 @app.route('/')
 def display_splash():
@@ -116,38 +118,6 @@ def welcome():
 
     return render_template('dashboard.html')
 
-## Potentially add the pet registration form on the main dashboard
-# @app.route('/dashboard', methods=['GET', 'POST'])
-# @login_required
-# def create_lost_pet():
-#     """Register a lost pet"""
-
-#     fname = request.form.get('fname')
-#     email = request.form.get('email')
-#     phone = request.form.get('phone')
-#     pet_name = request.form.get('pet-name')
-#     pet_type = request.form.get('pet-type')
-#     pet_breed = request.form.get('pet-breed')
-#     pet_gender = request.form.get('pet-gender')
-#     pet_color = request.form.get('pet-color')
-#     pet_image = request.form.get('pet-image')
-#     pet_address = request.form.get('last-address')
-
-#     user = crud.get_user_by_email(email)
-
-#     # Update database with user & pet information
-#     if user:
-#         flash('Successfully added')
-
-#         crud.update_user_pet_info(fname, email, phone, 
-#                         pet_name, pet_type, pet_breed, 
-#                         pet_gender, pet_color, pet_image, last_address)
-#     else:
-#         flash('Please register first and try again')
-#         return redirect('/')
-
-#     return render_template('dashboard.html')
-
 
 @app.route('/dashboard', methods=['POST'])
 @login_required
@@ -196,7 +166,8 @@ def register_pet_form():
         flash('Oops. Please register first and try again')
         return redirect('/')
 
-    return render_template('dashboard.html')
+    # return render_template('dashboard.html')
+    return redirect('dashboard')
 
 
 @app.route('/get/pets')
@@ -212,9 +183,7 @@ def pet_info():
             'petBreed': pet.pet_breed,
             'petColor': pet.pet_color,
             'petImage': pet.pet_image,
-            'lastAddress': pet.last_address,
-            'capLat': pet.cap_lat,
-            'capLong': pet.cap_long
+            'lastAddress': pet.last_address
         }
         for pet in Pet.query.limit(50)
     ]
