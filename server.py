@@ -1,6 +1,6 @@
 """Server for the lost and found pet app."""
 
-from flask import Flask, render_template, request, flash, session, redirect, jsonify #, send_from_directory
+from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from model import connect_to_db, db, Pet
 from jinja2 import StrictUndefined
@@ -11,16 +11,17 @@ app.secret_key ='secret_key'
 app.jinja_env.undefined = StrictUndefined
 
 # Create LoginManager and attach to the Flask app instance
+#
 login_manager = LoginManager()
 login_manager.init_app(app)
 
 #---------------------------------------------------------------------#
-#-------------------- Route for Home/Splash Page ---------------------#
+#-------------------- Route for Welcome Page -------------------------#
 #---------------------------------------------------------------------#
 
 @app.route('/')
-def display_splash():
-    """Show the splash page."""
+def display_welcome():
+    """Show the welcome page."""
 
     return render_template('index.html')
 
@@ -29,9 +30,10 @@ def display_splash():
 #---------------------------------------------------------------------#
 
 # Define callback function for login_manager.user_loader
+#
 @login_manager.user_loader
 def load_user(user_id):
-    """Takes in user_id and return a User instance"""
+    """Takes in user_id and return a User instance."""
 
     # return User.query.get(user_id)
     return crud.get_user_by_id(user_id)
@@ -76,7 +78,7 @@ def register_user():
     return render_template('register.html')
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['POST'])
 def create_user():
     """Register a new user."""
 
@@ -94,6 +96,7 @@ def create_user():
         flash('Account has been successfully created. Please login')
 
     return redirect('/') # redirect back to homepage
+
 
 @app.route('/logout')
 @login_required
@@ -118,13 +121,14 @@ def welcome():
 
     return render_template('dashboard.html')
 
+# Don't think I need this since there is a POST for pet_register
+#
+# @app.route('/dashboard', methods=['POST'])
+# @login_required
+# def create_pet_registration():
+#     """Store pet location in database and redirect back to dashboard"""
 
-@app.route('/dashboard', methods=['POST'])
-@login_required
-def create_pet_location():
-    """Store pet location in database"""
-
-    return redirect('dashboard')
+#     return redirect('dashboard')
 
 #---------------------------------------------------------------------#
 #----------- Routes for Pet Info & Registration Section --------------#
@@ -133,7 +137,7 @@ def create_pet_location():
 @app.route('/pet_register')
 @login_required
 def show_pet_registration():
-    """Show the welcome dashboard."""
+    """Show the pet registration page by rendering the page."""
 
     return render_template('pet_register.html')
 
@@ -141,7 +145,7 @@ def show_pet_registration():
 @app.route('/pet_register', methods=['POST'])
 @login_required
 def register_pet_form():
-    """Show the register page to create an account."""
+    """To fill out the pet registration form, store in db and redirect back to '/'."""
 
     fname = request.form.get('fname')
     email = request.form.get('email')
@@ -172,7 +176,7 @@ def register_pet_form():
 
 @app.route('/get/pets')
 def pet_info():
-    """JSON information about pets."""
+    """JSON information about pets to be used for marker info content."""
 
     pets = [
         {
@@ -189,6 +193,7 @@ def pet_info():
     ]
 
     return jsonify(pets) # Jsonify the data
+
 
 #---------------------------------------------------------------------#
 

@@ -109,12 +109,8 @@ def update_pet_user_info(fname, email, phone,
 
     return pet_update
 
-    # 800 S. El Camino Real, San Mateo, CA 94401
-    # /static/img/dog_foxhound.jpg
-    # Foxhound
-
 #---------------------------------------------------------------------#
-#---------------- LOCATION SECTION - May not need --------------------#
+#---------------- LOCATION SECTION (May not need) --------------------#
 #---------------------------------------------------------------------#
 
 def create_location():

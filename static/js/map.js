@@ -61,7 +61,7 @@ function initMap() {
         `);
 
           // Define latitude and longitude needed for marker
-          // Use geocode to onvert an address to its latitude and longitude
+          // Use geocode to convert an address to its latitude and longitude
           //
           const geocoder = new google.maps.Geocoder();
           const address = `${pet.lastAddress}`
