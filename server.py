@@ -7,7 +7,7 @@ from jinja2 import StrictUndefined
 import crud
 
 app = Flask(__name__)
-app.secret_key = '89qhfhje&*djfka8238420*2i#6'
+app.secret_key ='secret_key'
 app.jinja_env.undefined = StrictUndefined
 
 # Create LoginManager and attach to the Flask app instance
@@ -15,7 +15,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 #---------------------------------------------------------------------#
-#--------------- Welcome Splash Page Section --------------#
+#-------------------- Route for Home/Splash Page ---------------------#
 #---------------------------------------------------------------------#
 
 @app.route('/')
@@ -25,7 +25,7 @@ def display_splash():
     return render_template('index.html')
 
 #---------------------------------------------------------------------#
-#--------------- User Login | Register | Logout Section --------------#
+#--------- Routes for User Login | Register | Logout Section ---------#
 #---------------------------------------------------------------------#
 
 # Define callback function for login_manager.user_loader
@@ -108,7 +108,7 @@ def logout():
     return redirect('/')
 
 #---------------------------------------------------------------------#
-#------------------- Main Page (Dashboard) Section -------------------#
+#------------- Routes for Main Page (Dashboard) Section --------------#
 #---------------------------------------------------------------------#
 
 @app.route('/dashboard')
@@ -127,7 +127,7 @@ def create_pet_location():
     return redirect('dashboard')
 
 #---------------------------------------------------------------------#
-#----------------- Pet Info & Registration Section -------------------#
+#----------- Routes for Pet Info & Registration Section --------------#
 #---------------------------------------------------------------------#
 
 @app.route('/pet_register')

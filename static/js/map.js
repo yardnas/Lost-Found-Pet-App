@@ -48,7 +48,7 @@ function initMap() {
         const petInfoContent = (` 
           <div class="window-content">
             <div class="pet-thumbnail">
-              <img src="${pet.petImage}" width="150" height="130"></img>
+              <img src="${pet.petImage}" width="150" height="140"></img>
             </div>
   
             <ul class="pet-info">
