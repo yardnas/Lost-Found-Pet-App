@@ -9,10 +9,10 @@
 
 from unittest import TestCase
 from server import app
-from model import db, connect_to_db, User, Pet, sample_data
+from model import db, connect_to_db, User, Pet, test_data
 
 #---------------------------------------------------------------------#
-#---------------------- Unit Test: Basic Tests -----------------------#
+#------------- Flask Unit Test: Render Welcome Page ------------------#
 #---------------------------------------------------------------------#
 
 class FlaskTestsBasic(TestCase):
@@ -34,8 +34,9 @@ class FlaskTestsBasic(TestCase):
         result = self.client.get('/') 
         self.assertIn(b"Welcome", result.data) # "b" byte string
 
+
 #---------------------------------------------------------------------#
-#---------------- Unit Test: Login and Logout Tests ------------------#
+#-------------- Flask Unit Test: Login and Logout Tests --------------#
 #---------------------------------------------------------------------#
 
 class FlaskTestsLogInLogOut(TestCase):
@@ -60,7 +61,6 @@ class FlaskTestsLogInLogOut(TestCase):
 
     def test_correct_login(self):
         """Test login when credentials are correct."""
-
 
         result = self.client.post('/login',
                                   data={'email': 'alice@alice.com', 'password': 'alice'},
@@ -88,6 +88,45 @@ class FlaskTestsLogInLogOut(TestCase):
         result = self.client.get('/logout',
                                  follow_redirects=True)
         self.assertIn(b'Logged out successfully', result.data)
+
+
+#---------------------------------------------------------------------#
+#---------------- Flask Unit Test: Database Tests --------------------#
+#---------------------------------------------------------------------#
+
+class FlaskTestDatabase(TestCase):
+    """Flask tests that use the database."""
+
+    def setUp(self):
+        """Things to do before every test."""
+
+        # Get the Flask test client
+        self.client = app.test_client()
+
+        # Show Flask errors that happen during tests
+        app.config['TESTING'] = True
+
+        # Connect to test database
+        connect_to_db(app, "postgresql:///testdb")
+
+        # Create tables and add sample data
+        db.create_all()
+        test_data()
+
+
+    def tearDown(self):
+        """Things to do at the end of every test."""
+
+        db.session.remove()
+        db.drop_all()
+        db.engine.dispose()
+
+
+    def test_josonify_pets(self):
+        """Test the jsonify data for pets."""
+
+        result = self.client.get('/get/pets')
+        self.assertIn(b'Pitbull', result.data)
 
     
 #---------------------------------------------------------------------#

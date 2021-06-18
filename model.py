@@ -126,85 +126,77 @@ class Location(db.Model):
 #------------------------ Sample Data Section ------------------------#
 #---------------------------------------------------------------------#
 
-def sample_data():
+def test_data():
     """Create sample data for testing"""
 
     # Empty existing data in case this is executed more than once
     User.query.delete()
+    Pet.query.delete()
 
     # Add sample users data
-    alice = User(user_id=101, 
-                fname="Alice",
-                lname="Apple",
-                phone="415-555-1234",
-                email="alice@alice.com",
-                password="alice")
+    alice = User(user_id=103, 
+                fname="Cathy",
+                lname="Cake",
+                phone="415-777-1234",
+                email="cathy@cathy.com",
+                password="cathy")
 
-    betty = User(user_id=102, 
-                fname="Bobby", 
-                lname="Baker",
-                phone="415-555-5678", 
-                email="bobby@bobby.com",
-                password="bobby")
+    betty = User(user_id=104, 
+                fname="David", 
+                lname="Decker",
+                phone="415-777-5678", 
+                email="david@david.com",
+                password="david")
 
-    fido = Pet(pet_id=101, 
-                user_id=101,
-                pet_name="Fido", 
+    spike = Pet(pet_id=103, 
+                user_id=103,
+                pet_name="Spike", 
                 pet_type="Dog",
-                pet_breed="Bulldog",
+                pet_breed="Pitbull",
                 pet_gender="Male",
-                pet_color="White with blk spots on ears",
-                pet_image="/static/img/dog_bulldog.jpg",
-                last_address="54 E 4th Ave, San Mateo, CA 94401")
+                pet_color="White with brown spots",
+                pet_image="/static/img/dog_pit.jpg",
+                last_address="2000 El Camino Real, Palo Alto, CA 94306")
 
-    kitty = Pet(pet_id=102,
-                user_id=102,
-                pet_name="Kitty",
+    tiger = Pet(pet_id=104,
+                user_id=104,
+                pet_name="Tiger",
                 pet_type="Cat",
-                pet_breed="British Shorthair",
-                pet_gender="Female", 
-                pet_color="Grey with orange eyes",
-                pet_image="/static/img/cat_grey.jpg",
-                last_address="1230 Broadway, Burlingame, CA 94010")
+                pet_breed="American Bobtail",
+                pet_gender="Male", 
+                pet_color="Tiger stripes",
+                pet_image="/static/img/cat_tiger.jpg",
+                last_address="Golden Gate Bridge")
 
-
-    fido_location = Location(location_id=101,
-                            pet_id=101,
-                            location_name="Burlingame Family Pet Hospital",
-                            address="1808 Magnolia Avenue",
-                            city="Burlingame",
-                            state="CA",
-                            zipcode="94010")
-
-    kitty_location = Location(location_id=102,
-                            pet_id=102,
-                            location_name="Starbucks",
-                            address="54 E 4th Avenue",
-                            city="San Mateo",
-                            state="CA",
-                            zipcode="94401")
-
-    db.session.add_all([alice, betty, fido, kitty, fido_location, kitty_location])
+    db.session.add_all([cathy, david, spike, tiger])
     db.session.commit()
-
 
 #---------------------------------------------------------------------#
 #------------------- Connect to Database Section ---------------------#
 #---------------------------------------------------------------------#
 
-def connect_to_db(flask_app):
-    """Connect the database to the Flask app."""
+# def connect_to_db(flask_app):
+#     """Connect the database to the Flask app."""
 
-    flask_app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///lost_found_pets"
-    flask_app.config["SQLALCHEMY_ECHO"] = False
-    flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+#     flask_app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///lost_found_pets'
+#     flask_app.config['SQLALCHEMY_ECHO'] = False
+#     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
-    db.app = flask_app
-    db.init_app(flask_app)
+#     db.app = flask_app
+#     db.init_app(flask_app)
 
-    print('Connected to the db!')
+#     print('Connected to the db!')
+
+def connect_to_db(app, db_uri="postgresql:///lost_found_pets"):
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+    app.config['SQLALCHEMY_ECHO'] = False
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    db.app = app
+    db.init_app(app)
 
 #---------------------------------------------------------------------#
+
 
 if __name__ == "__main__":
 
@@ -216,8 +208,8 @@ if __name__ == "__main__":
     # Connect to the database
     connect_to_db(app)
 
-    # Create all tables
-    db.create_all()
+    # # Create all tables
+    # db.create_all()
 
-    # Insert sample data (adding here for now. will move to tests.py)
-    sample_data()
+    # # Insert sample data (adding here for now. will move to tests.py)
+    # test_data()
