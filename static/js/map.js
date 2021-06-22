@@ -11,11 +11,11 @@
 /*-------------------- Main Map Function Section --------------------*/
 /*-------------------------------------------------------------------*/
 
-/*---------- Start of the Map Function -----------*/
+/*------------------- Start of the Map Function ---------------------*/
 
-// Attach all event listeners in this function where the 'map' obj is in-scope
-// Initialize the google map
-function initMap() {
+// Attach all event listeners to this function where the 'map' obj is in-scope
+// Initialize map
+function initMap() { 
 
   // Create a new instance of Google Maps called "map"
   const map = new google.maps.Map(
@@ -30,7 +30,7 @@ function initMap() {
       }
   );
 
-  /*-------- Pet Info Window & Marker section ------*/
+  /*----------------- Pet Info Window & Marker section ----------------*/
 
   // Set info window to display the marker's info based on jsonify "pets" in server
   const petInfo = new google.maps.InfoWindow({});
@@ -77,7 +77,8 @@ function initMap() {
               },
               title: `Pet ID: ${pet.petId}`,
               map: map,
-              icon: { // custom icon
+              // animation: google.maps.Animation.DROP,
+              icon: { // add a custom icon to mark lost pets
                 url: '/static/img/paw_marker.png',
                 scaledSize: {
                   width: 40,
@@ -104,7 +105,8 @@ function initMap() {
         alert((`Not able to retrieve pet data`));
     });
 
-  /*--------------- Style Map section --------------*/
+
+  /*------------------------- Style Map section -----------------------*/
   
   // Create a style map in night mode
   // TODO: Add style map to the maptypeid
@@ -197,7 +199,7 @@ function initMap() {
     map.setMapTypeId('map_style');
   });
 
-  /*--------- Find Specific Location on thhe Map --------*/
+  /*----------------- Find Specific Location on the Map ---------------*/
 
   // To find lost pets in the specified location, use geocode form field
   // Call geocodeAddress() when the geo-btn submit is clicked
@@ -206,6 +208,46 @@ function initMap() {
   $('#geo_btn').on('click', () => {
     geocodeAddress(geocoder, map); 
   });
+
+
+  // Geo locate me using geolocation
+  // If browser supports and is enabled for location detection
+  // TODO: Decide whether to incorporate (most people likely have privacy on)
+  //
+  // $('#geolocate-me').on('click', () => {
+  //   // If the browser has geolocation-capabilities, it'll be stored on a global
+  //   // object called `navigator`. (Most modern browsers will have this.)
+  //   //
+  //   // If `navigator.geolocation` is `undefined`, then your user has a pretty
+  //   // old browser :(
+  //   if (navigator.geolocation) {
+  //     // `navigator.geolocation.getCurrentPosition` takes in two args:
+  //     //
+  //     // - A function that is called when we successfully get the
+  //     //   user's location
+  //     //
+  //     // - A function that's called when we can't get the user's location
+  //     //   (probably because they didn't allow your page to access it)
+  //     navigator.geolocation.getCurrentPosition(
+  //       // The success function:
+  //       (currPosition) => {
+  //         alert('Going to your location now!');
+
+  //         map.setCenter({
+  //           lat: currPosition.coords.latitude,
+  //           lng: currPosition.coords.longitude
+  //         });
+  //         map.setZoom(18);
+  //       },
+  //       // The unsuccessful function:
+  //       () => {
+  //         alert('Unable to get your location :(');
+  //       }
+  //     );
+  //   } else {
+  //     alert(`Your browser doesn't support geolocation`);
+  //   }
+  // });
 
 }
 
@@ -228,6 +270,7 @@ function geocodeAddress(geocoder, map) {
       new google.maps.Marker({
           map: map,
           position: results[0].geometry.location,
+          animation: google.maps.Animation.DROP
       });
 
     } else {

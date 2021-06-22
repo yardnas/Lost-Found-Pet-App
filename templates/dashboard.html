@@ -21,6 +21,9 @@
         </h2>
     </header>
 
+    <br>
+    <hr>
+
     <!--  Main section of the Dashboard page. -->
     <main>
         <div class="row">
@@ -38,7 +41,7 @@
                             <a href="/pet_register">Register your pet here</a>
                         </button>
                         <!-- <h4>Where was your pet last seen?</h4> -->
-                        <p style="color:slategrey"><i>Marker of your pet's last seen location will be placed on the map</i></p>
+                        <h5 style="color:slategrey">Marker of your pet's last seen location will be placed on the map</h5>
                     </div>
                 </section>
         
@@ -52,7 +55,12 @@
 
                 <!-- Lost Pet Location Section -->
                 <section class="pet-address" align=center>
-                    <h3>To find lost pets in your neighborhood, enter a location or address</h3>
+                    <!-- <h3>To find lost pets in your neighborhood, enter a location or address</h3> -->
+                    <h3>Find lost pets in your neighborhood?</h3>
+
+                    <!-- <button id="geolocate-me">Click here to locate me</button>
+                    <h4>Or enter the location | address</h4> -->
+                    <h4>Enter your location or address</h4>
 
                     <div class="geocode-pet-address">
                         <input id="address" type="textbox" value="San Francisco, CA" />
@@ -66,17 +74,16 @@
         <!-- Lost Pet Map Section -->
         <div class="map-section">
             <section class="marker-map" align=center>
-                <p style="color:slategrey"><i>Click the markers on the map for lost pets information</i></p>
-                <br>
 
                 <!-- Button for Night Mode: TODO: place inside map, next to "Satelite" -->
                 <div class="map-night-mode" align=left>
+                    <h5 style="color:slategrey" align=center>Click the markers on the map for lost pets information</h5>
+
                     <button id="custom-style">
                         Click for Night Mode
                     </button>
-                </div>
 
-                <br> 
+                </div>
 
                 <div class="map">
                     <div id="map"></div>
