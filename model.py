@@ -60,7 +60,7 @@ class User(db.Model, UserMixin):
     updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
 
-    # To address error: NotImplementedError: No 'id' attribute - override 'get_id'
+    # To handle: NotImplementedError: No 'id' attribute - override 'get_id'
     def get_id(self):
            return (self.user_id)
     
@@ -79,6 +79,7 @@ class Pet(db.Model):
     pet_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
+    pet_owner = db.Column(db.String(50), nullable=False) 
     pet_name = db.Column(db.String(50), nullable=False)
     pet_type = db.Column(db.String(50), nullable=False)
     pet_breed = db.Column(db.String(50), nullable=False)
@@ -95,31 +96,55 @@ class Pet(db.Model):
     def __repr__(self):
         """Show information about the pet."""
 
-        return f"<Pet pet_id={self.pet_id} pet_name={self.pet_name} pet_type={self.pet_type}>"
+        return f"<Pet pet_id={self.pet_id} pet_name={self.pet_name} pet_type={self.pet_type} pet_owner={self.pet_type}>"
 
 
-class Location(db.Model):
-    """Data model for the location of the pet lost or found."""
+class Status(db.Model):
+    """Data model for the status of the pet."""
 
-    __tablename__ = "locations"
+    __tablename__ = "status"
 
-    location_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    status_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     pet_id = db.Column(db.Integer, db.ForeignKey('pets.pet_id'))
 
-    location_name = db.Column(db.String(255), nullable=True)
-    address = db.Column(db.String(100), nullable=True)
-    city = db.Column(db.String(100), nullable=True)
-    state = db.Column(db.String(50), nullable=True)
-    zipcode = db.Column(db.String(20), nullable=True)
+    status_type = db.Column(db.String(50), nullable=True)
+    created_on = db.Column(db.DateTime, default=datetime.now)
+    updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
-    # # # Add relationship between pets and locations
-    pets = db.relationship("Pet", backref="location")
-
+    # Add relationship between users and pets
+    pets = db.relationship("Pet", backref="status")
 
     def __repr__(self):
-        """Show information about the location of the lost or found pet."""
+        """Show information about the pet."""
 
-        return f"<Location location_id={self.location_id} location_name={self.location_name} phone_number={self.city}"
+        return f"<Status status_id={self.status_id} pet_id={self.pet_id} status_type={self.status_type}>"
+
+
+#### Location breakdwoen not needed 
+# with Google Map API, able to enter full address and location
+#
+# class Location(db.Model):
+#     """Data model for the location of the pet lost or found."""
+
+#     __tablename__ = "locations"
+
+#     location_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     pet_id = db.Column(db.Integer, db.ForeignKey('pets.pet_id'))
+
+#     location_name = db.Column(db.String(255), nullable=True)
+#     address = db.Column(db.String(100), nullable=True)
+#     city = db.Column(db.String(100), nullable=True)
+#     state = db.Column(db.String(50), nullable=True)
+#     zipcode = db.Column(db.String(20), nullable=True)
+
+#     # # # Add relationship between pets and locations
+#     pets = db.relationship("Pet", backref="location")
+
+
+    # def __repr__(self):
+    #     """Show information about the location of the lost or found pet."""
+
+    #     return f"<Location location_id={self.location_id} location_name={self.location_name} phone_number={self.city}"
 
 
 #---------------------------------------------------------------------#
@@ -134,22 +159,24 @@ def test_data():
     Pet.query.delete()
 
     # Add sample users data
-    alice = User(user_id=103, 
+    cathy = User(user_id=103, 
                 fname="Cathy",
                 lname="Cake",
                 phone="415-777-1234",
                 email="cathy@cathy.com",
                 password="cathy")
 
-    betty = User(user_id=104, 
+    david = User(user_id=104, 
                 fname="David", 
                 lname="Decker",
                 phone="415-777-5678", 
                 email="david@david.com",
                 password="david")
 
-    spike = Pet(pet_id=103, 
+    spike = Pet(pet_id=203, 
                 user_id=103,
+                status_id=303,
+                pet_owner="Cathy Cake",
                 pet_name="Spike", 
                 pet_type="Dog",
                 pet_breed="Pitbull",
@@ -158,8 +185,10 @@ def test_data():
                 pet_image="/static/img/dog_pit.jpg",
                 last_address="2000 El Camino Real, Palo Alto, CA 94306")
 
-    tiger = Pet(pet_id=104,
+    tiger = Pet(pet_id=204,
                 user_id=104,
+                status_id=304,
+                pet_owner="David D.",
                 pet_name="Tiger",
                 pet_type="Cat",
                 pet_breed="American Bobtail",
@@ -168,7 +197,16 @@ def test_data():
                 pet_image="/static/img/cat_tiger.jpg",
                 last_address="Golden Gate Bridge")
 
-    db.session.add_all([cathy, david, spike, tiger])
+    spike_status = Status(status_id=303,
+                pet_id=203,
+                status_type="Lost")
+
+    tiger_status = Status(status_id=304,
+                pet_id=204,
+                status_type="Found")
+
+
+    db.session.add_all([cathy, david, spike, tiger, spike_status, tiger_status])
     db.session.commit()
 
 #---------------------------------------------------------------------#
@@ -189,12 +227,14 @@ def test_data():
 
 def connect_to_db(app, db_uri="postgresql:///lost_found_pets"):
     app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
-    app.config['SQLALCHEMY_ECHO'] = False
+    app.config['SQLALCHEMY_ECHO'] = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.app = app
     db.init_app(app)
 
+    print("Connected to thhe db!")
+    
 #---------------------------------------------------------------------#
 
 
@@ -207,6 +247,7 @@ if __name__ == "__main__":
 
     # Connect to the database
     connect_to_db(app)
+    print("Connected to DB.")
 
     # # Create all tables
     # db.create_all()

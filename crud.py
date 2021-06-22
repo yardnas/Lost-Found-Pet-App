@@ -1,6 +1,6 @@
 """CRUD (Create, Read, Update, Delete) operations."""
 
-from model import db, User, Pet, Location, connect_to_db
+from model import db, User, Pet, Status, connect_to_db
 
 # Data model Classes
     # User
@@ -50,24 +50,15 @@ def get_fname_by_email(email):
     return db.session.query(User.fname).filter(User.email == email).first()
 
 
-# def update_user_info(fname, email, phone):
-#     """Update users information"""
-
-#     user = User.query.filter(User.email==email).update({User.fname: fname, User.phone: phone})
-
-#     db.session.commit()
-
-#     return user
-
-
 #---------------------------------------------------------------------#
 #--------------- CRUD functions for PETS Section ---------------------#
 #---------------------------------------------------------------------#
 
-def create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image, last_address):
+def create_pets(pet_owner, pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image, last_address):
     """Create and return a pet."""
 
-    pet = Pet(pet_name=pet_name, 
+    pet = Pet(pet_owner=pet_owner, 
+              pet_name=pet_name,
               pet_type=pet_type, 
               pet_breed=pet_breed, 
               pet_gender=pet_gender,
@@ -81,7 +72,7 @@ def create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image,
     return pet
 
 
-def update_pet_user_info(fname, email, phone, 
+def update_pet_user_info(pet_owner, email, phone, 
                          pet_name, pet_type, pet_breed, 
                          pet_gender, pet_color, pet_image, last_address):
     """Update pet and pet owner's information"""
@@ -94,16 +85,17 @@ def update_pet_user_info(fname, email, phone,
     user_id = user.user_id
 
     # TODO: Fix this to query db for pet_id opposed to using the create function
-    pet = create_pets(pet_name, pet_type, pet_breed, 
+    pet = create_pets(pet_owner, pet_name, pet_type, pet_breed, 
                       pet_gender, pet_color, pet_image, last_address)
 
     pet_id = pet.pet_id
 
     # Update user section
-    user_update= User.query.filter(User.email==email).update({User.fname: fname, User.phone: phone})
+    # user_update= User.query.filter(User.email==email).update({User.fname: fname, User.phone: phone})
+    user_update= User.query.filter(User.email==email).update({User.phone: phone})
 
     # Update pet section
-    pet_update = Pet.query.filter(Pet.pet_id==pet_id).update({Pet.user_id: user_id})
+    pet_update = Pet.query.filter(Pet.pet_id==pet_id).update({Pet.user_id: user_id, Pet.pet_owner: pet_owner})
 
     db.session.commit()
 
@@ -113,14 +105,14 @@ def update_pet_user_info(fname, email, phone,
 #---------------- LOCATION SECTION (May not need) --------------------#
 #---------------------------------------------------------------------#
 
-def create_location():
-    """Create the location of the respective pet/status"""
+# def create_location():
+#     """Create the location of the respective pet/status"""
 
-    location = Location(location_name=location_name, 
-                        address=address, 
-                        city=city, 
-                        state=state, 
-                        zipcode=zipcode)
+#     location = Location(location_name=location_name, 
+#                         address=address, 
+#                         city=city, 
+#                         state=state, 
+#                         zipcode=zipcode)
 
 #---------------------------------------------------------------------#
 

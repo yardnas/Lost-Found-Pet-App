@@ -1,15 +1,18 @@
 """Test functions to verify code functionality."""
 
 #---------------------------------------------------------------------#
-# Test pages: index, login, logout, register, pet_register and dashboard
-# Test database: crud functions
-# Test sessions (TODO: add sessions to code)
-# Test map & marker? (TODO: research if feasible)
+# TODO:
+    # Test pages: index, login, logout, register, pet_register and dashboard
+    # Test database: crud functions
+    # Test sessions (TODO: add sessions to code)
+    # Test map & marker? (TODO: research if feasible)
 #---------------------------------------------------------------------#
 
 from unittest import TestCase
 from server import app
 from model import db, connect_to_db, User, Pet, test_data
+import crud
+import os
 
 #---------------------------------------------------------------------#
 #------------- Flask Unit Test: Render Welcome Page ------------------#
@@ -94,39 +97,43 @@ class FlaskTestsLogInLogOut(TestCase):
 #---------------- Flask Unit Test: Database Tests --------------------#
 #---------------------------------------------------------------------#
 
-class FlaskTestDatabase(TestCase):
-    """Flask tests that use the database."""
+# class FlaskTestDatabase(TestCase):
+#     """Flask tests that use the database."""
 
-    def setUp(self):
-        """Things to do before every test."""
+#     def setUp(self):
+#         """Things to do before every test."""
 
-        # Get the Flask test client
-        self.client = app.test_client()
+#         # Get the Flask test client
+#         self.client = app.test_client()
 
-        # Show Flask errors that happen during tests
-        app.config['TESTING'] = True
+#         # Show Flask errors that happen during tests
+#         app.config['TESTING'] = True
 
-        # Connect to test database
-        connect_to_db(app, "postgresql:///testdb")
+#         # Connect to test database
+#         # print("before connect to testdb")
+#         connect_to_db(app, "postgresql:///testdb")
+#         # print(connect_to_db)
+#         # print("after connect to testdb")
+#         # app.config['SQLALCHEMY_DATABASE_URI'] = self.db_uri
 
-        # Create tables and add sample data
-        db.create_all()
-        test_data()
-
-
-    def tearDown(self):
-        """Things to do at the end of every test."""
-
-        db.session.remove()
-        db.drop_all()
-        db.engine.dispose()
+#         # Create tables and add sample data
+#         db.create_all()
+#         test_data()
 
 
-    def test_josonify_pets(self):
-        """Test the jsonify data for pets."""
+#     def tearDown(self):
+#         """Things to do at the end of every test."""
 
-        result = self.client.get('/get/pets')
-        self.assertIn(b'Pitbull', result.data)
+#         db.session.remove()
+#         db.drop_all()
+#         db.engine.dispose()
+
+
+#     # def test_josonify_pets(self):
+#     #     """Test the jsonify data for pets."""
+
+#     #     result = self.client.get('/get/pets')
+#     #     self.assertIn(b'Pitbull', result.data)
 
     
 #---------------------------------------------------------------------#

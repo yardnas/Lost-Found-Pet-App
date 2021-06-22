@@ -5,7 +5,7 @@ from datetime import datetime
 
 import crud
 import model
-from model import db, connect_to_db, User, Pet
+from model import db, connect_to_db, User, Pet, Status
 import server
 
 os.system("dropdb lost_found_pets")
@@ -13,6 +13,9 @@ os.system("createdb lost_found_pets")
 
 model.connect_to_db(server.app)
 model.db.create_all() # Create the tables defined 
+
+
+#---------------------------------------------------------------------#
 
 # Add seed data to database
 alice = User(user_id=101, 
@@ -29,8 +32,9 @@ betty = User(user_id=102,
             email="bobby@bobby.com",
             password="bobby")
 
-fido = Pet(pet_id=101, 
+fido = Pet(pet_id=201, 
             user_id=101,
+            pet_owner="Alice Apple",
             pet_name="Fido", 
             pet_type="Dog",
             pet_breed="Bulldog",
@@ -39,8 +43,9 @@ fido = Pet(pet_id=101,
             pet_image="/static/img/dog_bulldog.jpg",
             last_address="54 E 4th Ave, San Mateo, CA 94401")
 
-kitty = Pet(pet_id=102,
+kitty = Pet(pet_id=202,
             user_id=102,
+            pet_owner="Bobby Baker",
             pet_name="Kitty",
             pet_type="Cat",
             pet_breed="British Shorthair",
@@ -49,5 +54,18 @@ kitty = Pet(pet_id=102,
             pet_image="/static/img/cat_grey.jpg",
             last_address="1230 Broadway, Burlingame, CA 94010")
 
-model.db.session.add_all([alice, betty, fido, kitty])
+
+fido_status = Status(status_id=301,
+            pet_id=201,
+            status_type="Lost")
+
+kitty_status = Status(status_id=302,
+            pet_id=202,
+            status_type="Found")
+
+
+#---------------------------------------------------------------------#
+
+model.db.session.add_all([alice, betty, fido, kitty,  fido_status, kitty_status])
+# model.db.session.add_all([alice, betty, fido, kitty])
 model.db.session.commit()

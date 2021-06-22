@@ -6,11 +6,13 @@
     <link rel="stylesheet" href="/static/css/map.css"/>
 
     <script src="/static/js/map.js"></script>
+    <!-- <script src="/static/js/map_test.js"></script> -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeDkSlpBZoTC5TToXy1tW3hehvfM3xWHQ&callback=initMap"></script>
 {% endblock %}
 
 {% block body %}
 
+    <!--  Top section of the Dashboard page. -->
     <header align=center>
         <h2>
             {% if current_user.is_authenticated %}
@@ -19,46 +21,73 @@
         </h2>
     </header>
 
+    <!--  Main section of the Dashboard page. -->
     <main>
-        <!-- Lost Pet Form Section -->
-        <section class="pet-form" align=center>
-            <h3>Did you lose your pet?</h3>
-            <!-- <h4>Register your pet:</h4> -->
+        <div class="row">
+            <!-- TODO: Split Screen Left -->
+            <div class="column" id="split-left">
+                <h6></h6>
 
-            <div class="register-prompt">
-                <!-- <h4><label>Register</label></h4> -->
-                <button id="register-button">
-                    <a href="/pet_register">Register your pet here</a>
-                </button>
-            </div>
-        </section>
+                <!-- Register Pet Form Section -->
+                <section class="pet-form" align=center>
+                    <h3>Did you lose your pet?</h3>
 
-        <!-- Lost Pet Address Section -->
-        <section class="pet-address" align=center>
-            <h4>Where was your pet last seen?</h4>
-
-            <p>(TODO: Dynamically save marker via "location" opposed to "address")</p>
-            <div class="geocode-pet-address">
-                <input id="address" type="textbox" value="San Francisco, CA" />
-                <input class="btn" id="geo_btn" type="button" value="Submit" />
-            </div>
-
-        </section>
-
-        <br><br> <!-- <br> placeholder until CSS-->
+                    <div class="register-prompt">
+                        <!-- <h4><label>Register</label></h4> -->
+                        <button id="register-button">
+                            <a href="/pet_register">Register your pet here</a>
+                        </button>
+                        <!-- <h4>Where was your pet last seen?</h4> -->
+                        <p style="color:slategrey"><i>Marker of your pet's last seen location will be placed on the map</i></p>
+                    </div>
+                </section>
         
-        <!-- Lost Pet Map Section -->
-        <section class="marker-map" align=center>
-            <h3>To find a lost pet in your neighborhood, please click markers below:</h3>
-                  
-            <div class="map">
-                <div id="map"></div>
+                <br>
+                <hr>
             </div>
 
-        </section>
-    </main><br> <!-- Placeholder <br> until css -->
+            <!-- TODO: Split Screen Right -->
+            <div class="column" id="split-right">
+                <h6></h6>
+
+                <!-- Lost Pet Location Section -->
+                <section class="pet-address" align=center>
+                    <h3>To find lost pets in your neighborhood, enter a location or address</h3>
+
+                    <div class="geocode-pet-address">
+                        <input id="address" type="textbox" value="San Francisco, CA" />
+                        <input class="btn" id="geo_btn" type="button" value="Submit" />
+                    </div>
+                </section>
+            </div>
+        </div>
 
 
+        <!-- Lost Pet Map Section -->
+        <div class="map-section">
+            <section class="marker-map" align=center>
+                <p style="color:slategrey"><i>Click the markers on the map for lost pets information</i></p>
+                <br>
+
+                <!-- Button for Night Mode: TODO: place inside map, next to "Satelite" -->
+                <div class="map-night-mode">
+                    <button id="custom-style">
+                        Click for Night Mode
+                    </button>
+                </div>
+
+                <br> 
+
+                <div class="map">
+                    <div id="map"></div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+    
+    <br> <!-- Placeholder <br> until css -->
+    
     <!-- TODO: footer is probably not the right tag. May add this to top when CSS in place -->
     <footer> 
         <!-- Logout Section -->

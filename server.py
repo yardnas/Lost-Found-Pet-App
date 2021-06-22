@@ -147,7 +147,7 @@ def show_pet_registration():
 def register_pet_form():
     """To fill out the pet registration form, store in db and redirect back to '/'."""
 
-    fname = request.form.get('fname')
+    pet_owner = request.form.get('pet-owner')
     email = request.form.get('email')
     phone = request.form.get('phone')
     pet_name = request.form.get('pet-name')
@@ -163,7 +163,7 @@ def register_pet_form():
     # Update database with pet & owner's information
     if user:
         flash('Pet registration is complete')
-        crud.update_pet_user_info(fname, email, phone, 
+        crud.update_pet_user_info(pet_owner, email, phone, 
                         pet_name, pet_type, pet_breed, 
                         pet_gender, pet_color, pet_image, last_address)
     if not user:
@@ -174,14 +174,17 @@ def register_pet_form():
     return redirect('dashboard')
 
 
+#---------------------------------------------------------------------#
+
 @app.route('/get/pets')
 def pet_info():
-    """JSON information about pets to be used for marker info content."""
+    """Return JSON information about pets for marker info content."""
 
     pets = [
         {
             'petId': pet.pet_id,
             'userId': pet.user_id,
+            'petOwner': pet.pet_owner,
             'petName': pet.pet_name,
             'petType': pet.pet_type,
             'petBreed': pet.pet_breed,
@@ -192,7 +195,7 @@ def pet_info():
         for pet in Pet.query.limit(50)
     ]
 
-    return jsonify(pets) # Jsonify the data
+    return jsonify(pets) # jsonify the data for js
 
 
 #---------------------------------------------------------------------#
