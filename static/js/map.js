@@ -14,10 +14,11 @@
 /*------------------- Start of the Map Function ---------------------*/
 
 // Attach all event listeners to this function where the 'map' obj is in-scope
-// Initialize map
+// 
 function initMap() { 
 
   // Create a new instance of Google Maps called "map"
+  // Set default coordinates to SF
   const map = new google.maps.Map(
       document.querySelector('#map'),
       {
@@ -29,6 +30,12 @@ function initMap() {
         zoom: 10,
       }
   );
+
+  // User can click on map to create a marker
+  // Will place marker and pan to specified location
+  map.addListener("click", (e) => {
+    placeMarkerAndPanTo(e.latLng, map);
+  });
 
   /*----------------- Pet Info Window & Marker section ----------------*/
 
@@ -90,11 +97,10 @@ function initMap() {
             // Define event handling when marker is clicked
             // To show pet information content for each marker
             petMarker.addListener('click', (evt) => {
-              console.log(evt) // for testing
-
               petInfo.close()
               petInfo.setContent(petInfoContent);
               petInfo.open(map, petMarker);
+              map.setZoom(12);
 
             });
 
@@ -111,7 +117,7 @@ function initMap() {
   // Create a style map in night mode
   // TODO: Add style map to the maptypeid
   $('#custom-style').on('click', () => {
-    const customStyledMap = new google.maps.StyledMapType(
+    const styledMapType = new google.maps.StyledMapType(
       [
         { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
         { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
@@ -192,11 +198,12 @@ function initMap() {
           stylers: [{ color: "#17263c" }],
         },
       ],
+      { name: "Styled Map" }
     );
     
     // Associate the styled map with the MapTypeId and set it to display
-    map.mapTypes.set('map_style', customStyledMap);
-    map.setMapTypeId('map_style');
+    map.mapTypes.set('styled_map', styledMapType);
+    map.setMapTypeId('styled_map');
   });
 
   /*----------------- Find Specific Location on the Map ---------------*/
@@ -264,7 +271,7 @@ function geocodeAddress(geocoder, map) {
 
       // Zoom in on the geocode location on the map
       map.setCenter(results[0].geometry.location);
-      map.setZoom(15);
+      map.setZoom(10);
 
       // Create marker on the map based on the geocode location
       new google.maps.Marker({
@@ -277,6 +284,18 @@ function geocodeAddress(geocoder, map) {
           alert('Geocode was not successful for the following reason: ' + status);
     }
   });
+}
+
+// Place marker and pan to the location when user clicks on map
+function placeMarkerAndPanTo(latLng, map) {
+
+  map.setZoom(9);
+
+  new google.maps.Marker({
+    position: latLng,
+    map: map,
+  });
+  map.panTo(latLng);
 }
 
 
