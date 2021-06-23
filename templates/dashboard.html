@@ -5,9 +5,15 @@
     <link rel="shortcut icon" href="#">  <!-- To handle the favicon.ico 404 error -->
     <link rel="stylesheet" href="/static/css/map.css"/>
 
+    <!-- For map code referencing map.js -->
     <script src="/static/js/map.js"></script>
-    <!-- <script src="/static/js/map_test.js"></script> -->
+
+    <!-- For google maps API key and callback to initMap-->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeDkSlpBZoTC5TToXy1tW3hehvfM3xWHQ&callback=initMap"></script>
+    
+    <!-- For react to import a library called Babel -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    
 {% endblock %}
 
 {% block body %}
@@ -24,22 +30,26 @@
     <br>
     <hr>
 
+    <!------------------------------------------>
     <!--  Main section of the Dashboard page. -->
+    <!------------------------------------------>
     <main>
         <div class="row">
 
             <!-- TODO: Split Screen Left -->
             <div class="column" id="split-left">
-                <h6></h6>
 
-                <!-- Register Pet Form Section -->
+                <!-------------------------------->
+                <!-- Register Pet Form Section --->
+                <!-------------------------------->
+
                 <section class="pet-form" align=center>
                     <h3>Did you lose your pet?</h3>
-                    <h4>Register your pet</h4>
+                    <h4>Register your pet here</h4>
 
                     <div class="register-prompt">
                         <button id="register-button">
-                            <a href="/pet_register">Fill out the form here</a>
+                            <a href="/pet_register">Fill out this form</a>
                         </button>
                     </div>
 
@@ -53,9 +63,11 @@
 
             <!-- TODO: Split Screen Right -->
             <div class="column" id="split-right">
-                <h6></h6>
 
-                <!-- Lost Pet Location Section -->
+                <!-------------------------------->
+                <!-- Lost Pet Location Section --->
+                <!-------------------------------->
+
                 <section class="pet-address" align=center>
                     <!-- <h3>To find lost pets in your neighborhood, enter a location or address</h3> -->
                     <h3>Find lost pets in your neighborhood?</h3>
@@ -66,24 +78,53 @@
                         <input class="btn" id="geo_btn" type="button" value="Submit" />
                     </div>
 
+                    <br>
+                    <button id="locate-me">Or locate me!</button>
+
                 </section>
             </div>
         </div>
 
-
-        <!-- Lost Pet Map Section -->
+        <!------------------------------------------>
+        <!----------- Lost Pet Map Section --------->
+        <!------------------------------------------>
         <div class="map-section">
             <section class="marker-map" align=center>
 
-                <!-- Button for Night Mode: TODO: place inside map, next to "Satelite" -->
-                <div class="map-night-mode" align=left>
+                <div class="map-night-mode" align=center>
                     <h5 style="color:slategrey" align=center>Click the markers on the map for lost pets information</h5>
+                </div>
+
+                <div>
+                    <!-- Below is to test the Dark mode implementation -->
+                    <!-- TODO: Actual implementation + adding night mode to work with clicking Dark mode -->
+
+                    <!-- Dark mode on page -->
+
+                    <style>
+                        .dark-mode {
+                            background-color: black;
+                            color: white;
+                        }
+                    </style>
+
+                    <button onclick="myFunction()">Toggle dark mode</button>
+
+                    <script>
+                        function myFunction() {
+                        var element = document.body;
+                        element.classList.toggle("dark-mode");
+                        }
+                    </script>
+
+                    <!-- Night mode on map -->
 
                     <button id="custom-style">
                         Click for Night Mode
                     </button>
-
                 </div>
+
+                <br>
 
                 <div class="map">
                     <div id="map"></div>
@@ -92,6 +133,12 @@
             </section>
         </div>
     </main>
+
+
+
+
+
+
     
     <br> <!-- Placeholder <br> until css -->
     

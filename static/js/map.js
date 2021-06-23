@@ -114,10 +114,10 @@ function initMap() {
 
   /*------------------------- Style Map section -----------------------*/
   
-  // Create a style map in night mode
+  // Create a style map in night mode (google maps)
   // TODO: Add style map to the maptypeid
   $('#custom-style').on('click', () => {
-    const styledMapType = new google.maps.StyledMapType(
+    const customMapType = new google.maps.StyledMapType(
       [
         { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
         { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
@@ -202,7 +202,7 @@ function initMap() {
     );
     
     // Associate the styled map with the MapTypeId and set it to display
-    map.mapTypes.set('styled_map', styledMapType);
+    map.mapTypes.set('styled_map', customMapType);
     map.setMapTypeId('styled_map');
   });
 
@@ -221,40 +221,40 @@ function initMap() {
   // If browser supports and is enabled for location detection
   // TODO: Decide whether to incorporate (most people likely have privacy on)
   //
-  // $('#geolocate-me').on('click', () => {
-  //   // If the browser has geolocation-capabilities, it'll be stored on a global
-  //   // object called `navigator`. (Most modern browsers will have this.)
-  //   //
-  //   // If `navigator.geolocation` is `undefined`, then your user has a pretty
-  //   // old browser :(
-  //   if (navigator.geolocation) {
-  //     // `navigator.geolocation.getCurrentPosition` takes in two args:
-  //     //
-  //     // - A function that is called when we successfully get the
-  //     //   user's location
-  //     //
-  //     // - A function that's called when we can't get the user's location
-  //     //   (probably because they didn't allow your page to access it)
-  //     navigator.geolocation.getCurrentPosition(
-  //       // The success function:
-  //       (currPosition) => {
-  //         alert('Going to your location now!');
+  $('#locate-me').on('click', () => {
+    // If the browser has geolocation-capabilities, it'll be stored on a global
+    // object called `navigator`. (Most modern browsers will have this.)
+    //
+    // If `navigator.geolocation` is `undefined`, then your user has a pretty
+    // old browser :(
+    if (navigator.geolocation) {
+      // `navigator.geolocation.getCurrentPosition` takes in two args:
+      //
+      // - A function that is called when we successfully get the
+      //   user's location
+      //
+      // - A function that's called when we can't get the user's location
+      //   (probably because they didn't allow your page to access it)
+      navigator.geolocation.getCurrentPosition(
+        // The success function:
+        (currPosition) => {
+          alert('Going to your location now!');
 
-  //         map.setCenter({
-  //           lat: currPosition.coords.latitude,
-  //           lng: currPosition.coords.longitude
-  //         });
-  //         map.setZoom(18);
-  //       },
-  //       // The unsuccessful function:
-  //       () => {
-  //         alert('Unable to get your location :(');
-  //       }
-  //     );
-  //   } else {
-  //     alert(`Your browser doesn't support geolocation`);
-  //   }
-  // });
+          map.setCenter({
+            lat: currPosition.coords.latitude,
+            lng: currPosition.coords.longitude
+          });
+          map.setZoom(18);
+        },
+        // The unsuccessful function:
+        () => {
+          alert('Unable to get your location :(');
+        }
+      );
+    } else {
+      alert(`Your browser doesn't support geolocation`);
+    }
+  });
 
 }
 
@@ -271,7 +271,7 @@ function geocodeAddress(geocoder, map) {
 
       // Zoom in on the geocode location on the map
       map.setCenter(results[0].geometry.location);
-      map.setZoom(10);
+      map.setZoom(12);
 
       // Create marker on the map based on the geocode location
       new google.maps.Marker({
@@ -289,7 +289,7 @@ function geocodeAddress(geocoder, map) {
 // Place marker and pan to the location when user clicks on map
 function placeMarkerAndPanTo(latLng, map) {
 
-  map.setZoom(9);
+  map.setZoom(13);
 
   new google.maps.Marker({
     position: latLng,
@@ -297,6 +297,7 @@ function placeMarkerAndPanTo(latLng, map) {
   });
   map.panTo(latLng);
 }
+
 
 
   /* 

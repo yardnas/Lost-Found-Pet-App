@@ -11,33 +11,55 @@ db = SQLAlchemy()
 #-------------------------- MVP Scope Section ------------------------#
 #---------------------------------------------------------------------#
 # Data Model 
-    # User can have many Pets
-    # Pet can have one owner
-    # Instead of Location, added address to Pet
+    # √ User can have many Pets
+    # √ Pet can have one owner
+    # √ Status can belong to one pet
+    # √ (omitted Location, instead added address to Pet)
 
 # MVP
-    # Sign-up | Sign-in | Log-out => used flask-login to achieve
-    # Store pet info (desc, pics, location) => stored in postgres db
-    # Show pet info & location on the map => utilize the google maps api
+    # √ Sign-up | Sign-in | Log-out => used flask-login to achieve
+    # √ Store pet info (desc, pics, location) => stored in postgres db
+    # √ Show pet info & location on the map => utilize the google maps api
 
-# My MVP update on Mon, 6/14/21 (End of Sprint 1)
-    # I was behind and was catching up on lectures ==> hit MVP late yesterday (Sunday)
-    # My MVP (list above)
-    # Today: will work on password hash and test.py to find bugs I'm sure I have => I may join the group chat with Maura
-    # Next feature if have time: dynamically pin location by entering "location" (golden gate bridge) opposed to entering the address
-    # Not block at the moment
+# End of Sprint 1: MVP update on Mon, 6/14/21
+    # √ Behind and catching up on lectures ==> hit MVP late yesterday (Sunday)
+    # √ My MVP (list above)
+    # √ Today: will work on password hash and test.py to find bugs I'm sure I have => I may join the group chat with Maura
+    # √ Next feature if have time: dynamically pin location by entering "location" (golden gate bridge) opposed to entering the address
+    # √ Not block at the moment
 
 # Nice-to-have
-    # Dynamically pin location by entering location (opposed to filling out the registration page)
-        # - need to save pin/marker address from geocode form 
-        # - need to get real address from geocode input
-        # - need to store address in db
-        # - need to add pet info & address/location on map
+    # √ Dynamically pin location by entering location (opposed to filling out the registration page)
+        # √  - need to save pin/marker address from geocode form 
+        # √ - need to get real address from geocode input
+        # √ - need to store address in db
+        # √ - need to add pet info & address/location on map
 
-     # Add test and seed
-     # Add nearby places: vet clinics, police station
-     # Send an alert email | text
-     # Add chat feature
+    #   Add Dark mode
+        # √ Add night mode for map
+        # Add dark mode on page (HTML)
+
+    #   Add search functionality
+        # Option1: via HTML
+        # Option2: via AJAX (good practice)
+        # Option3: via SQLAlchemy and React
+
+    #   Add pet owner's page
+        # place to update when pet is found
+        # Send an alert email | text | chat feature ==> look into Twillio
+
+    #   Add nearby places: vet clinics, police station
+
+        # Search page notes
+            # Form HTML ==> do first then refactor later
+            # AJAX request ** then don't need to refresh the page
+                # JS harder to search compare SQLAlchemy
+            # diff search: Page return all the pets, type on form => hides and narrow view
+                # can use SQLAlchemy ==> page with React here 
+                # react ==> generates all on page ==> track state of page ==> if state change ==> update
+                    # simlar to JS and jQuery but react ==> keep logic closer feels more logical
+
+
 
 
 #---------------------------------------------------------------------#
