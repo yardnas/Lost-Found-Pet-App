@@ -18,7 +18,10 @@
 
 {% block body %}
 
-    <!--  Top section of the Dashboard page. -->
+    <!------------------------------------------>
+    <!-----  Welcome Body of Dashboard page ---->
+    <!------------------------------------------>
+
     <header align=center>
         <h2>
             {% if current_user.is_authenticated %}
@@ -28,10 +31,10 @@
     </header>
 
     <br>
-    <hr>
+    <hr> <!-- Placeholder until css -->
 
     <!------------------------------------------>
-    <!--  Main section of the Dashboard page. -->
+    <!------  Main Body of Dashboard page ------>
     <!------------------------------------------>
     <main>
         <div class="row">
@@ -55,8 +58,7 @@
 
                     <h5 style="color:slategrey">Marker of your pet's last seen location will be placed on the map</h5>
                 </section>
-        
-                <br> <!-- Placeholder until css -->
+
                 <hr> <!-- Placeholder until css -->
 
             </div>
@@ -78,28 +80,31 @@
                         <input class="btn" id="geo_btn" type="button" value="Submit" />
                     </div>
 
-                    <br>
-                    <button id="locate-me">Or locate me!</button>
+                    <br><button id="locate-me">Or locate me!</button>
+
+                    <div class="map-night-mode" align=center>
+                        <h5 style="color:slategrey" align=center>Click the markers on the map for lost pets information</h5>
+                    </div>
 
                 </section>
             </div>
         </div>
 
+        <hr> <!-- Placeholder until css -->
+        <br>
+
         <!------------------------------------------>
-        <!----------- Lost Pet Map Section --------->
+        <!----------- Display Map Section ---------->
         <!------------------------------------------>
         <div class="map-section">
             <section class="marker-map" align=center>
 
-                <div class="map-night-mode" align=center>
-                    <h5 style="color:slategrey" align=center>Click the markers on the map for lost pets information</h5>
-                </div>
-
                 <div>
-                    <!-- Below is to test the Dark mode implementation -->
-                    <!-- TODO: Actual implementation + adding night mode to work with clicking Dark mode -->
+                    <!-------------------------------->
+                    <!---- Dark Mode Page Section ---->
+                    <!-------------------------------->
 
-                    <!-- Dark mode on page -->
+                    <!-- TODO: Actual implementation + adding night mode to work with clicking Dark mode -->
 
                     <style>
                         .dark-mode {
@@ -117,7 +122,11 @@
                         }
                     </script>
 
-                    <!-- Night mode on map -->
+                    <!-------------------------------->
+                    <!----- Night Mode Map Section --->
+                    <!-------------------------------->
+
+                    <!-- TODO: Intergration with Dark Mode -->
 
                     <button id="custom-style">
                         Click for Night Mode
@@ -134,15 +143,14 @@
         </div>
     </main>
 
-
-
-
-
-
-    
     <br> <!-- Placeholder <br> until css -->
+
+    <!------------------------------------------>
+    <!----------- Logout User Section ---------->
+    <!------------------------------------------>    
     
     <!-- TODO: footer is probably not the right tag. May add this to top when CSS in place -->
+
     <footer> 
         <!-- Logout Section -->
         <section>
