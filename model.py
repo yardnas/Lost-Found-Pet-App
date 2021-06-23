@@ -8,7 +8,7 @@ from datetime import datetime
 db = SQLAlchemy()
 
 #---------------------------------------------------------------------#
-#-------------------------- MVP Scope Section ------------------------#
+#------------------------ Project Scope Section ----------------------#
 #---------------------------------------------------------------------#
 # Data Model 
     # √ User can have many Pets
@@ -21,46 +21,12 @@ db = SQLAlchemy()
     # √ Store pet info (desc, pics, location) => stored in postgres db
     # √ Show pet info & location on the map => utilize the google maps api
 
-# End of Sprint 1: MVP update on Mon, 6/14/21
-    # √ Behind and catching up on lectures ==> hit MVP late yesterday (Sunday)
-    # √ My MVP (list above)
-    # √ Today: will work on password hash and test.py to find bugs I'm sure I have => I may join the group chat with Maura
-    # √ Next feature if have time: dynamically pin location by entering "location" (golden gate bridge) opposed to entering the address
-    # √ Not block at the moment
-
 # Nice-to-have
     # √ Dynamically pin location by entering location (opposed to filling out the registration page)
-        # √  - need to save pin/marker address from geocode form 
-        # √ - need to get real address from geocode input
-        # √ - need to store address in db
-        # √ - need to add pet info & address/location on map
-
-    #   Add Dark mode
-        # √ Add night mode for map
-        # Add dark mode on page (HTML)
-
-    #   Add search functionality
-        # Option1: via HTML
-        # Option2: via AJAX (good practice)
-        # Option3: via SQLAlchemy and React
-
-    #   Add pet owner's page
-        # place to update when pet is found
-        # Send an alert email | text | chat feature ==> look into Twillio
-
-    #   Add nearby places: vet clinics, police station
-
-        # Search page notes
-            # Form HTML ==> do first then refactor later
-            # AJAX request ** then don't need to refresh the page
-                # JS harder to search compare SQLAlchemy
-            # diff search: Page return all the pets, type on form => hides and narrow view
-                # can use SQLAlchemy ==> page with React here 
-                # react ==> generates all on page ==> track state of page ==> if state change ==> update
-                    # simlar to JS and jQuery but react ==> keep logic closer feels more logical
-
-
-
+    #   Add Dark mode (page) with Night mode (map)
+    #   Add Search functionality
+    #   Add Pet owner's page (+ to handle found pets)
+    #   Add Nearby places: vet clinics, police station
 
 #---------------------------------------------------------------------#
 #------------------------- Data Model Section ------------------------#
@@ -140,33 +106,6 @@ class Status(db.Model):
         """Show information about the pet."""
 
         return f"<Status status_id={self.status_id} pet_id={self.pet_id} status_type={self.status_type}>"
-
-
-#### Location breakdwoen not needed 
-# with Google Map API, able to enter full address and location
-#
-# class Location(db.Model):
-#     """Data model for the location of the pet lost or found."""
-
-#     __tablename__ = "locations"
-
-#     location_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     pet_id = db.Column(db.Integer, db.ForeignKey('pets.pet_id'))
-
-#     location_name = db.Column(db.String(255), nullable=True)
-#     address = db.Column(db.String(100), nullable=True)
-#     city = db.Column(db.String(100), nullable=True)
-#     state = db.Column(db.String(50), nullable=True)
-#     zipcode = db.Column(db.String(20), nullable=True)
-
-#     # # # Add relationship between pets and locations
-#     pets = db.relationship("Pet", backref="location")
-
-
-    # def __repr__(self):
-    #     """Show information about the location of the lost or found pet."""
-
-    #     return f"<Location location_id={self.location_id} location_name={self.location_name} phone_number={self.city}"
 
 
 #---------------------------------------------------------------------#
@@ -258,7 +197,6 @@ def connect_to_db(app, db_uri="postgresql:///lost_found_pets"):
     print("Connected to thhe db!")
     
 #---------------------------------------------------------------------#
-
 
 if __name__ == "__main__":
 

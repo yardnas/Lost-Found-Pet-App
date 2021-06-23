@@ -3,16 +3,23 @@
 {% block head %}{{ super() }}{% endblock %}
 
 {% block body %}
+
+    <!---------------------------------->
+    <!--------- Welcome Header --------->
+    <!---------------------------------->
+    
     <header>
-        <!-- Welcome Section -->
         <section class="splash-header">
             <h2 align=center>Welcome!</h2>
         </section>
     </header>
 
     <main>
-        <!-- Login | Register Splash Section -->
         <section align=center class="splash-window">
+
+            <!---------------------------------->
+            <!------- User Login Section ------->
+            <!---------------------------------->
 
             <div class="login-prompt">
                 <h4><label>Login</label></h4>
@@ -21,6 +28,10 @@
                     <a href="/login">Login</a>
                 </button>
             </div>
+
+            <!---------------------------------->
+            <!----- User Register Section ------>
+            <!---------------------------------->
     
             <div class="register-prompt">
                 <h4><label>Register</label></h4>

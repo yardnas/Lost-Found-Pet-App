@@ -1,17 +1,26 @@
+// Google Map API functionality section //
+
 "use strict";
 
-// Goal: To create a map with markers from stored information on the database
-//
-// done: Set current location or enter neighborhood address
-// done: Convert address to lat/long for marker OR use address if there is a way
-// done: Utilize the geocode to enter "location" (golden gate bridge) opposed address
-//
-
 /*-------------------------------------------------------------------*/
-/*-------------------- Main Map Function Section --------------------*/
+/*-------------------------- Map Scope Section ----------------------*/
 /*-------------------------------------------------------------------*/
 
-/*------------------- Start of the Map Function ---------------------*/
+//  MVP: 
+//    √ To create a map with markers from stored information on the database 
+//    √ Set current location or enter neighborhood address
+//    √ Convert address to lat/long for marker OR use address if there is a way
+//    √ Utilize the geocode to enter "location" (golden gate bridge) opposed address\
+//
+//  Nice-to-have:
+//    √ Zoom on marker click
+//    √ Add marker and zoom on map click
+//    √ Night mode for map
+//    √ Geo locate my location
+
+/*-------------------------------------------------------------------*/
+/*------------------- Function: Main Map Section --------------------*/
+/*-------------------------------------------------------------------*/
 
 // Attach all event listeners to this function where the 'map' obj is in-scope
 // 
@@ -19,6 +28,7 @@ function initMap() {
 
   // Create a new instance of Google Maps called "map"
   // Set default coordinates to SF
+  //
   const map = new google.maps.Map(
       document.querySelector('#map'),
       {
@@ -33,11 +43,14 @@ function initMap() {
 
   // User can click on map to create a marker
   // Will place marker and pan to specified location
+  //
   map.addListener("click", (e) => {
     placeMarkerAndPanTo(e.latLng, map);
   });
 
-  /*----------------- Pet Info Window & Marker section ----------------*/
+  /*--------------------------------------------------------*/
+  /*----------- Pet Info Window & Marker section -----------*/
+  /*--------------------------------------------------------*/
 
   // Set info window to display the marker's info based on jsonify "pets" in server
   const petInfo = new google.maps.InfoWindow({});
@@ -47,7 +60,9 @@ function initMap() {
 
         // Define the content of the infoWindow 
         // Use JS template literals (backticks) - similar to f-string in python
-        // Using backticks (`) aka: template literals, to add jQuery into HTML 
+        // Using backticks (`) aka: template literals, to add jQuery into HTML
+        //
+
         const petInfoContent = (` 
           <div class="window-content">
             <div class="pet-thumbnail">
@@ -66,6 +81,7 @@ function initMap() {
 
           // Define latitude and longitude needed for marker
           // Use geocode to convert an address to its latitude and longitude
+          //
           const geocoder = new google.maps.Geocoder();
           const address = `${pet.lastAddress}`
 
@@ -77,6 +93,7 @@ function initMap() {
 
             // Define marker and set position by lat and long
             // For marker: position is required (latlng)
+            //
             const petMarker = new google.maps.Marker({
               position: {
                   lat: latitude,
@@ -96,6 +113,7 @@ function initMap() {
 
             // Define event handling when marker is clicked
             // To show pet information content for each marker
+            //
             petMarker.addListener('click', (evt) => {
               petInfo.close()
               petInfo.setContent(petInfoContent);
@@ -111,11 +129,13 @@ function initMap() {
         alert((`Not able to retrieve pet data`));
     });
 
-
-  /*------------------------- Style Map section -----------------------*/
+  /*--------------------------------------------------------*/
+  /*------------------- Style Map section ------------------*/
+  /*--------------------------------------------------------*/
   
   // Create a style map in night mode (google maps)
   // TODO: Add style map to the maptypeid
+  //
   $('#custom-style').on('click', () => {
     const customMapType = new google.maps.StyledMapType(
       [
@@ -202,14 +222,18 @@ function initMap() {
     );
     
     // Associate the styled map with the MapTypeId and set it to display
+    //
     map.mapTypes.set('styled_map', customMapType);
     map.setMapTypeId('styled_map');
   });
 
-  /*----------------- Find Specific Location on the Map ---------------*/
+  /*--------------------------------------------------------*/
+  /*------------- Find Location on Map Section -------------*/
+  /*--------------------------------------------------------*/
 
   // To find lost pets in the specified location, use geocode form field
   // Call geocodeAddress() when the geo-btn submit is clicked
+  //
   const geocoder = new google.maps.Geocoder();
 
   $('#geo_btn').on('click', () => {
@@ -255,14 +279,14 @@ function initMap() {
       alert(`Your browser doesn't support geolocation`);
     }
   });
-
 }
 
 /*-------------------------------------------------------------------*/
-/*------------------- Geocoding Function Section --------------------*/
+/*------------------  Function: Geocoding Section  ------------------*/
 /*-------------------------------------------------------------------*/
 
 // Use geocode to zoom and add a marker on the map interactively
+//
 function geocodeAddress(geocoder, map) {
   const address = document.getElementById('address').value;
 
@@ -270,10 +294,12 @@ function geocodeAddress(geocoder, map) {
     if (status === 'OK') {
 
       // Zoom in on the geocode location on the map
+      //
       map.setCenter(results[0].geometry.location);
       map.setZoom(12);
 
       // Create marker on the map based on the geocode location
+      //
       new google.maps.Marker({
           map: map,
           position: results[0].geometry.location,
@@ -287,6 +313,7 @@ function geocodeAddress(geocoder, map) {
 }
 
 // Place marker and pan to the location when user clicks on map
+//
 function placeMarkerAndPanTo(latLng, map) {
 
   map.setZoom(13);
@@ -297,8 +324,6 @@ function placeMarkerAndPanTo(latLng, map) {
   });
   map.panTo(latLng);
 }
-
-
 
   /* 
   https://developers.google.com/maps/documentation/javascript/geocoding

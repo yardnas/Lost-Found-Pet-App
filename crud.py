@@ -2,14 +2,8 @@
 
 from model import db, User, Pet, Status, connect_to_db
 
-# Data model Classes
-    # User
-    # Pet
-    # Status
-    # Location
-
 #---------------------------------------------------------------------#
-#--------------- CRUD functions for USERS Section --------------------#
+#------------------ CRUD functions for USERS Section -----------------#
 #---------------------------------------------------------------------#
 
 def create_user(fname, lname, email, password):
@@ -51,7 +45,7 @@ def get_fname_by_email(email):
 
 
 #---------------------------------------------------------------------#
-#--------------- CRUD functions for PETS Section ---------------------#
+#------------------ CRUD functions for PETS Section ------------------#
 #---------------------------------------------------------------------#
 
 def create_pets(pet_owner, pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image, last_address):
@@ -102,17 +96,11 @@ def update_pet_user_info(pet_owner, email, phone,
     return pet_update
 
 #---------------------------------------------------------------------#
-#---------------- LOCATION SECTION (May not need) --------------------#
+#---------------- CRUD functions for STATUS section ------------------#
 #---------------------------------------------------------------------#
 
-# def create_location():
-#     """Create the location of the respective pet/status"""
+# TODO: Work on this with the Pet Owner's Page and Search Functinality
 
-#     location = Location(location_name=location_name, 
-#                         address=address, 
-#                         city=city, 
-#                         state=state, 
-#                         zipcode=zipcode)
 
 #---------------------------------------------------------------------#
 

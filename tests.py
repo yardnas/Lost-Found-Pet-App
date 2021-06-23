@@ -2,7 +2,7 @@
 
 #---------------------------------------------------------------------#
 # TODO:
-    # Test pages: index, login, logout, register, pet_register and dashboard
+    # Test pages: index, login, logout, register, pet_reg and dashboard
     # Test database: crud functions
     # Test sessions (TODO: add sessions to code)
     # Test map & marker? (TODO: research if feasible)
@@ -66,8 +66,8 @@ class FlaskTestsLogInLogOut(TestCase):
         """Test login when credentials are correct."""
 
         result = self.client.post('/login',
-                                  data={'email': 'alice@alice.com', 'password': 'alice'},
-                                  follow_redirects=True)
+                                data={'email': 'alice@alice.com', 'password': 'alice'},
+                                follow_redirects=True)
         self.assertIn(b'You have logged in succesfully', result.data) 
 
     
@@ -75,8 +75,8 @@ class FlaskTestsLogInLogOut(TestCase):
         """Test login when credentials are incorrect."""
 
         result = self.client.post('/login',
-                                  data={'email': 'not@valid.com', 'password': 'notvalid'},
-                                  follow_redirects=True)
+                                data={'email': 'not@valid.com', 'password': 'notvalid'},
+                                follow_redirects=True)
         self.assertIn(b'Please try again', result.data)
 
 
@@ -84,12 +84,12 @@ class FlaskTestsLogInLogOut(TestCase):
         """Test logout page"""
 
         self.client.post('/login',
-                         data={'email': 'alice@alice.com', 'password': 'alice'},
-                         follow_redirects=True
+                        data={'email': 'alice@alice.com', 'password': 'alice'},
+                        follow_redirects=True
         )
 
         result = self.client.get('/logout',
-                                 follow_redirects=True)
+                                follow_redirects=True)
         self.assertIn(b'Logged out successfully', result.data)
 
 
