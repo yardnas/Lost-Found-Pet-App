@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from model import connect_to_db, db, Pet
+from model import connect_to_db, db, Pet, User, Status
 from jinja2 import StrictUndefined
 import crud
 
@@ -24,6 +24,7 @@ def display_welcome():
     """Show the welcome page."""
 
     return render_template('index.html')
+
 
 #---------------------------------------------------------------------#
 #--------- Routes for User Login | Register | Logout Section ---------#
@@ -110,6 +111,7 @@ def logout():
 
     return redirect('/')
 
+
 #---------------------------------------------------------------------#
 #------------- Routes for Main Page (Dashboard) Section --------------#
 #---------------------------------------------------------------------#
@@ -129,6 +131,7 @@ def welcome():
 #     """Store pet location in database and redirect back to dashboard"""
 
 #     return redirect('dashboard')
+
 
 #---------------------------------------------------------------------#
 #----------- Routes for Pet Info & Registration Section --------------#
@@ -176,15 +179,19 @@ def register_pet_form():
 
 #---------------------------------------------------------------------#
 
-@app.route('/get/pets')
-def pet_info():
+@app.route('/api/pets')
+@login_required
+def get_all_pets():
     """Return JSON information about pets for marker info content."""
 
-    pets = [
-        {
-            'petId': pet.pet_id,
-            'userId': pet.user_id,
-            'petOwner': pet.pet_owner,
+    pet_info = db.session.query(User.email, User.fname, Pet.pet_name, Pet.pet_type, Pet.pet_breed, Pet.pet_color, Pet.pet_image, Pet.last_address).filter(User.user_id == Pet.user_id).all()
+
+    pets = []
+
+    for idx, pet in enumerate(pet_info):
+        info = {
+            'userEmail': pet_info[idx][0],
+            'petOwner': pet_info[idx][1],
             'petName': pet.pet_name,
             'petType': pet.pet_type,
             'petBreed': pet.pet_breed,
@@ -192,10 +199,25 @@ def pet_info():
             'petImage': pet.pet_image,
             'lastAddress': pet.last_address
         }
-        for pet in Pet.query.limit(50)
-    ]
+        pets.append(info)
 
-    return jsonify(pets) # jsonify the data for js
+    return jsonify(pets)
+
+
+@app.route('/pet_owner')
+@login_required
+def display_petowner():
+    """Pet owner's page for view into owner's pet info"""
+
+    return render_template('pet_owner.html')
+
+
+@app.route('/search')
+@login_required
+def search_info():
+    """Search bar and search results"""
+
+    return render_template('search.html')
 
 
 #---------------------------------------------------------------------#

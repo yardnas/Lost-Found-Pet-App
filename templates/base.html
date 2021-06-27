@@ -4,16 +4,33 @@
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width">
-
       <title>{% block title %}{% endblock %}</title>
 
+      <!-- Load jQuery dependencies on all pages. -->
       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-      <!-- Welcome Section -->
+      <!-- Load React dependencies on all pages. -->
+      <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script> 
+      <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+      <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+
+
+    <!---------------------------------->
+    <!---- Global Welcome Section ------>
+    <!---------------------------------->
+
       <section class="dashboard-header">
         <h1 align="center">Neighboorhood Lost Pets</h1>
         <h4 align="center">A place to report and find lost pets in your neighborhood</h4>
       </section>
+
+      <!-- TEMP: testing adding image to page -->
+      <p align="center">
+          <!-- <img src="/static/img/dog_cat_vector4free.jpg" width="275" height="175" />  -->
+          <!-- <img src="/static/img/andrews_unsplash.jpg" width="300" height="200" /> -->
+          <!-- <img src="/static/img/kevint_unsplash.jpg" width="200" height="250" /> -->
+          <!-- <img src="/static/img/alexf_unsplash.jpg" width="200" height="250" /> -->
+      </p>
 
     {% block head %}{% endblock %}
     </head>

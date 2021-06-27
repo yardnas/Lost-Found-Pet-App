@@ -1,4 +1,4 @@
-// Google Map API functionality section //
+j// Google Map API functionality section //
 
 "use strict";
 
@@ -55,7 +55,7 @@ function initMap() {
   // Set info window to display the marker's info based on jsonify "pets" in server
   const petInfo = new google.maps.InfoWindow({});
 
-  $.get('/get/pets', (pets) => { 
+  $.get('/api/pets', (pets) => { 
       for (const pet of pets) {
 
         // Define the content of the infoWindow 
@@ -70,11 +70,12 @@ function initMap() {
             </div>
   
             <ul class="pet-info">
-              <li><b>Pet name: </b> ${pet.petName} </li>
-              <li><b>Pet breed: </b> ${pet.petBreed} </li>
-              <li><b>Pet color: </b> ${pet.petColor} </li>
-              <li><b>Last seen: </b> ${pet.lastAddress} </li>
-              <li><b>Pet owner: </b> ${pet.petOwner}</li>
+              <li><b>Pet Owner: </b> ${pet.petOwner}</li>
+              <li><b>Contact: </b> <a href="mailto:${pet.userEmail}"> ${pet.userEmail} </a> </li>
+              <li><b>Pet Name: </b> ${pet.petName} </li>
+              <li><b>Pet Breed: </b> ${pet.petBreed} </li>
+              <li><b>Pet Color: </b> ${pet.petColor} </li>
+              <li><b>Last Seen: </b> ${pet.lastAddress} </li>
             </ul>
           </div>
         `);

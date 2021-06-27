@@ -8,11 +8,9 @@
     <!-- For map code referencing map.js -->
     <script src="/static/js/map.js"></script>
 
-    <!-- For google maps API key and callback to initMap-->
+    <!-- For Google maps API key and callback to initMap -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeDkSlpBZoTC5TToXy1tW3hehvfM3xWHQ&callback=initMap"></script>
     
-    <!-- For react to import a library called Babel -->
-    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     
 {% endblock %}
 
@@ -56,7 +54,7 @@
                         </button>
                     </div>
 
-                    <h5 style="color:slategrey">Marker of your pet's last seen location will be placed on the map</h5>
+                    <h5><i>Marker of your pet's last seen location will be placed on the map</i></h5>
                 </section>
 
                 <hr> <!-- Placeholder until css -->
@@ -83,7 +81,7 @@
                     <br><button id="locate-me">Or locate me!</button>
 
                     <div class="map-night-mode" align=center>
-                        <h5 style="color:slategrey" align=center>Click the markers on the map for lost pets information</h5>
+                        <h5 align=center><i>Click the markers on the map for lost pets information</i></h5>
                     </div>
 
                 </section>
@@ -104,7 +102,7 @@
                     <!---- Dark Mode Page Section ---->
                     <!-------------------------------->
 
-                    <!-- TODO: Actual implementation + adding night mode to work with clicking Dark mode -->
+                    <!-- TODO: Actual implementation + adding night mode to work with toggling Dark mode -->
 
                     <style>
                         .dark-mode {

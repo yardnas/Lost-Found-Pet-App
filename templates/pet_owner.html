@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}Sign in page{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+
+{% block body %}
+
+    <br> <!-- <br> placeholder until CSS-->
+
+    <!---------------------------------->
+    <!--------- Welcome Header --------->
+    <!---------------------------------->
+
+    <header align=center>
+        <!-- Welcome Section -->
+        <section class="login-header">
+            <h1>Welcome to your <i>My Pets</i> page!</h1>
+            <h3>A place for pet owners to view all things <i>my pets</i></h3>
+        </section>
+    </header>
+
+
+    <hr>
+
+    <main align=center>
+
+        <!------------------------------------------->
+        <!-------- Update Pet Status (Found) -------->
+        <!------------------------------------------->
+
+        <section class="pet-form">
+            <h4>Did you find your lost pet?</h4>
+            <h4>Yay! Please update your pet's status here:</h4>
+            <div class="pet-form">
+                <form action="/pet_register" method="POST">
+                    <div>
+                        <label for="email-input" class="form-label">Email</label>
+                        <input type="email" placeholder="Email" name="email" id="email-input" />
+                    </div><br> <!-- Placeholder <br> until css -->
+
+                    <div>
+                        <label for="pet-name-input" class="form-label">Pet Name</label>
+                        <input type="text" placeholder="Pet Name" name="pet-name" id="pet-name-input" />
+                    </div><br> <!-- Placeholder <br> until css -->
+
+                    <div>
+                        <label for="pet-status-update" class="form-label">Pet Status</label>
+                        <!-- <input type="text" placeholder="Pet Type" name="pet-type" id="pet-type-input" /> -->
+                        <select name="pet-status" id=pet-status-update>
+                            <option value="found">Found</option>
+                            <option value="lost">Lost</option>
+                        </select>
+                    </div><br> <!-- Placeholder <br> until css -->
+
+                    <button type="submit" value ="Submit" class="btn-pet">Submit Form</button>
+                </form>
+            </div>
+        </section>
+
+
+        <hr>
+
+        <!------------------------------------------->
+        <!--------- Pet Information Section --------->
+        <!------------------------------------------->
+
+        <section class="pet-form">
+            <div class="pet-form">
+                <h4>Section to display information about pet owner's register pets</h4>
+                <p>TODO: Placeholder. Add info here</p>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock %}
