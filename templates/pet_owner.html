@@ -13,11 +13,14 @@
     <header align=center>
         <!-- Welcome Section -->
         <section class="login-header">
-            <h1>Welcome to your <i>My Pets</i> page!</h1>
-            <h3>A place for pet owners to view all things <i>my pets</i></h3>
+            <h2>
+                {% if current_user.is_authenticated %}
+                Welcome {{ current_user.fname }} to your <i>My Pets</i> page!
+                {% endif %}
+            </h2>
+            <h4>To view all things <i>my pets</i></h4>
         </section>
     </header>
-
 
     <hr>
 
@@ -28,8 +31,8 @@
         <!------------------------------------------->
 
         <section class="pet-form">
-            <h4>Did you find your lost pet?</h4>
-            <h4>Yay! Please update your pet's status here:</h4>
+            <h3>Did you find your lost pet?</h3>
+            <h4>Great News! Update your pet's status here:</h4>
             <div class="pet-form">
                 <form action="/pet_register" method="POST">
                     <div>
