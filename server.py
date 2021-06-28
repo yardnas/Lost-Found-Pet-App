@@ -123,18 +123,9 @@ def welcome():
 
     return render_template('dashboard.html')
 
-# Don't think I need this since there is a POST for pet_register
-#
-# @app.route('/dashboard', methods=['POST'])
-# @login_required
-# def create_pet_registration():
-#     """Store pet location in database and redirect back to dashboard"""
-
-#     return redirect('dashboard')
-
 
 #---------------------------------------------------------------------#
-#----------- Routes for Pet Info & Registration Section --------------#
+#-------------- Routes for Lost Pet Registration Section -------------#
 #---------------------------------------------------------------------#
 
 @app.route('/pet_register')
@@ -178,6 +169,8 @@ def register_pet_form():
 
 
 #---------------------------------------------------------------------#
+#------------- Route to Return JSON of Pets & Owners Info -------------#
+#---------------------------------------------------------------------#
 
 @app.route('/api/pets')
 @login_required
@@ -204,6 +197,10 @@ def get_all_pets():
     return jsonify(pets)
 
 
+#---------------------------------------------------------------------#
+#-------------- Routes for Pet Owner's Page | Found Pets -------------#
+#---------------------------------------------------------------------#
+
 @app.route('/pet_owner')
 @login_required
 def display_petowner():
@@ -212,12 +209,55 @@ def display_petowner():
     return render_template('pet_owner.html')
 
 
+# @app.route('/pet_owner', methods=['POST'])
+# @login_required
+# def register_pet_form():
+#     """To fill out the pet registration form, store in db and redirect back to '/'."""
+
+#     pet_owner = request.form.get('pet-owner')
+#     email = request.form.get('email')
+#     phone = request.form.get('phone')
+#     pet_name = request.form.get('pet-name')
+#     pet_type = request.form.get('pet-type')
+#     pet_breed = request.form.get('pet-breed')
+#     pet_gender = request.form.get('pet-gender')
+#     pet_color = request.form.get('pet-color')
+#     pet_image = request.form.get('pet-image')
+#     last_address = request.form.get('last-address')
+
+#     user = crud.get_user_by_email(email)
+
+#     # Update database with pet & owner's information
+#     if user:
+#         flash('Pet registration is complete')
+#         crud.update_pet_user_info(pet_owner, email, phone, 
+#                         pet_name, pet_type, pet_breed, 
+#                         pet_gender, pet_color, pet_image, last_address)
+#     if not user:
+#         flash('Oops. Please register first and try again')
+#         return redirect('/')
+
+#     # return render_template('dashboard.html')
+#     return redirect('dashboard')
+
+
+#------------------------TRIALs | Playground Section--------------------------#
+
 @app.route('/search')
 @login_required
 def search_info():
     """Search bar and search results"""
 
     return render_template('search.html')
+
+
+@app.route('/search')
+@login_required
+def get_current_time():
+    return {'time': time.time()} 
+        # {"time": 1581527730.5866282}
+        # view function can return a dictionary, 
+        # which gets automatically JSONified by Flask
 
 
 #---------------------------------------------------------------------#

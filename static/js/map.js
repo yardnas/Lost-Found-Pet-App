@@ -122,7 +122,6 @@ function initMap() {
               map.setZoom(12);
 
             });
-
           }           
         }); 
       }
@@ -241,7 +240,6 @@ function initMap() {
     geocodeAddress(geocoder, map); 
   });
 
-
   // Geo locate me using geolocation
   // If browser supports and is enabled for location detection
   // TODO: Decide whether to incorporate (most people likely have privacy on)
@@ -269,7 +267,7 @@ function initMap() {
             lat: currPosition.coords.latitude,
             lng: currPosition.coords.longitude
           });
-          map.setZoom(18);
+          map.setZoom(12);
         },
         // The unsuccessful function:
         () => {

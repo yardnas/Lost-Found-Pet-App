@@ -4,8 +4,6 @@
 
 {% block body %}
 
-    <br> <!-- <br> placeholder until CSS-->
-
     <!---------------------------------->
     <!--------- Welcome Header --------->
     <!---------------------------------->
@@ -15,10 +13,10 @@
         <section class="login-header">
             <h2>
                 {% if current_user.is_authenticated %}
-                Welcome {{ current_user.fname }} to your <i>My Pets</i> page!
+                {{ current_user.fname }}'s' <i>My Pets</i> page!
                 {% endif %}
             </h2>
-            <h4>To view all things <i>my pets</i></h4>
+            <h4>For all things your pets</i></h4>
         </section>
     </header>
 
@@ -30,11 +28,11 @@
         <!-------- Update Pet Status (Found) -------->
         <!------------------------------------------->
 
-        <section class="pet-form">
+        <section class="pet-found-form">
             <h3>Did you find your lost pet?</h3>
-            <h4>Great News! Update your pet's status here:</h4>
+            <h5>Awesome! Let's update your pet's status here:</h5>
             <div class="pet-form">
-                <form action="/pet_register" method="POST">
+                <form action="/pet_owner" method="POST">
                     <div>
                         <label for="email-input" class="form-label">Email</label>
                         <input type="email" placeholder="Email" name="email" id="email-input" />
@@ -46,9 +44,9 @@
                     </div><br> <!-- Placeholder <br> until css -->
 
                     <div>
-                        <label for="pet-status-update" class="form-label">Pet Status</label>
+                        <label for="pet-status" class="form-label">Pet Status</label>
                         <!-- <input type="text" placeholder="Pet Type" name="pet-type" id="pet-type-input" /> -->
-                        <select name="pet-status" id=pet-status-update>
+                        <select name="pet-status" id=pet-status>
                             <option value="found">Found</option>
                             <option value="lost">Lost</option>
                         </select>
@@ -59,7 +57,7 @@
             </div>
         </section>
 
-
+        <br>
         <hr>
 
         <!------------------------------------------->
