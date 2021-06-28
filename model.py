@@ -67,7 +67,6 @@ class Pet(db.Model):
     pet_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
-    pet_owner = db.Column(db.String(50), nullable=False) 
     pet_name = db.Column(db.String(50), nullable=False)
     pet_type = db.Column(db.String(50), nullable=False)
     pet_breed = db.Column(db.String(50), nullable=False)
@@ -137,7 +136,6 @@ def test_data():
     spike = Pet(pet_id=203, 
                 user_id=103,
                 status_id=303,
-                pet_owner="Cathy Cake",
                 pet_name="Spike", 
                 pet_type="Dog",
                 pet_breed="Pitbull",
@@ -149,7 +147,6 @@ def test_data():
     tiger = Pet(pet_id=204,
                 user_id=104,
                 status_id=304,
-                pet_owner="David D.",
                 pet_name="Tiger",
                 pet_type="Cat",
                 pet_breed="American Bobtail",
@@ -174,18 +171,6 @@ def test_data():
 #------------------- Connect to Database Section ---------------------#
 #---------------------------------------------------------------------#
 
-# def connect_to_db(flask_app):
-#     """Connect the database to the Flask app."""
-
-#     flask_app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///lost_found_pets'
-#     flask_app.config['SQLALCHEMY_ECHO'] = False
-#     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    
-#     db.app = flask_app
-#     db.init_app(flask_app)
-
-#     print('Connected to the db!')
-
 def connect_to_db(app, db_uri="postgresql:///lost_found_pets"):
     app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     app.config['SQLALCHEMY_ECHO'] = True
@@ -201,9 +186,6 @@ def connect_to_db(app, db_uri="postgresql:///lost_found_pets"):
 if __name__ == "__main__":
 
     from server import app
-
-    # from flask import Flask
-    # app = Flask(__name__)
 
     # Connect to the database
     connect_to_db(app)

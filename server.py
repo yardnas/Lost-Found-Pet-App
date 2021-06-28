@@ -141,7 +141,6 @@ def show_pet_registration():
 def register_pet_form():
     """To fill out the pet registration form, store in db and redirect back to '/'."""
 
-    pet_owner = request.form.get('pet-owner')
     email = request.form.get('email')
     phone = request.form.get('phone')
     pet_name = request.form.get('pet-name')
@@ -157,7 +156,7 @@ def register_pet_form():
     # Update database with pet & owner's information
     if user:
         flash('Pet registration is complete')
-        crud.update_pet_user_info(pet_owner, email, phone, 
+        crud.update_pet_user_info(email, phone, 
                         pet_name, pet_type, pet_breed, 
                         pet_gender, pet_color, pet_image, last_address)
     if not user:
@@ -214,7 +213,6 @@ def display_petowner():
 # def register_pet_form():
 #     """To fill out the pet registration form, store in db and redirect back to '/'."""
 
-#     pet_owner = request.form.get('pet-owner')
 #     email = request.form.get('email')
 #     phone = request.form.get('phone')
 #     pet_name = request.form.get('pet-name')
@@ -230,7 +228,7 @@ def display_petowner():
 #     # Update database with pet & owner's information
 #     if user:
 #         flash('Pet registration is complete')
-#         crud.update_pet_user_info(pet_owner, email, phone, 
+#         crud.update_pet_user_info(email, phone, 
 #                         pet_name, pet_type, pet_breed, 
 #                         pet_gender, pet_color, pet_image, last_address)
 #     if not user:

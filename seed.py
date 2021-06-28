@@ -34,7 +34,6 @@ betty = User(user_id=102,
 
 fido = Pet(pet_id=201, 
             user_id=101,
-            pet_owner="Alice Apple",
             pet_name="Fido", 
             pet_type="Dog",
             pet_breed="Bulldog",
@@ -45,7 +44,6 @@ fido = Pet(pet_id=201,
 
 kitty = Pet(pet_id=202,
             user_id=102,
-            pet_owner="Bobby Baker",
             pet_name="Kitty",
             pet_type="Cat",
             pet_breed="British Shorthair",
@@ -67,5 +65,4 @@ kitty_status = Status(status_id=302,
 #---------------------------------------------------------------------#
 
 model.db.session.add_all([alice, betty, fido, kitty,  fido_status, kitty_status])
-# model.db.session.add_all([alice, betty, fido, kitty])
 model.db.session.commit()

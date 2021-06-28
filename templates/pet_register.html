@@ -4,33 +4,30 @@
 
 {% block body %}
 
-    <br> <!-- <br> placeholder until CSS-->
-
-    <!---------------------------------->
-    <!--------- Welcome Header --------->
-    <!---------------------------------->
+    <!------------------------------------------>
+    <!-----  Welcome Section ---->
+    <!------------------------------------------>
 
     <header align=center>
-        <!-- Welcome Section -->
-        <section class="login-header">
-            <h1>Welcome!</h1>
-            <h3>Please register your pet</h3>
-        </section>
+        <h2>
+            {% if current_user.is_authenticated %}
+            Welcome, {{ current_user.fname }}
+            {% endif %}
+        </h2>
     </header>
 
+    <br>
+    <hr> <!-- Placeholder until css -->
+    <br>
+
+    <!------------------------------------------->
+    <!------ Pet Registration Form Section ------>
+    <!------------------------------------------->
+
     <main align=center>
-
-        <!------------------------------------------->
-        <!------ Pet Registration Form Section ------>
-        <!------------------------------------------->
-
         <section class="pet-form">
             <div class="pet-form">
                 <form action="/pet_register" method="POST">
-                    <div>
-                        <label for="pet-owner-input" class="form-label">Pet Owner</label>
-                        <input type="text" placeholder="Pet Owner" name="pet-owner" id="pet-owner-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
 
                     <div>
                         <label for="email-input" class="form-label">Email</label>

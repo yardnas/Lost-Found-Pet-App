@@ -48,11 +48,10 @@ def get_fname_by_email(email):
 #------------------ CRUD functions for PETS Section ------------------#
 #---------------------------------------------------------------------#
 
-def create_pets(pet_owner, pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image, last_address):
+def create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image, last_address):
     """Create and return a pet."""
 
-    pet = Pet(pet_owner=pet_owner, 
-              pet_name=pet_name,
+    pet = Pet(pet_name=pet_name,
               pet_type=pet_type, 
               pet_breed=pet_breed, 
               pet_gender=pet_gender,
@@ -66,7 +65,7 @@ def create_pets(pet_owner, pet_name, pet_type, pet_breed, pet_gender, pet_color,
     return pet
 
 
-def update_pet_user_info(pet_owner, email, phone, 
+def update_pet_user_info(email, phone, 
                          pet_name, pet_type, pet_breed, 
                          pet_gender, pet_color, pet_image, last_address):
     """Update pet and pet owner's information"""
@@ -79,7 +78,7 @@ def update_pet_user_info(pet_owner, email, phone,
     user_id = user.user_id
 
     # TODO: Fix this to query db for pet_id opposed to using the create function
-    pet = create_pets(pet_owner, pet_name, pet_type, pet_breed, 
+    pet = create_pets(pet_name, pet_type, pet_breed, 
                       pet_gender, pet_color, pet_image, last_address)
 
     pet_id = pet.pet_id
@@ -89,7 +88,7 @@ def update_pet_user_info(pet_owner, email, phone,
     user_update= User.query.filter(User.email==email).update({User.phone: phone})
 
     # Update pet section
-    pet_update = Pet.query.filter(Pet.pet_id==pet_id).update({Pet.user_id: user_id, Pet.pet_owner: pet_owner})
+    pet_update = Pet.query.filter(Pet.pet_id==pet_id).update({Pet.user_id: user_id})
 
     db.session.commit()
 
@@ -99,10 +98,6 @@ def update_pet_user_info(pet_owner, email, phone,
 def get_pet_user_info():
     """Get pet and pet owner's information"""
 
-    # pet_user = db.session.query(User.email, Pet.pet_name, Pet.pet_type, Pet.pet_breed, 
-    #                             Pet.pet_color, Pet.last_address).filter(User.user_id == Pet.user_id).all()
-
-    # return pet_user
     return db.session.query(User.email, Pet.pet_name, Pet.pet_type, Pet.pet_breed, 
                                  Pet.pet_color, Pet.last_address).filter(User.user_id == Pet.user_id).all()
     
@@ -153,3 +148,7 @@ if __name__ == "__main__":
     # ('david@david.com', 'Spike', 'Dog', 'Pitbull', 'White w/brown brindle', '689 Townsend St, San Francisco, CA 94103 '), 
     # ('evan@evan.com', 'Tiger', 'Cat', 'Unknown', 'Tiger stripes', '525 El Camino Real, Millbrae, CA 94030'), 
     # ('alice@alice.com', 'Pokemon', 'Dog', 'Golden Retriever', 'Brown', '2000 El Camino Real, Palo Alto, CA 94306')]
+
+
+
+    

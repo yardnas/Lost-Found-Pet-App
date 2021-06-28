@@ -13,14 +13,15 @@
         <section class="login-header">
             <h2>
                 {% if current_user.is_authenticated %}
-                {{ current_user.fname }}'s' <i>My Pets</i> page!
+                Welcome, {{ current_user.fname }}
                 {% endif %}
             </h2>
-            <h4>For all things your pets</i></h4>
+            <h4><i>For all things your pets</i></h4>
         </section>
     </header>
 
-    <hr>
+    <br>
+    <hr> <!-- Placeholder until css -->
 
     <main align=center>
 
