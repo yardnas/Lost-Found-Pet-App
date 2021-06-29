@@ -317,10 +317,10 @@ function placeMarkerAndPanTo(latLng, map) {
 
   map.setZoom(14);
 
-  // new google.maps.Marker({
-  //   position: latLng,
-  //   map: map,
-  // });
+  new google.maps.Marker({
+    position: latLng,
+    map: map,
+  });
   map.panTo(latLng);
 }
 

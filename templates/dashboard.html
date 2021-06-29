@@ -7,6 +7,7 @@
 
     <!-- For map code referencing map.js -->
     <script src="/static/js/map.js"></script>
+    <!-- <script src="/static/js/map_test.js"></script> -->
 
     <!-- For Google maps API key and callback to initMap -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeDkSlpBZoTC5TToXy1tW3hehvfM3xWHQ&callback=initMap"></script>
@@ -28,133 +29,141 @@
         </h2>
     </header>
 
-    <br>
-    <hr> <!-- Placeholder until css -->
+    <br><hr> <!-- Placeholder until css -->
 
     <!------------------------------------------>
     <!------  Main Body of Dashboard page ------>
     <!------------------------------------------>
-     <div class="container">
-        <div class="row">
+    <main>
 
-            <div class="col">
-                <!-------------------------------->
-                <!-- Register Pet Form Section --->
-                <!-------------------------------->
-                <section class="pet-form" align=center>
-                    <h3>Did you lose your pet?</h3>
-                    <h4>Register your pet here</h4>
-
-                    <div class="register-prompt">
-                        <!-- <button id="register-button">
-                            <a href="/pet_register">Fill out this form</a>
-                        </button> -->
-
-                        <button type="button" class="btn btn-warning" id="register-button">
-                            <a href="/pet_register">Fill out this form</a>
-                        </button>
-                    </div>
-
-                    <h5><i>Marker of your pet's last seen location will be placed on the map</i></h5>
-                    <h5><i>Did you find your pet? <a href="/pet_owner">Update pet status here</a></i></h5>
-                </section>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <!-------------------------------->
+                    <!------- Lost Pet Section ------->
+                    <!-------------------------------->
+                    <section class="lost-pet" align=center>
+                        <h3>Did you lose your pet?</h3>
+                        <h4>Register your pet here</h4>
+    
+                        <div class="lost-pet-update">
+                            <button type="button" class="btn btn-warning" id="register-button">
+                                <a href="/pet_register">Fill out this form</a>
+                            </button>
+                        </div>
+    
+                        <h5><i>Marker of your pet's last seen location will be placed on the map</i></h5>
+                    </section>
+                </div>
+    
+                <hr> <!-- Placeholder until css -->
+    
+                <div class="col">
+                    <!-------------------------------->
+                    <!------- Found Pet Section ------>
+                    <!-------------------------------->
+                    <section class="found-pet" align=center>
+                        <h3>Did you find your pet?</h3>
+                        <h4>Update pet status here</h4>
+    
+                        <div class="found-pet-update">
+                            <button type="button" class="btn btn-warning" id="register-button">
+                                <a href="/pet_owner">Click here to update</a>
+                            </button>
+                        </div>
+    
+                        <h5><i>Marker for found pets will be removed from the map </i></h5>
+                    </section>
+                </div>
             </div>
-
-            <div class="col">
-                <!-------------------------------->
-                <!-- Lost Pet Location Section --->
-                <!-------------------------------->
-                <section class="pet-address" align=center>
-                    <!-- <h3>To find lost pets in your neighborhood, enter a location or address</h3> -->
-                    <h3>Find lost pets in your neighborhood?</h3>
-                    <h4>Enter your location or address</h4>
-
-                    <div class="geocode-pet-address">
-                        <input id="address" type="textbox" value="San Francisco, CA" />
-                        <input class="submit-button" id="geo_btn" type="button" value="Submit" />
-                        <button id="locate-me">or Locate me!</button>
-                    </div>
-
-                    <!-- <br><button id="locate-me">or Locate me!</button> -->
-
-                    <div class="map-night-mode" align=center>
-                        <h5 align=center><i>Click the markers on the map for lost pets information</i></h5>
-                    </div>
-                </section>
-            </div>
-
         </div>
+
+    
+        <hr> <!-- Placeholder until css -->
+
+        <!-------------------------------->
+        <!---- Find Lost Pets on Map ----->
+        <!-------------------------------->
+        <div class="col">
+            <section class="pet-address" align=center>
+                <h3>Find lost pets in your neighborhood?</h3>
+                <h4>Enter your location or address</h4>
+
+                <div class="geocode-pet-address">
+                    <input id="address" type="textbox" value="San Francisco, CA" />
+                    <input class="submit-button" id="geo_btn" type="button" value="Submit" />
+                    <button id="locate-me">or Locate me!</button>
+                </div>
+
+                <h5 align=center><i>Click the markers on the map for lost pets information</i></h5>
+            </section>
+        </div>
+
+        <!----------------------------------------->
+        <!------ Display Dark Mode Section -------->
+        <!------------------------------------------>
+        <!-- TODO: This as is will cause a race condition for map display  -->
+
+        <!-- <div class="page-dark-mode"> 
+            <style>
+                .dark-mode {
+                    background-color: black;
+                    color: grey;
+                }
+            </style>
+
+            <script>
+                function myFunction() {
+                    var element = document.main;
+                    element.classList.toggle("dark-mode")
+                }
+            </script>
+
+            <button data-bs-toggle="button" onclick="myFunction()">
+                Toggle dark mode
+            </button>
+        </div> -->
+
+        <!------------------------------------------>
+        <!------ Display Night Mode Section -------->
+        <!------------------------------------------>
+
+        <div class="map-night-mode" align=center>
+            <button id ="custom-style">
+                Click for Night Mode
+            </button>
+        </div>
+
+        <br> <!-- Placeholder <br> until css -->
 
         <!------------------------------------------>
         <!----------- Display Map Section ---------->
         <!------------------------------------------>
+
         <div class="map-section">
             <section class="marker-map" align=center>
-
-                <div>
-                    <!-------------------------------->
-                    <!---- Dark Mode Page Section ---->
-                    <!-------------------------------->
-
-                    <!-- TODO: Actual implementation + adding night mode to work with toggling Dark mode -->
-
-                    <style>
-                        .dark-mode {
-                            background-color: black;
-                            color: white;
-                        }
-                    </style>
-
-                    <button data-bs-toggle="button" onclick="myFunction()">Toggle dark mode</button>
-
-                    <script>
-                        function myFunction() {
-                        var element = document.body;
-                        element.classList.toggle("dark-mode");
-                        }
-                    </script>
-
-                    <!-------------------------------->
-                    <!----- Night Mode Map Section --->
-                    <!-------------------------------->
-
-                    <!-- TODO: Intergration with Dark Mode -->
-
-                    <button id="custom-style">
-                        Click for Night Mode
-                    </button>
-                </div>
-
-                <br>
-
-                <!-- <div class="map">
+                <div class="map">
                     <div id="map"></div>
-                </div> -->
-
+                </div>
             </section>
         </div>
+
+        <br> <!-- Placeholder <br> until css -->
+
+        <!------------------------------------------>
+        <!----------- Logout User Section ---------->
+        <!------------------------------------------> 
+
+        <div class="logout-section">
+            <section>
+                <form action=/logout>
+                    <label for="logout-submit">Ready to logout?</label>
+                    <br><br>
+                    <input type="submit" value="Logout" name="logout" id="logout-submit"></p>
+                </form>
+            </section>
+        </div>
+            
     </main>
-
-    <br> <!-- Placeholder <br> until css -->
-
-    <!------------------------------------------>
-    <!----------- Logout User Section ---------->
-    <!------------------------------------------>    
     
-    <!-- TODO: footer is probably not the right tag. May add this to top when CSS in place -->
-<!-- 
-    <footer> 
-        <section>
-            <form action=/logout>
-                <label for="logout-submit">Ready to logout?</label>
-                <br><br>
-                <input type="submit" value="Logout" name="logout" id="logout-submit"></p>
-            </form>
-        </section>
-    </footer> -->
-
-    <div class="map">
-        <div id="map"></div>
-    </div>
-  
 {% endblock %}
