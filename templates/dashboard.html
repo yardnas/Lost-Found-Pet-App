@@ -34,41 +34,36 @@
     <!------------------------------------------>
     <!------  Main Body of Dashboard page ------>
     <!------------------------------------------>
-    <main>
+     <div class="container">
         <div class="row">
 
-            <!-- TODO: Split Screen Left -->
-            <div class="column" id="split-left">
-
+            <div class="col">
                 <!-------------------------------->
                 <!-- Register Pet Form Section --->
                 <!-------------------------------->
-
                 <section class="pet-form" align=center>
                     <h3>Did you lose your pet?</h3>
                     <h4>Register your pet here</h4>
 
                     <div class="register-prompt">
-                        <button id="register-button">
+                        <!-- <button id="register-button">
+                            <a href="/pet_register">Fill out this form</a>
+                        </button> -->
+
+                        <button type="button" class="btn btn-warning" id="register-button">
                             <a href="/pet_register">Fill out this form</a>
                         </button>
                     </div>
 
                     <h5><i>Marker of your pet's last seen location will be placed on the map</i></h5>
-                    <h5><i>Did you find your pet? <a href="/pet_owner">Update pet status here</a></i></hh5>
+                    <h5><i>Did you find your pet? <a href="/pet_owner">Update pet status here</a></i></h5>
                 </section>
-
-                <hr> <!-- Placeholder until css -->
-
             </div>
 
-            <!-- TODO: Split Screen Right -->
-            <div class="column" id="split-right">
-
+            <div class="col">
                 <!-------------------------------->
                 <!-- Lost Pet Location Section --->
                 <!-------------------------------->
-
                 <section class="pet-address" align=center>
                     <!-- <h3>To find lost pets in your neighborhood, enter a location or address</h3> -->
                     <h3>Find lost pets in your neighborhood?</h3>
@@ -76,7 +71,7 @@
 
                     <div class="geocode-pet-address">
                         <input id="address" type="textbox" value="San Francisco, CA" />
-                        <input class="btn" id="geo_btn" type="button" value="Submit" />
+                        <input class="submit-button" id="geo_btn" type="button" value="Submit" />
                         <button id="locate-me">or Locate me!</button>
                     </div>
 
@@ -85,13 +80,10 @@
                     <div class="map-night-mode" align=center>
                         <h5 align=center><i>Click the markers on the map for lost pets information</i></h5>
                     </div>
-
                 </section>
             </div>
-        </div>
 
-        <hr> <!-- Placeholder until css -->
-        <br>
+        </div>
 
         <!------------------------------------------>
         <!----------- Display Map Section ---------->
@@ -113,7 +105,7 @@
                         }
                     </style>
 
-                    <button onclick="myFunction()">Toggle dark mode</button>
+                    <button data-bs-toggle="button" onclick="myFunction()">Toggle dark mode</button>
 
                     <script>
                         function myFunction() {
@@ -135,9 +127,9 @@
 
                 <br>
 
-                <div class="map">
+                <!-- <div class="map">
                     <div id="map"></div>
-                </div>
+                </div> -->
 
             </section>
         </div>
@@ -150,9 +142,8 @@
     <!------------------------------------------>    
     
     <!-- TODO: footer is probably not the right tag. May add this to top when CSS in place -->
-
+<!-- 
     <footer> 
-        <!-- Logout Section -->
         <section>
             <form action=/logout>
                 <label for="logout-submit">Ready to logout?</label>
@@ -160,7 +151,10 @@
                 <input type="submit" value="Logout" name="logout" id="logout-submit"></p>
             </form>
         </section>
-    </footer>
+    </footer> -->
 
+    <div class="map">
+        <div id="map"></div>
+    </div>
   
 {% endblock %}

@@ -1,6 +1,6 @@
 """CRUD (Create, Read, Update, Delete) operations."""
 
-from model import db, User, Pet, Status, connect_to_db
+from model import db, User, Pet, connect_to_db
 
 #---------------------------------------------------------------------#
 #------------------ CRUD functions for USERS Section -----------------#
@@ -31,7 +31,6 @@ def get_user_by_id(user_id):
 
     return User.query.get(user_id) # <User user_id=1 fname=Alice lname=Apple>
 
-
 def get_user_by_email(email):
     """"Return a user by their email address."""
 
@@ -48,7 +47,8 @@ def get_fname_by_email(email):
 #------------------ CRUD functions for PETS Section ------------------#
 #---------------------------------------------------------------------#
 
-def create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image, last_address):
+def create_pets(pet_name, pet_type, pet_breed, pet_gender, 
+                pet_color, pet_status, pet_image, last_address):
     """Create and return a pet."""
 
     pet = Pet(pet_name=pet_name,
@@ -56,6 +56,7 @@ def create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image,
               pet_breed=pet_breed, 
               pet_gender=pet_gender,
               pet_color=pet_color,
+              pet_status=pet_status,
               pet_image=pet_image,
               last_address=last_address)
 
@@ -65,48 +66,48 @@ def create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_image,
     return pet
 
 
-def update_pet_user_info(email, phone, 
-                         pet_name, pet_type, pet_breed, 
-                         pet_gender, pet_color, pet_image, last_address):
+def update_pet_info(email, phone, pet_name, pet_type, pet_breed, 
+                         pet_gender, pet_color, pet_status, pet_image, last_address):
     """Update pet and pet owner's information"""
-
-    # TODO: 
-        # Not sure about this logic since its updating "id"
-        # Get review for correctness and efficiency
 
     user = get_user_by_email(email)
     user_id = user.user_id
 
-    # TODO: Fix this to query db for pet_id opposed to using the create function
-    pet = create_pets(pet_name, pet_type, pet_breed, 
-                      pet_gender, pet_color, pet_image, last_address)
-
+    pet = create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_status, pet_image, last_address)
     pet_id = pet.pet_id
 
     # Update user section
-    # user_update= User.query.filter(User.email==email).update({User.fname: fname, User.phone: phone})
     user_update= User.query.filter(User.email==email).update({User.phone: phone})
 
     # Update pet section
-    pet_update = Pet.query.filter(Pet.pet_id==pet_id).update({Pet.user_id: user_id})
+    pet_update = Pet.query.filter(Pet.pet_id==pet_id).update({Pet.user_id: user_id, Pet.pet_status: pet_status})
 
     db.session.commit()
 
     return pet_update
 
 
+def update_pet_status(email, pet_name, pet_status):
+    """Update pet status when pet is found."""
+
+    # Get user_id for validation
+    user = get_user_by_email(email)
+    user_id = user.user_id
+
+    # Update the status of the pet
+    status_update = db.session.query(Pet).filter(Pet.user_id == user_id, Pet.pet_name == pet_name).update({Pet.pet_status: pet_status})
+    
+    db.session.commit()
+
+    return status_update
+
+
 def get_pet_user_info():
     """Get pet and pet owner's information"""
 
     return db.session.query(User.email, Pet.pet_name, Pet.pet_type, Pet.pet_breed, 
-                                 Pet.pet_color, Pet.last_address).filter(User.user_id == Pet.user_id).all()
+                                 Pet.pet_color, Pet.pet.status, Pet.last_address).filter(User.user_id == Pet.user_id).all()
     
-
-#---------------------------------------------------------------------#
-#---------------- CRUD functions for STATUS section ------------------#
-#---------------------------------------------------------------------#
-
-# TODO: Work on this with the Pet Owner's Page and Search Functinality
 
 
 #---------------------------------------------------------------------#
@@ -150,5 +151,5 @@ if __name__ == "__main__":
     # ('alice@alice.com', 'Pokemon', 'Dog', 'Golden Retriever', 'Brown', '2000 El Camino Real, Palo Alto, CA 94306')]
 
 
-
+    #db.session.query(Pet).filter(Pet.user_id == 1).update({Pet.pet_status: "Found"})
     

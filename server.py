@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from model import connect_to_db, db, Pet, User, Status
+from model import connect_to_db, db, Pet, User
 from jinja2 import StrictUndefined
 import crud
 
@@ -148,6 +148,7 @@ def register_pet_form():
     pet_breed = request.form.get('pet-breed')
     pet_gender = request.form.get('pet-gender')
     pet_color = request.form.get('pet-color')
+    pet_status = request.form.get('pet-status')
     pet_image = request.form.get('pet-image')
     last_address = request.form.get('last-address')
 
@@ -156,9 +157,9 @@ def register_pet_form():
     # Update database with pet & owner's information
     if user:
         flash('Pet registration is complete')
-        crud.update_pet_user_info(email, phone, 
-                        pet_name, pet_type, pet_breed, 
-                        pet_gender, pet_color, pet_image, last_address)
+        crud.update_pet_info(email, phone, pet_name, 
+                        pet_type, pet_breed, pet_gender, 
+                        pet_color, pet_status, pet_image, last_address)
     if not user:
         flash('Oops. Please register first and try again')
         return redirect('/')
@@ -208,35 +209,23 @@ def display_petowner():
     return render_template('pet_owner.html')
 
 
-# @app.route('/pet_owner', methods=['POST'])
-# @login_required
-# def register_pet_form():
-#     """To fill out the pet registration form, store in db and redirect back to '/'."""
+@app.route('/pet_owner', methods=['POST'])
+@login_required
+def found_pet_form():
+    """To view pet owner page and Update database when pet is found"""
 
-#     email = request.form.get('email')
-#     phone = request.form.get('phone')
-#     pet_name = request.form.get('pet-name')
-#     pet_type = request.form.get('pet-type')
-#     pet_breed = request.form.get('pet-breed')
-#     pet_gender = request.form.get('pet-gender')
-#     pet_color = request.form.get('pet-color')
-#     pet_image = request.form.get('pet-image')
-#     last_address = request.form.get('last-address')
+    email = request.form.get('email')
+    pet_name = request.form.get('pet-name')
+    pet_status = request.form.get('pet-status')
 
-#     user = crud.get_user_by_email(email)
+    user = crud.get_user_by_email(email)
 
-#     # Update database with pet & owner's information
-#     if user:
-#         flash('Pet registration is complete')
-#         crud.update_pet_user_info(email, phone, 
-#                         pet_name, pet_type, pet_breed, 
-#                         pet_gender, pet_color, pet_image, last_address)
-#     if not user:
-#         flash('Oops. Please register first and try again')
-#         return redirect('/')
+    if crud.update_pet_status(email, pet_name, pet_status):
+        flash('We are so happy that you found your pet! Thank you for informing us.')
+    else:
+        flash('Oops. Email and/or pet name does not match. Please try again')
 
-#     # return render_template('dashboard.html')
-#     return redirect('dashboard')
+    return render_template('pet_owner.html')
 
 
 #------------------------TRIALs | Playground Section--------------------------#

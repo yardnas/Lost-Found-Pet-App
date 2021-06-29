@@ -5,7 +5,7 @@ from datetime import datetime
 
 import crud
 import model
-from model import db, connect_to_db, User, Pet, Status
+from model import db, connect_to_db, User, Pet
 import server
 
 os.system("dropdb lost_found_pets")
@@ -39,6 +39,7 @@ fido = Pet(pet_id=201,
             pet_breed="Bulldog",
             pet_gender="Male",
             pet_color="White with blk spots on ears",
+            pet_status="Lost",
             pet_image="/static/img/dog_bulldog.jpg",
             last_address="54 E 4th Ave, San Mateo, CA 94401")
 
@@ -49,20 +50,22 @@ kitty = Pet(pet_id=202,
             pet_breed="British Shorthair",
             pet_gender="Female", 
             pet_color="Grey with orange eyes",
+            pet_status="Lost",
             pet_image="/static/img/cat_grey.jpg",
             last_address="1230 Broadway, Burlingame, CA 94010")
 
 
-fido_status = Status(status_id=301,
-            pet_id=201,
-            status_type="Lost")
+# fido_status = Status(status_id=301,
+#             pet_id=201,
+#             status_type="Lost")
 
-kitty_status = Status(status_id=302,
-            pet_id=202,
-            status_type="Found")
+# kitty_status = Status(status_id=302,
+#             pet_id=202,
+#             status_type="Found")
 
 
 #---------------------------------------------------------------------#
 
-model.db.session.add_all([alice, betty, fido, kitty,  fido_status, kitty_status])
+# model.db.session.add_all([alice, betty, fido, kitty,  fido_status, kitty_status])
+model.db.session.add_all([alice, betty, fido, kitty])
 model.db.session.commit()

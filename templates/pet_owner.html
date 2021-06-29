@@ -32,7 +32,7 @@
         <section class="pet-found-form">
             <h3>Did you find your lost pet?</h3>
             <h5>Awesome! Let's update your pet's status here:</h5>
-            <div class="pet-form">
+            <div class="found-form">
                 <form action="/pet_owner" method="POST">
                     <div>
                         <label for="email-input" class="form-label">Email</label>
@@ -45,11 +45,8 @@
                     </div><br> <!-- Placeholder <br> until css -->
 
                     <div>
-                        <label for="pet-status" class="form-label">Pet Status</label>
-                        <!-- <input type="text" placeholder="Pet Type" name="pet-type" id="pet-type-input" /> -->
-                        <select name="pet-status" id=pet-status>
-                            <option value="found">Found</option>
-                            <option value="lost">Lost</option>
+                        <label for="pet-status-input" class="form-label">Pet Status</label>
+                        <input type="text" placeholder="Found" name="pet-status" id="pet-status-input" />
                         </select>
                     </div><br> <!-- Placeholder <br> until css -->
 
@@ -62,7 +59,7 @@
         <hr>
 
         <!------------------------------------------->
-        <!--------- Pet Information Section --------->
+        <!----- Display Pet Information Section ----->
         <!------------------------------------------->
 
         <section class="pet-form">

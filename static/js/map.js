@@ -1,4 +1,4 @@
-j// Google Map API functionality section //
+// Google Map API functionality section //
 
 "use strict";
 
@@ -106,8 +106,8 @@ function initMap() {
               icon: { // add a custom icon to mark lost pets
                 url: '/static/img/paw_marker.png',
                 scaledSize: {
-                  width: 40,
-                  height: 40
+                  width: 45,
+                  height: 45
                 }
               }
             });
@@ -295,7 +295,7 @@ function geocodeAddress(geocoder, map) {
       // Zoom in on the geocode location on the map
       //
       map.setCenter(results[0].geometry.location);
-      map.setZoom(12);
+      map.setZoom(13);
 
       // Create marker on the map based on the geocode location
       //
@@ -315,12 +315,12 @@ function geocodeAddress(geocoder, map) {
 //
 function placeMarkerAndPanTo(latLng, map) {
 
-  map.setZoom(13);
+  map.setZoom(14);
 
-  new google.maps.Marker({
-    position: latLng,
-    map: map,
-  });
+  // new google.maps.Marker({
+  //   position: latLng,
+  //   map: map,
+  // });
   map.panTo(latLng);
 }
 

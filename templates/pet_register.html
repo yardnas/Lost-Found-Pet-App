@@ -14,6 +14,7 @@
             Welcome, {{ current_user.fname }}
             {% endif %}
         </h2>
+        <h3>Please register your lost pet</h3>
     </header>
 
     <br>
@@ -62,6 +63,12 @@
                     <div>
                         <label for="pet-color-input" class="form-label">Pet Color</label>
                         <input type="text" placeholder="Pet Color" name="pet-color" id="pet-color-input" />
+                    </div><br> <!-- Placeholder <br> until css -->
+
+                    <div>
+                        <label for="pet-status-select" class="form-label">Pet Status</label>
+                        <input type="text" placeholder="Lost" name="pet-status" id="pet-status-input" />
+                        </select>
                     </div><br> <!-- Placeholder <br> until css -->
 
                     <div>
