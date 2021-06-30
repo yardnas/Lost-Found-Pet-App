@@ -47,7 +47,7 @@ def get_fname_by_email(email):
 #------------------ CRUD functions for PETS Section ------------------#
 #---------------------------------------------------------------------#
 
-def create_pets(pet_name, pet_type, pet_breed, pet_gender, 
+def create_pet(pet_name, pet_type, pet_breed, pet_gender, 
                 pet_color, pet_status, pet_image, last_address):
     """Create and return a pet."""
 
@@ -66,14 +66,16 @@ def create_pets(pet_name, pet_type, pet_breed, pet_gender,
     return pet
 
 
-def update_pet_info(email, phone, pet_name, pet_type, pet_breed, 
+def register_pet_user(email, phone, pet_name, pet_type, pet_breed, 
                          pet_gender, pet_color, pet_status, pet_image, last_address):
     """Update pet and pet owner's information"""
 
+    # TODO: Need to revisit to refactor logic.
+    #
     user = get_user_by_email(email)
     user_id = user.user_id
 
-    pet = create_pets(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_status, pet_image, last_address)
+    pet = create_pet(pet_name, pet_type, pet_breed, pet_gender, pet_color, pet_status, pet_image, last_address)
     pet_id = pet.pet_id
 
     # Update user section
@@ -90,9 +92,7 @@ def update_pet_info(email, phone, pet_name, pet_type, pet_breed,
 def update_pet_status(email, pet_name, pet_status):
     """Update pet status when pet is found."""
 
-    # Get user_id for validation
-    user = get_user_by_email(email)
-    user_id = user.user_id
+    user_id = db.session.query(User.user_id).filter(User.email==email, Pet.pet_name==pet_name).first()
 
     # Update the status of the pet
     status_update = db.session.query(Pet).filter(Pet.user_id == user_id, Pet.pet_name == pet_name).update({Pet.pet_status: pet_status})
@@ -152,4 +152,7 @@ if __name__ == "__main__":
 
 
     #db.session.query(Pet).filter(Pet.user_id == 1).update({Pet.pet_status: "Found"})
+
+
+    # pet_id = db.session.query(Pet.pet_id).filter(User.email==email, Pet.pet_name==pet_name).first()
     

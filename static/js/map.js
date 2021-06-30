@@ -3,20 +3,21 @@
 "use strict";
 
 /*-------------------------------------------------------------------*/
-/*-------------------------- Map Scope Section ----------------------*/
+/*-------------------------- Scope: Map Section ---------------------*/
 /*-------------------------------------------------------------------*/
-
 //  MVP: 
-//    √ To create a map with markers from stored information on the database 
-//    √ Set current location or enter neighborhood address
-//    √ Convert address to lat/long for marker OR use address if there is a way
-//    √ Utilize the geocode to enter "location" (golden gate bridge) opposed address\
+//    [√] To create a map with markers from stored information on the database 
+//    [√] Set current location or enter neighborhood address
+//    [√] Convert address to lat/long for marker OR use address if there is a way
+//    [√] Utilize the geocode to enter "location" (golden gate bridge) opposed address
 //
 //  Nice-to-have:
-//    √ Zoom on marker click
-//    √ Add marker and zoom on map click
-//    √ Night mode for map
-//    √ Geo locate my location
+//    [√] Add zoom on click for existing markers
+//    [√] Add pan to and marker when user click on map
+//    [√] Geo locate my location
+//    [√] Night mode for map
+//    [ ] Add nightmode on map along side the map type nav (map|satellite)
+//    [ ] Separate the map styles code block to another js file (mapStyles.js)
 
 /*-------------------------------------------------------------------*/
 /*------------------- Function: Main Map Section --------------------*/
@@ -59,10 +60,8 @@ function initMap() {
       for (const pet of pets) {
 
         // Define the content of the infoWindow 
-        // Use JS template literals (backticks) - similar to f-string in python
         // Using backticks (`) aka: template literals, to add jQuery into HTML
         //
-
         const petInfoContent = (` 
           <div class="window-content">
             <div class="pet-thumbnail">
@@ -70,9 +69,9 @@ function initMap() {
             </div>
   
             <ul class="pet-info">
-              <li><b>Pet Owner: </b> ${pet.petOwner}</li>
-              <li><b>Contact: </b> <a href="mailto:${pet.userEmail}"> ${pet.userEmail} </a> </li>
               <li><b>Pet Name: </b> ${pet.petName} </li>
+              <li><b>Contact: </b> <a href="mailto:${pet.userEmail}"> ${pet.userEmail} </a> </li>
+              <li><b>Pet Owner: </b> ${pet.petOwner}</li>
               <li><b>Pet Breed: </b> ${pet.petBreed} </li>
               <li><b>Pet Color: </b> ${pet.petColor} </li>
               <li><b>Last Seen: </b> ${pet.lastAddress} </li>
@@ -228,7 +227,7 @@ function initMap() {
   });
 
   /*--------------------------------------------------------*/
-  /*------------- Find Location on Map Section -------------*/
+  /*------------- Find Lost Pets on Map Section -------------*/
   /*--------------------------------------------------------*/
 
   // To find lost pets in the specified location, use geocode form field
@@ -240,24 +239,20 @@ function initMap() {
     geocodeAddress(geocoder, map); 
   });
 
-  // Geo locate me using geolocation
+
+  // On click, geo locate user's location
   // If browser supports and is enabled for location detection
   // TODO: Decide whether to incorporate (most people likely have privacy on)
   //
   $('#locate-me').on('click', () => {
-    // If the browser has geolocation-capabilities, it'll be stored on a global
-    // object called `navigator`. (Most modern browsers will have this.)
+
+    // If the browser has geolocation enabled -> store as global obj: "navigator"
     //
-    // If `navigator.geolocation` is `undefined`, then your user has a pretty
-    // old browser :(
     if (navigator.geolocation) {
       // `navigator.geolocation.getCurrentPosition` takes in two args:
+      //    1. function call when get location is successful
+      //    2. function call when get location is unsuccessful
       //
-      // - A function that is called when we successfully get the
-      //   user's location
-      //
-      // - A function that's called when we can't get the user's location
-      //   (probably because they didn't allow your page to access it)
       navigator.geolocation.getCurrentPosition(
         // The success function:
         (currPosition) => {
@@ -281,7 +276,7 @@ function initMap() {
 }
 
 /*-------------------------------------------------------------------*/
-/*------------------  Function: Geocoding Section  ------------------*/
+/*--------------------  Function: Geocode Address  ------------------*/
 /*-------------------------------------------------------------------*/
 
 // Use geocode to zoom and add a marker on the map interactively
@@ -310,6 +305,10 @@ function geocodeAddress(geocoder, map) {
     }
   });
 }
+
+/*-------------------------------------------------------------------*/
+/*------------  Function: Pan to location on click ------------------*/
+/*-------------------------------------------------------------------*/
 
 // Place marker and pan to the location when user clicks on map
 //

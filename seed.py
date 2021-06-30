@@ -14,7 +14,6 @@ os.system("createdb lost_found_pets")
 model.connect_to_db(server.app)
 model.db.create_all() # Create the tables defined 
 
-
 #---------------------------------------------------------------------#
 
 # Add seed data to database

@@ -154,17 +154,18 @@ def register_pet_form():
 
     user = crud.get_user_by_email(email)
 
+
     # Update database with pet & owner's information
-    if user:
-        flash('Pet registration is complete')
-        crud.update_pet_info(email, phone, pet_name, 
+    if user and crud.register_pet_user(email, phone, pet_name, 
                         pet_type, pet_breed, pet_gender, 
-                        pet_color, pet_status, pet_image, last_address)
+                        pet_color, pet_status, pet_image, last_address):
+        flash('Pet registration is complete')
+        
     if not user:
         flash('Oops. Please register first and try again')
         return redirect('/')
 
-    # return render_template('dashboard.html')
+    return render_template('dashboard.html')
     return redirect('dashboard')
 
 
@@ -177,7 +178,13 @@ def register_pet_form():
 def get_all_pets():
     """Return JSON information about pets for marker info content."""
 
-    pet_info = db.session.query(User.email, User.fname, Pet.pet_name, Pet.pet_type, Pet.pet_breed, Pet.pet_color, Pet.pet_image, Pet.last_address).filter(User.user_id == Pet.user_id).all()
+
+    # Get pet information for all pets that are "Lost"
+    # Found pets will not appear as markers on the map
+    #
+    pet_info = db.session.query(User.email, User.fname, Pet.pet_name, 
+                Pet.pet_type, Pet.pet_breed, Pet.pet_color, Pet.pet_image, 
+                Pet.last_address).filter(User.user_id == Pet.user_id, Pet.pet_status == "Lost").all()
 
     pets = []
 
@@ -218,14 +225,15 @@ def found_pet_form():
     pet_name = request.form.get('pet-name')
     pet_status = request.form.get('pet-status')
 
-    user = crud.get_user_by_email(email)
+    # user = crud.get_user_by_email(email)
 
     if crud.update_pet_status(email, pet_name, pet_status):
         flash('We are so happy that you found your pet! Thank you for informing us.')
     else:
         flash('Oops. Email and/or pet name does not match. Please try again')
 
-    return render_template('pet_owner.html')
+    # return render_template('pet_owner.html')
+    return redirect('dashboard')
 
 
 #------------------------TRIALs | Playground Section--------------------------#
