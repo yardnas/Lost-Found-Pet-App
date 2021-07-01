@@ -120,8 +120,8 @@ def logout():
 def welcome():
     """Show the welcome dashboard."""
 
-    # return render_template('dashboard.html')
-    return render_template('dashboard_test.html')
+    return render_template('dashboard.html')
+
 
 
 #---------------------------------------------------------------------#

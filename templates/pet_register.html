@@ -3,228 +3,154 @@
 {% block head %}{{ super() }}{% endblock %}
 
 {% block body %}
-<br>
-<nav class="navbar navbar-expand-md navbar-custom-theme">
-    <a class="navbar-brand" href="#"></a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navExpandContent"
-    />
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse" id="navExpandContent">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/">Home</a>
-      </div>
-    </div>
-    <div class="navbar-collapse collapse" id="navExpandContent">
+  <br>
+  <nav class="navbar navbar-expand-md navbar-custom-theme">
+      <a class="navbar-brand" href="#"></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navExpandContent"
+      />
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="navExpandContent">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
+          <a class="nav-item nav-link" href="/">Home</a>
         </div>
       </div>
-    <div class="navbar-collapse collapse" id="navExpandContent">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/pet_register">Lost My Pet</a>
+      <div class="navbar-collapse collapse" id="navExpandContent">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
+          </div>
+        </div>
+      <div class="navbar-collapse collapse" id="navExpandContent">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="/pet_register">Lost My Pet</a>
+        </div>
       </div>
-    </div>
-    <div class="navbar-collapse collapse" id="navExpandContent">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/pet_owner">Found My Pet</a>
+      <div class="navbar-collapse collapse" id="navExpandContent">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="/pet_owner">Found My Pet</a>
+        </div>
       </div>
-    </div>
-    <div class="navbar-collapse collapse" id="navExpandContent">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/register">Sign-up</a>
+      <div class="navbar-collapse collapse" id="navExpandContent">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="/register">Sign-up</a>
+        </div>
       </div>
-    </div>
-    <div class="navbar-collapse collapse" id="navExpandContent">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/login">Login</a>
+      <div class="navbar-collapse collapse" id="navExpandContent">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="/login">Login</a>
+        </div>
       </div>
-    </div>
-    <div class="navbar-collapse collapse" id="navExpandContent">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/logout">Logout</a>
+      <div class="navbar-collapse collapse" id="navExpandContent">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="/logout">Logout</a>
+        </div>
       </div>
-    </div>
-  </nav>
-  <br>
+    </nav>
+    <br>
 
+ 
     <!------------------------------------------>
-    <!-----  Welcome Section ---->
+    <!-------------  Welcome Header ------------>
     <!------------------------------------------>
-
-    <header align=center>
+    <header>
+      <div class="pb-2 mt-4 mb-2 border-bottom" align="center">
         <h2>
             {% if current_user.is_authenticated %}
             Welcome, {{ current_user.fname }}
             {% endif %}
         </h2>
+      </div>
     </header>
-
-    <hr> 
 
     <!------------------------------------------->
     <!------ Pet Registration Form Section ------>
     <!------------------------------------------->
 
-    <br>
+    <main>
+      <br>
+      <section class="pet-form">
+        <div class="row">
+          <div class="col-xs-12 col-md-6 offset-md-3 col-lg-6 offset-lg-3"> 
+            <h4 align="center">Please register your lost pet</h4>
 
-    <!-- <form class="row g-3"> -->
-    <div class="row">
-      <div class="col-xs-12 col-md-6 offset-md-3 col-lg-6 offset-lg-3"> 
-        <form action="/pet_register" method="POST">
-          <div>
-            <label for="email-input" class="form-label">Email</label>
-            <input type="email" class="form-control" placeholder="Enter email" name="email" id="email-input">
+            <form action="/pet_register" method="POST">
+              <div>
+                <label for="email-input" class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="Enter email" name="email" id="email-input">
+              </div>
+
+              <div>
+                <label for="phone-input" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" placeholder="415-555-1111" name="phone" id="phone-input" />
+              </div>
+
+              <div>
+                <label for="pet-name-input" class="form-label">Pet Name</label>
+                <input type="text" class="form-control" placeholder="Fido" name="pet-name" id="pet-name-input" />
+              </div>
+
+              <!-- <div class="col-md-4 ml-auto justify-content-center align-items-center"> -->
+              <div class="col-md-4">
+                <label for="pet-type-input" class="form-label">Pet Type</label>
+                <select type="text" class="form-select" name="pet-type" id="pet-type-input" />
+                  <option selected>Choose...</option>
+                  <option>Cat</option>
+                  <option>Dog</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div class="col-md-4">
+                <label for="pet-gender-input" class="form-label">Pet Gender</label>
+                <select type="text" class="form-select" name="pet-gender" id="pet-gender-input" />
+                  <option selected>Choose...</option>
+                  <option>Female</option>
+                  <option>Male</option>
+                </select>
+              </div>
+              
+              <div class="col-md-4">
+                <label for="pet-status-select" class="form-label">Pet Status</label>
+                <select type="text" class="form-select" name="pet-status" id="pet-status-select" />
+                  <option selected>Choose...</option>
+                  <option>Lost</option>
+                  <option>Found</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="pet-breed-input" class="form-label">Pet Breed</label>
+                <input type="text" class="form-control" placeholder="Golden Retriever" name="pet-breed" id="pet-breed-input" />
+              </div>
+
+              <div>
+                <label for="pet-color-input" class="form-label">Pet Color</label>
+                <input type="text" class="form-control" placeholder="Brown with dark spots" name="pet-color" id="pet-color-input" />
+              </div>
+
+              <div>
+                <label for="pet-image-input" class="form-label">Pet Image</label>
+                <input type="text" class="form-control" placeholder="Link to image" name="pet-image" id="pet-image-input" />
+              </div>
+
+              <div>
+                <label for="last-address-input" class="form-label">Last Seen Location</label>
+                <input type="text" class="form-control" placeholder="123 Main Street SF CA or Golden Gate Bridge" name="last-address" id="last-address-input" />
+              </div>
+
+              <br>
+              <div class="col-12">
+                <button type="submit" value="Submit" class="btn btn-primary">Submit Form</button>
+              </div>
+
+            </form>
           </div>
-
-          <div>
-            <label for="phone-input" class="form-label">Phone Number</label>
-            <input type="text" class="form-control" placeholder="415-555-1111" name="phone" id="phone-input" />
-          </div>
-
-          <div>
-            <label for="pet-name-input" class="form-label">Pet Name</label>
-            <input type="text" class="form-control" placeholder="Fido" name="pet-name" id="pet-name-input" />
-          </div>
-
-          <div class="col-md-4">
-            <label for="pet-type-input" class="form-label">Pet Type</label>
-            <select type="text" class="form-select" placeholder="Pet Type" name="pet-type" id="pet-type-input" />
-              <option selected>Choose...</option>
-              <option>Cat</option>
-              <option>Dog</option>
-              <option>Other</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="pet-breed-input" class="form-label">Pet Breed</label>
-            <input type="text" class="form-control" placeholder="Golden Retriever" name="pet-breed" id="pet-breed-input" />
-          </div>
-
-          <div class="col-md-4">
-            <label for="pet-gender-input" class="form-label">Pet Gender</label>
-            <select type="text" class="form-select" placeholder="Pet Gender" name="pet-gender" id="pet-gender-input" />
-              <option selected>Choose...</option>
-              <option>Female</option>
-              <option>Male</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="pet-color-input" class="form-label">Pet Color</label>
-            <input type="text" class="form-control" placeholder="Brown with dark spots" name="pet-color" id="pet-color-input" />
-          </div>
-
-
-
-
-
-          <div class="col-12">
-            <label for="inputAddress" class="form-label">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-          </div>
-          <div class="col-12">
-            <label for="inputAddress2" class="form-label">Address 2</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-          </div>
-          <div class="col-md-6">
-            <label for="inputCity" class="form-label">City</label>
-            <input type="text" class="form-control" id="inputCity">
-          </div>
-          <div class="col-md-4">
-            <label for="inputState" class="form-label">State</label>
-            <select id="inputState" class="form-select">
-              <option selected>Choose...</option>
-              <option>...</option>
-            </select>
-          </div>
-          <div class="col-md-2">
-            <label for="inputZip" class="form-label">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
-          </div>
-          <div class="col-12">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="gridCheck">
-              <label class="form-check-label" for="gridCheck">
-                Check me out
-              </label>
-            </div>
-          </div>
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary">Sign in</button>
-          </div>
-      </div>
-    </form>
-
-
-
-    <!-- <main align=center>
-        <h3>Please register your lost pet</h3>
-        <br>
-        <section class="pet-form">
-            <div class="pet-form">
-                <form action="/pet_register" method="POST">
-
-                    <div>
-                        <label for="email-input" class="form-label">Email</label>
-                        <input type="email" placeholder="Email" name="email" id="email-input" />
-                    </div><br> 
-
-                    <div>
-                        <label for="phone-input" class="form-label">Phone</label>
-                        <input type="text" placeholder="Phone Number" name="phone" id="phone-input" />
-                    </div><br> 
-
-                    <div>
-                        <label for="pet-name-input" class="form-label">Pet Name</label>
-                        <input type="text" placeholder="Pet Name" name="pet-name" id="pet-name-input" />
-                    </div><br> 
-
-                    <div>
-                        <label for="pet-type-input" class="form-label">Pet Type</label>
-                        <input type="text" placeholder="Pet Type" name="pet-type" id="pet-type-input" />
-                    </div><br> 
-
-                    <div>
-                        <label for="pet-breed-input" class="form-label">Pet Breed</label>
-                        <input type="text" placeholder="Pet Breed" name="pet-breed" id="pet-breed-input" />
-                    </div><br> 
-
-                    <div>
-                        <label for="pet-gender-input" class="form-label">Pet Gender</label>
-                        <input type="text" placeholder="Pet Gender" name="pet-gender" id="pet-gender-input" />
-                    </div><br> 
-
-                    <div>
-                        <label for="pet-color-input" class="form-label">Pet Color</label>
-                        <input type="text" placeholder="Pet Color" name="pet-color" id="pet-color-input" />
-                    </div><br> 
-
-                    <div>
-                        <label for="pet-status-select" class="form-label">Pet Status</label>
-                        <input type="text" placeholder="Lost" name="pet-status" id="pet-status-input" />
-                        </select>
-                    </div><br> 
-
-                    <div>
-                        <label for="pet-image-input" class="form-label">Pet Image</label>
-                        <input type="text" placeholder="Link to image" name="pet-image" id="pet-image-input" />
-                    </div><br>
-
-                    <div>
-                        <label for="last-address-input" class="form-label">Last Address</label>
-                        <input type="text" placeholder="Last Seen Address" name="last-address" id="last-address-input" />
-                    </div><br>
-
-                    <button type="submit" value ="Submit" class="btn-pet">Submit Form</button>
-                </form>
-            </div>
-        </section>
-    </main> -->
+        </div>
+      </section>
+    </main>
 
 {% endblock %}

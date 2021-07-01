@@ -38,13 +38,13 @@ body {
     /* background: radial-gradient(#72adf1,#f19740); */
     /* background: linear-gradient(#f19740,(#f19740,#72adf1); */
 
-    background: linear-gradient(to right, #f9af68,#72adf1);
+    background: linear-gradient(to right, #f9af68,#6ca8ee);
   }
 
 /* Navbar background */
 .navbar-custom-theme {
     /* background: linear-gradient(to left, #f9d1d4, #d3cdec); */
-    background: linear-gradient(to left,#9fcbf7, #f0cca6);
+    background: linear-gradient(to left,#88b5e2, #f1c99e);
   }
   
   /* Color of the logo */

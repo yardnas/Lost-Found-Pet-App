@@ -4,52 +4,59 @@
 
 {% block body %}
 
-    <!---------------------------------->
-    <!--------- Welcome Header --------->
-    <!---------------------------------->
-    
-    <header>
-        <section class="splash-header">
-            <h2 align=center>Welcome!</h2>
-        </section>
-    </header>
-    
-    <br>
-    <hr> <!-- Placeholder until css -->
+  <!-- <header>
+      <div class="pb-2 mt-4 mb-2 border-bottom" align="center">
+          <h2>Welcome!</h2>
+      </div>
 
-    <!-- Testing adding image to page
-    <p align="center">
-        <img src="/static/img/dog_cat_vector4free.jpg" width="250" height="150" />
-    </p> -->
+  </header> -->
 
-    <main>
-        <section align=center class="splash-window">
+  <main>
+    <div class="container">
+      <div class="col-xs-12 col-md-6 offset-md-3 col-lg-6 offset-lg-3">
+        <!---------------------------------->
+        <!--------- Welcome Header --------->
+        <!---------------------------------->
 
-            <!---------------------------------->
-            <!------- User Login Section ------->
-            <!---------------------------------->
+        <div class="pb-2 mt-4 mb-2 border-bottom" align="center">
+            <h2>Welcome!</h2>
+        </div>
+      </div>
 
-            <div class="login-prompt">
-                <h4><label>Login</label></h4>
+      <br>
 
-                <button id="login-button">
-                    <a href="/login">Login</a>
-                </button>
-            </div>
+      <!---------------------------------->
+      <!------- User Login Section ------->
+      <!---------------------------------->
 
-            <!---------------------------------->
-            <!----- Register User Section ------>
-            <!---------------------------------->
-    
-            <div class="register-prompt">
-                <h4><label>Register</label></h4>
+      <div class="row">
+        <div align="center">
+          <h4><label>Login</label></h4>
 
-                <button id="register-button">
-                    <a href="/register">Register</a>
-                </button>
-            </div>
+          <button id="login-button" class="btn btn-warning">
+              <a href="/login">Login</a>
+          </button>
+        </div>
+      </div>
 
-        </section>
-    </main>
+      <br>
+
+      <!---------------------------------->
+      <!----- Register User Section ------>
+      <!---------------------------------->
+
+      <div class="row">
+        <div align="center">
+          <h4><label>Register</label></h4>
+
+          <button id="register-button" class="btn btn-warning">
+              <a href="/register">Register</a>
+          </button>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </main>
 
 {% endblock %}
