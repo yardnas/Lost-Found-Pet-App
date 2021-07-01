@@ -4,70 +4,130 @@
 
 {% block body %}
 
-    <!---------------------------------->
-    <!--------- Welcome Header --------->
-    <!---------------------------------->
-
-    <header align=center>
-        <!-- Welcome Section -->
-        <section class="login-header">
-            <h2>
-                {% if current_user.is_authenticated %}
-                Welcome, {{ current_user.fname }}
-                {% endif %}
-            </h2>
-            <h4><i>For all things your pets</i></h4>
-        </section>
+  <!------------------------------------------>
+  <!--------- Navigation Bar Sectiom --------->
+  <!------------------------------------------>
+  <header>
+    <br>
+      <nav class="navbar navbar-expand-md navbar-custom-theme">
+          <a class="navbar-brand" href="#"></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navExpandContent"
+          />
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-collapse collapse" id="navExpandContent">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/">Home</a>
+            </div>
+          </div>
+          <div class="navbar-collapse collapse" id="navExpandContent">
+              <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
+              </div>
+            </div>
+          <div class="navbar-collapse collapse" id="navExpandContent">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/pet_register">Lost My Pet</a>
+            </div>
+          </div>
+          <div class="navbar-collapse collapse" id="navExpandContent">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/pet_owner">Found My Pet</a>
+            </div>
+          </div>
+          <div class="navbar-collapse collapse" id="navExpandContent">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/register">Sign-up</a>
+            </div>
+          </div>
+          <div class="navbar-collapse collapse" id="navExpandContent">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/login">Login</a>
+            </div>
+          </div>
+          <div class="navbar-collapse collapse" id="navExpandContent">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/logout">Logout</a>
+            </div>
+          </div>
+        </nav>
+      <br>
+  
+      <!------------------------------------------>
+      <!-------------  Welcome Header ------------>
+      <!------------------------------------------>
+  
+      <div class="pb-2 mt-4 mb-2 border-bottom" align="center">
+        <h2>
+            {% if current_user.is_authenticated %}
+            Welcome, {{ current_user.fname }}
+            {% endif %}
+        </h2>
+      </div>
     </header>
 
-    <br>
-    <hr> <!-- Placeholder until css -->
+    <!------------------------------------------->
+    <!------ Found Pet - Update Pet Status ------>
+    <!------------------------------------------->
 
-    <main align=center>
+    <main>
+      <br>
+      <section class="pet-status-select">
+        <div class="row">
+          <div class="col-xs-12 col-md-6 offset-md-3 col-lg-6 offset-lg-3"> 
+            <!-- <h4 align="center">For all things your pets</h4> -->
+            <h3 align="center">Did you find your lost pet?</h3>
+            <h6 align="center">Awesome! Let's update your pet's status here:</h6>
 
-        <!------------------------------------------->
-        <!-------- Update Pet Status (Found) -------->
-        <!------------------------------------------->
+            <form action="/pet_owner" method="POST">
+              
+              <div>
+                  <label for="email-input" class="form-label">Email</label>
+                  <input type="email" class="form-control" placeholder="Enter email" name="email" id="email-input" />
+              </div>
 
-        <section class="pet-found-form">
-            <h3>Did you find your lost pet?</h3>
-            <h5>Awesome! Let's update your pet's status here:</h5>
-            <div class="found-form">
-                <form action="/pet_owner" method="POST">
-                    <div>
-                        <label for="email-input" class="form-label">Email</label>
-                        <input type="email" placeholder="Email" name="email" id="email-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
+              <div>
+                  <label for="pet-name-input" class="form-label">Pet Name</label>
+                  <input type="text" class="form-control" placeholder="Fido" name="pet-name" id="pet-name-input" />
+              </div>
 
-                    <div>
-                        <label for="pet-name-input" class="form-label">Pet Name</label>
-                        <input type="text" placeholder="Pet Name" name="pet-name" id="pet-name-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
+              <div class="col-md-4">
+                <label for="pet-status-select" class="form-label">Pet Status</label>
+                <select type="text" class="form-select" name="pet-status" id="pet-status-select" />
+                  <option selected>Choose...</option>
+                  <option>Lost</option>
+                  <option>Found</option>
+                </select>
+              </div>
 
-                    <div>
-                        <label for="pet-status-input" class="form-label">Pet Status</label>
-                        <input type="text" placeholder="Found" name="pet-status" id="pet-status-input" />
-                        </select>
-                    </div><br> <!-- Placeholder <br> until css -->
+              <br>
+              <div class="col-12">
+                <button type="submit" value="Submit" class="btn btn-primary">Submit Form</button>
+              </div>
 
-                    <button type="submit" value ="Submit" class="btn-pet">Submit Form</button>
-                </form>
+            </form>
             </div>
         </section>
 
         <br>
         <hr>
 
-        <!------------------------------------------->
-        <!----- Display Pet Information Section ----->
-        <!------------------------------------------->
+      <!------------------------------------------->
+      <!----- Display Pet Information Section ----->
+      <!------------------------------------------->
 
-        <section class="pet-form">
-            <div class="pet-form">
-                <h4>Section to display information about pet owner's register pets</h4>
-                <p>TODO: Placeholder. Add info here</p>
-            </div>
-        </section>
+      <section class="pet-form">
+        <div class="row">
+          <div class="col-xs-12 col-md-6 offset-md-3 col-lg-6 offset-lg-3" align="center"> 
+              <h4>Display pet owner's pet(s) information here</h4>
+              <p>TODO: Will add if have time</p>
+          </div>
+        </div>
+      </section>
 
     </main>
 

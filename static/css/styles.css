@@ -17,7 +17,6 @@ body {
   /* font-family: 'Montserrat', 'Helvetica', sans-serif; */
   /* font-family: 'Yellowtail', cursive; */
   /* font-family: 'Architects Daughter', cursive; */
-
 }
 
 h1, h2, h3, h4 {
@@ -37,7 +36,6 @@ body {
     /* background: linear-gradient(#f19740,#72adf1); */
     /* background: radial-gradient(#72adf1,#f19740); */
     /* background: linear-gradient(#f19740,(#f19740,#72adf1); */
-
     background: linear-gradient(to right, #f9af68,#6ca8ee);
   }
 
