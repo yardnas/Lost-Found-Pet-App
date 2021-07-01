@@ -70,15 +70,16 @@ function initMap() {
             <div class="pet-thumbnail">
               <img src="${pet.petImage}" width="155" height="130"></img>
             </div>
-  
-            <ul class="pet-info">
-              <li><b>Pet Name: </b> ${pet.petName} </li>
-              <li><b>Contact: </b> <a href="mailto:${pet.userEmail}"> ${pet.userEmail} </a> </li>
-              <li><b>Pet Owner: </b> ${pet.petOwner}</li>
-              <li><b>Pet Breed: </b> ${pet.petBreed} </li>
-              <li><b>Pet Color: </b> ${pet.petColor} </li>
-              <li><b>Last Seen: </b> ${pet.lastAddress} </li>
-            </ul>
+
+            <div class="pet-info">
+              <b>Pet Name: </b> ${pet.petName}<br>
+              <b>Contact: </b> <a href="mailto:${pet.userEmail}"> ${pet.userEmail} </a><br>
+              <b>Pet Owner: </b> ${pet.petOwner}<br>
+              <b>Pet Breed: </b> ${pet.petBreed}<br>
+              <b>Pet Color: </b> ${pet.petColor}<br>
+              <b>Last Seen: </b> ${pet.lastAddress}<br>
+            </div>
+
           </div>
         `);
 
