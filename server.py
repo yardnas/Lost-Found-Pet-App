@@ -96,7 +96,7 @@ def create_user():
         crud.create_user(fname, lname, email, password)
         flash('Account has been successfully created. Please login')
 
-    return redirect('/') # redirect back to homepage
+    return redirect('/login') # redirect to the login page for sign-in
 
 
 @app.route('/logout')

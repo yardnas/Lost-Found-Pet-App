@@ -42,15 +42,14 @@ body {
   }
 
 /* Navbar background */
-.navbar-custom-theme {
-    /* background: linear-gradient(to left, #f9d1d4, #d3cdec); */
-    background: linear-gradient(to left,#88b5e2, #f1c99e);
+  .navbar-custom-theme {
+    background: linear-gradient(to left,#74ade7, #eeb87e);
   }
   
   /* Color of the logo */
   .navbar-custom-theme .navbar-brand {
     /* color: #4c518d; */
-    color: #4c518d;
+    color: #4064c7;
   }
   
   /* Color of logo when you hover on it */
@@ -62,7 +61,7 @@ body {
   
   .navbar-custom-theme .nav-link {
     /* color: #6b5f93; */
-    color: #6b5f93;
+    color: #3850a0;
   }
   
   .navbar-custom-theme .nav-link:hover,

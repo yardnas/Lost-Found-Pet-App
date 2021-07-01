@@ -3,68 +3,73 @@
 {% block head %}{{ super() }}{% endblock %}
 
 {% block body %}
+
+  <!------------------------------------------>
+  <!--------- Navigation Bar Sectiom --------->
+  <!------------------------------------------>
+  <header>
   <br>
-  <nav class="navbar navbar-expand-md navbar-custom-theme">
-      <a class="navbar-brand" href="#"></a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navExpandContent"
-      />
-      <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="navbar-collapse collapse" id="navExpandContent">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/">Home</a>
-        </div>
-      </div>
-      <div class="navbar-collapse collapse" id="navExpandContent">
+    <nav class="navbar navbar-expand-md navbar-custom-theme">
+        <a class="navbar-brand" href="#"></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navExpandContent"
+        />
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navExpandContent">
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
+            <a class="nav-item nav-link" href="/">Home</a>
           </div>
         </div>
-      <div class="navbar-collapse collapse" id="navExpandContent">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/pet_register">Lost My Pet</a>
+        <div class="navbar-collapse collapse" id="navExpandContent">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
+            </div>
+          </div>
+        <div class="navbar-collapse collapse" id="navExpandContent">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/pet_register">Lost My Pet</a>
+          </div>
         </div>
-      </div>
-      <div class="navbar-collapse collapse" id="navExpandContent">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/pet_owner">Found My Pet</a>
+        <div class="navbar-collapse collapse" id="navExpandContent">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/pet_owner">Found My Pet</a>
+          </div>
         </div>
-      </div>
-      <div class="navbar-collapse collapse" id="navExpandContent">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/register">Sign-up</a>
+        <div class="navbar-collapse collapse" id="navExpandContent">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/register">Sign-up</a>
+          </div>
         </div>
-      </div>
-      <div class="navbar-collapse collapse" id="navExpandContent">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/login">Login</a>
+        <div class="navbar-collapse collapse" id="navExpandContent">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/login">Login</a>
+          </div>
         </div>
-      </div>
-      <div class="navbar-collapse collapse" id="navExpandContent">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/logout">Logout</a>
+        <div class="navbar-collapse collapse" id="navExpandContent">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/logout">Logout</a>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
     <br>
 
- 
     <!------------------------------------------>
     <!-------------  Welcome Header ------------>
     <!------------------------------------------>
-    <header>
-      <div class="pb-2 mt-4 mb-2 border-bottom" align="center">
-        <h2>
-            {% if current_user.is_authenticated %}
-            Welcome, {{ current_user.fname }}
-            {% endif %}
-        </h2>
-      </div>
-    </header>
+
+    <div class="pb-2 mt-4 mb-2 border-bottom" align="center">
+      <h2>
+          {% if current_user.is_authenticated %}
+          Welcome, {{ current_user.fname }}
+          {% endif %}
+      </h2>
+    </div>
+  </header>
+
 
     <!------------------------------------------->
     <!------ Pet Registration Form Section ------>
