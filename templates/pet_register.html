@@ -3,6 +3,54 @@
 {% block head %}{{ super() }}{% endblock %}
 
 {% block body %}
+<br>
+<nav class="navbar navbar-expand-md navbar-custom-theme">
+    <a class="navbar-brand" href="#"></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navExpandContent"
+    />
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navExpandContent">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/">Home</a>
+      </div>
+    </div>
+    <div class="navbar-collapse collapse" id="navExpandContent">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
+        </div>
+      </div>
+    <div class="navbar-collapse collapse" id="navExpandContent">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/pet_register">Lost My Pet</a>
+      </div>
+    </div>
+    <div class="navbar-collapse collapse" id="navExpandContent">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/pet_owner">Found My Pet</a>
+      </div>
+    </div>
+    <div class="navbar-collapse collapse" id="navExpandContent">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/register">Sign-up</a>
+      </div>
+    </div>
+    <div class="navbar-collapse collapse" id="navExpandContent">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/login">Login</a>
+      </div>
+    </div>
+    <div class="navbar-collapse collapse" id="navExpandContent">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/logout">Logout</a>
+      </div>
+    </div>
+  </nav>
+  <br>
 
     <!------------------------------------------>
     <!-----  Welcome Section ---->
@@ -14,18 +62,110 @@
             Welcome, {{ current_user.fname }}
             {% endif %}
         </h2>
-        <h3>Please register your lost pet</h3>
     </header>
 
-    <br>
-    <hr> <!-- Placeholder until css -->
-    <br>
+    <hr> 
 
     <!------------------------------------------->
     <!------ Pet Registration Form Section ------>
     <!------------------------------------------->
 
-    <main align=center>
+    <br>
+
+    <!-- <form class="row g-3"> -->
+    <div class="row">
+      <div class="col-xs-12 col-md-6 offset-md-3 col-lg-6 offset-lg-3"> 
+        <form action="/pet_register" method="POST">
+          <div>
+            <label for="email-input" class="form-label">Email</label>
+            <input type="email" class="form-control" placeholder="Enter email" name="email" id="email-input">
+          </div>
+
+          <div>
+            <label for="phone-input" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" placeholder="415-555-1111" name="phone" id="phone-input" />
+          </div>
+
+          <div>
+            <label for="pet-name-input" class="form-label">Pet Name</label>
+            <input type="text" class="form-control" placeholder="Fido" name="pet-name" id="pet-name-input" />
+          </div>
+
+          <div class="col-md-4">
+            <label for="pet-type-input" class="form-label">Pet Type</label>
+            <select type="text" class="form-select" placeholder="Pet Type" name="pet-type" id="pet-type-input" />
+              <option selected>Choose...</option>
+              <option>Cat</option>
+              <option>Dog</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="pet-breed-input" class="form-label">Pet Breed</label>
+            <input type="text" class="form-control" placeholder="Golden Retriever" name="pet-breed" id="pet-breed-input" />
+          </div>
+
+          <div class="col-md-4">
+            <label for="pet-gender-input" class="form-label">Pet Gender</label>
+            <select type="text" class="form-select" placeholder="Pet Gender" name="pet-gender" id="pet-gender-input" />
+              <option selected>Choose...</option>
+              <option>Female</option>
+              <option>Male</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="pet-color-input" class="form-label">Pet Color</label>
+            <input type="text" class="form-control" placeholder="Brown with dark spots" name="pet-color" id="pet-color-input" />
+          </div>
+
+
+
+
+
+          <div class="col-12">
+            <label for="inputAddress" class="form-label">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          </div>
+          <div class="col-12">
+            <label for="inputAddress2" class="form-label">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          </div>
+          <div class="col-md-6">
+            <label for="inputCity" class="form-label">City</label>
+            <input type="text" class="form-control" id="inputCity">
+          </div>
+          <div class="col-md-4">
+            <label for="inputState" class="form-label">State</label>
+            <select id="inputState" class="form-select">
+              <option selected>Choose...</option>
+              <option>...</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label for="inputZip" class="form-label">Zip</label>
+            <input type="text" class="form-control" id="inputZip">
+          </div>
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">
+                Check me out
+              </label>
+            </div>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </div>
+      </div>
+    </form>
+
+
+
+    <!-- <main align=center>
+        <h3>Please register your lost pet</h3>
+        <br>
         <section class="pet-form">
             <div class="pet-form">
                 <form action="/pet_register" method="POST">
@@ -33,43 +173,43 @@
                     <div>
                         <label for="email-input" class="form-label">Email</label>
                         <input type="email" placeholder="Email" name="email" id="email-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
+                    </div><br> 
 
                     <div>
                         <label for="phone-input" class="form-label">Phone</label>
                         <input type="text" placeholder="Phone Number" name="phone" id="phone-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
+                    </div><br> 
 
                     <div>
                         <label for="pet-name-input" class="form-label">Pet Name</label>
                         <input type="text" placeholder="Pet Name" name="pet-name" id="pet-name-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
+                    </div><br> 
 
                     <div>
                         <label for="pet-type-input" class="form-label">Pet Type</label>
                         <input type="text" placeholder="Pet Type" name="pet-type" id="pet-type-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
+                    </div><br> 
 
                     <div>
                         <label for="pet-breed-input" class="form-label">Pet Breed</label>
                         <input type="text" placeholder="Pet Breed" name="pet-breed" id="pet-breed-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
+                    </div><br> 
 
                     <div>
                         <label for="pet-gender-input" class="form-label">Pet Gender</label>
                         <input type="text" placeholder="Pet Gender" name="pet-gender" id="pet-gender-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
+                    </div><br> 
 
                     <div>
                         <label for="pet-color-input" class="form-label">Pet Color</label>
                         <input type="text" placeholder="Pet Color" name="pet-color" id="pet-color-input" />
-                    </div><br> <!-- Placeholder <br> until css -->
+                    </div><br> 
 
                     <div>
                         <label for="pet-status-select" class="form-label">Pet Status</label>
                         <input type="text" placeholder="Lost" name="pet-status" id="pet-status-input" />
                         </select>
-                    </div><br> <!-- Placeholder <br> until css -->
+                    </div><br> 
 
                     <div>
                         <label for="pet-image-input" class="form-label">Pet Image</label>
@@ -85,6 +225,6 @@
                 </form>
             </div>
         </section>
-    </main>
+    </main> -->
 
 {% endblock %}

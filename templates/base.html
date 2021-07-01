@@ -1,82 +1,65 @@
 <!doctype html>
 <html lang="en">
 
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Neighborhood Lost Pets{% endblock %}</title>
 
-      <title>{% block title %}{% endblock %}</title>
+    <!----------------- Dependencies --------------->
 
-      <!-- jQuery dependencies on all pages. -->
-      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- jQuery dependencies on all pages. -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-      <!-- React dependencies on all pages. -->
-      <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script> 
-      <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-      <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+    <!-- React dependencies on all pages. -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script> 
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
 
-      <!-- Bootstrap CSS (place this before other stylesheets to load CSS) -->
-      <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <!-- Bootstrap CSS (place this before other stylesheets to load CSS) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-      <!-- Custom CSS
-      <link rel="stylesheet" href="/static/styles.css"> -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../static/css/styles.css">
 
+    <!----------------- Page Heading --------------->
 
-    <!---------------------------------->
-    <!---------  Page Heading  --------->
-    <!---------------------------------->
+    <!-- Global Title-->
+    <section class="page-header">
+      <br>
+      <h1 align="center">Neighboorhood Lost Pets</h1>
+      <h4 align="center">A place to report and find lost pets in your neighborhood</h4>
+    </section>
+    
+    <br>
 
-      <section class="page-header">
-        <h1 align="center">Neighboorhood Lost Pets</h1>
-        <h4 align="center">A place to report and find lost pets in your neighborhood</h4>
-      </section>
+    <!-- Global Image (TODO: cite source) -->
+    <p align="center">
+        <img src="/static/img/paws-from-dreamstime.jpg" width="200" height="150" />
+    </p>
 
-      <!-- TEMP: testing adding image to page -->
-      <p align="center">
-          <!-- <img src="/static/img/dog_cat_vector4free.jpg" width="250" height="150" />  -->
-          <!-- <img src="/static/img/kisspng-dog-cat-paw_cleanpng.jpg" width="250" height="150" /> -->
-          <!-- <img src="/static/img/andrews_unsplash.jpg" width="300" height="200" /> -->
-          <!-- <img src="/static/img/kevint_unsplash.jpg" width="200" height="250" /> -->
-          <!-- <img src="/static/img/kisspng-dog-cat-paw_cleanpng.jpg" width="200" height="250" /> -->
-          <!-- <img src="/static/img/paws_trim from-dreamstime.jpg" width="200" height="175" /> -->
-          <!-- <img src="/static/img/paws-from-flyclipartimages.png" width="200" height="250" /> -->
-          <!-- <img src="/static/img/paws_from-123RF.jpg" width="350" height="150" /> -->
-          <!-- <img src="/static/img/paws_trim from-dreamstime.jpg" width="200" height="175" /> -->
+  {% block head %}{% endblock %}
+  </head>
 
-          <img src="/static/img/paws-from-dreamstime.jpg" width="200" height="175" />
+  <!---------------- Body Section  ---------------->
 
-          <!-- <img src="/static/img/paws-from-flyclipartimages.png" width="200" height="175" /> -->
-          <!-- <img src="/static/img/pawsf-from-artranked.jpg" width="200" height="175" /> -->
-        </p>
+  <body>
 
-      <style>
-        /* body {
-          background-image: url('/static/img/kisspng-dog-cat-paw_cleanpng.jpg');
-          background-image: url('/static/img/paws_trim from-dreamstime.jpg');
-          background-image: url('/static/img/paws-from-flyclipartimages.png');
-        } */
-        </style>
+    <!--  Flash message here  -->
+    {% for msg in get_flashed_messages() %}
+      <p align="center" class="flash-msg">
+        <i>{{ msg }}</i>
+      </p>
+    {% endfor %}
 
-    {% block head %}{% endblock %}
-    </head>
+    {% block body %}{% endblock %}
 
-
-    <!-- Flash message here -->
-    <body>
-      {% for msg in get_flashed_messages() %}
-        <p align="center" class="flash-msg">
-          <i>{{ msg }}</i>
-        </p>
-      {% endfor %}
-
-      {% block body %}{% endblock %}
-
-      <!-- Bootstrap JavaScript with Popper) -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-      </script>
-
-   </body>
+    <!-- Bootstrap JavaScript with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
+    
+  </body>
 
 </html>

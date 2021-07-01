@@ -35,8 +35,11 @@ function initMap() {
       {
         center: {
           // Set to SF coordinates to start
-          lat: 37.601773,
-          lng: -122.202870
+          // 37.62138086303597, -122.37901977480048
+          // lat: 37.601773,
+          // lng: -122.305419
+          lat: 37.621380,
+          lng: -122.379019
         },
         zoom: 10,
       }
@@ -65,7 +68,7 @@ function initMap() {
         const petInfoContent = (` 
           <div class="window-content">
             <div class="pet-thumbnail">
-              <img src="${pet.petImage}" width="150" height="130"></img>
+              <img src="${pet.petImage}" width="155" height="130"></img>
             </div>
   
             <ul class="pet-info">
@@ -118,7 +121,7 @@ function initMap() {
               petInfo.close()
               petInfo.setContent(petInfoContent);
               petInfo.open(map, petMarker);
-              map.setZoom(12);
+              map.setZoom(13);
 
             });
           }           
@@ -290,7 +293,7 @@ function geocodeAddress(geocoder, map) {
       // Zoom in on the geocode location on the map
       //
       map.setCenter(results[0].geometry.location);
-      map.setZoom(13);
+      map.setZoom(12);
 
       // Create marker on the map based on the geocode location
       //
@@ -316,10 +319,11 @@ function placeMarkerAndPanTo(latLng, map) {
 
   map.setZoom(14);
 
-  new google.maps.Marker({
-    position: latLng,
-    map: map,
-  });
+  // new google.maps.Marker({
+  //   position: latLng,
+  //   map: map,
+  // });
+
   map.panTo(latLng);
 }
 

@@ -2,23 +2,24 @@
 {% block title %}Find Lost Neighborhood Pets{% endblock %}
 
 {% block head %}
-    <link rel="shortcut icon" href="#">  <!-- To handle the favicon.ico 404 error -->
-    <link rel="stylesheet" href="/static/css/map.css"/>
+    <link rel="shortcut icon" href="#"> <!-- To handle the favicon.ico 404 error -->
+    <link rel="stylesheet" href="/static/css/map.css" />
 
     <!-- For map code referencing map.js -->
     <script src="/static/js/map.js"></script>
     <!-- <script src="/static/js/map_test.js"></script> -->
 
     <!-- For Google maps API key and callback to initMap -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeDkSlpBZoTC5TToXy1tW3hehvfM3xWHQ&callback=initMap"></script>
-    
-    
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeDkSlpBZoTC5TToXy1tW3hehvfM3xWHQ&callback=initMap"></script>
+
+
 {% endblock %}
 
 {% block body %}
 
     <!------------------------------------------>
-    <!-----  Welcome Body of Dashboard page ---->
+    <!-----  Welcome User ---->
     <!------------------------------------------>
 
     <header align=center>
@@ -29,7 +30,8 @@
         </h2>
     </header>
 
-    <br><hr> <!-- Placeholder until css -->
+    <br>
+    <hr> <!-- Placeholder until css -->
 
     <!------------------------------------------>
     <!---------  Main Body of Dashboard -------->
@@ -44,20 +46,20 @@
                     <!-------------------------------->
                     <section class="lost-pet" align=center>
                         <h3>Did you lose your pet?</h3>
-                        <h4>Register your pet here/h4>
-    
-                        <div class="lost-pet-update">
-                            <button type="button" class="btn btn-warning" id="register-button">
-                                <a href="/pet_register">Fill out this form</a>
-                            </button>
-                        </div>
-    
-                        <h5><i>Marker of your pet's last seen location will be placed on the map</i></h5>
+                        <h4>Register your pet here</h4>
+
+                            <div class="lost-pet-update">
+                                <button type="button" class="btn btn-warning" id="register-button">
+                                    <a href="/pet_register">Fill out this form</a>
+                                </button>
+                            </div>
+
+                            <h5><i>Marker of your pet's last seen location will be placed on the map</i></h5>
                     </section>
                 </div>
-    
+
                 <hr> <!-- Placeholder until css -->
-    
+
                 <div class="col">
                     <!-------------------------------->
                     <!------- Found Pet Section ------>
@@ -65,20 +67,20 @@
                     <section class="found-pet" align=center>
                         <h3>Did you find your pet?</h3>
                         <h4>Update pet status here</h4>
-    
+
                         <div class="found-pet-update">
                             <button type="button" class="btn btn-warning" id="register-button">
                                 <a href="/pet_owner">Click here to update</a>
                             </button>
                         </div>
-    
+
                         <h5><i>Marker for found pets will be removed from the map </i></h5>
                     </section>
                 </div>
             </div>
         </div>
 
-    
+
         <hr> <!-- Placeholder until css -->
 
         <!----------------------------------------->
@@ -105,31 +107,31 @@
         <!-- TODO: This as is will cause a race condition for map display  -->
 
         <!-- <div class="page-dark-mode"> 
-            <style>
-                .dark-mode {
-                    background-color: black;
-                    color: grey;
-                }
-            </style>
+                <style>
+                    .dark-mode {
+                        background-color: black;
+                        color: grey;
+                    }
+                </style>
 
-            <script>
-                function myFunction() {
-                    var element = document.main;
-                    element.classList.toggle("dark-mode")
-                }
-            </script>
+                <script>
+                    function myFunction() {
+                        var element = document.main;
+                        element.classList.toggle("dark-mode")
+                    }
+                </script>
 
-            <button data-bs-toggle="button" onclick="myFunction()">
-                Toggle dark mode
-            </button>
-        </div> -->
+                <button data-bs-toggle="button" onclick="myFunction()">
+                    Toggle dark mode
+                </button>
+            </div> -->
 
         <!------------------------------------------>
         <!------ Display Night Mode Section -------->
         <!------------------------------------------>
 
         <div class="map-night-mode" align=center>
-            <button id ="custom-style">
+            <button id="custom-style">
                 Click for Night Mode
             </button>
         </div>
@@ -152,7 +154,7 @@
 
         <!------------------------------------------>
         <!----------- Logout User Section ---------->
-        <!------------------------------------------> 
+        <!------------------------------------------>
 
         <div class="logout-section">
             <section>
@@ -163,7 +165,7 @@
                 </form>
             </section>
         </div>
-            
+
     </main>
-    
+
 {% endblock %}

@@ -105,7 +105,6 @@ def logout():
     """Logout user."""
 
     logout_user()
-    # del session["logged_user_in"]
 
     flash('Logged out successfully.')
 
@@ -121,7 +120,8 @@ def logout():
 def welcome():
     """Show the welcome dashboard."""
 
-    return render_template('dashboard.html')
+    # return render_template('dashboard.html')
+    return render_template('dashboard_test.html')
 
 
 #---------------------------------------------------------------------#
@@ -165,7 +165,7 @@ def register_pet_form():
         flash('Oops. Please register first and try again')
         return redirect('/')
 
-    return render_template('dashboard.html')
+    # return render_template('dashboard.html')
     return redirect('dashboard')
 
 

@@ -1,0 +1,78 @@
+/* @import url('https://fonts.googleapis.com/css?family=Quicksand|Nunito'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&family=Yellowtail&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Montserrat:ital,wght@0,300;1,300&family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Itim&family=Montserrat:ital,wght@0,300;1,300&family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Handlee&family=Itim&family=Montserrat:ital,wght@0,300;1,300&family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Handlee&family=Itim&family=Montserrat:ital,wght@0,300;1,300&family=Noto+Sans&family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+
+body {
+  /* font-family: 'Nunito', 'Helvetica', sans-serif; */
+  /* font-family: 'Montserrat', 'Helvetica', sans-serif; */
+  /* font-family: 'Itim', 'Helvetica', sans-serif; */
+  font-family: 'Montserrat', 'Helvetica', sans-serif;
+  /* font-family: 'Montserrat', 'Helvetica', sans-serif; */
+  /* font-family: 'Yellowtail', cursive; */
+  /* font-family: 'Architects Daughter', cursive; */
+
+}
+
+h1, h2, h3, h4 {
+  /* font-family: 'Quicksand', 'Helvetica', sans-serif; */
+  /* font-family: 'Architects Daughter', cursive; */
+  /* font-family: 'Itim', 'Helvetica', sans-serif; */
+  /* font-family: 'Handlee', 'Helvetica', sans-serif; */
+  /* font-family: 'Noto Sans', 'Helvetica', sans-serif; */
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+body {
+    height: 100%;
+    /* background: linear-gradient(#fff6e6, #ffc9e4, #fcc5e8); */
+    /* background: linear-gradient(#f19740, #93bff2, #72adf1); */
+    /* background: linear-gradient(#72adf1,#fcc899, #72adf1); */
+    /* background: linear-gradient(#f19740,#72adf1); */
+    /* background: radial-gradient(#72adf1,#f19740); */
+    /* background: linear-gradient(#f19740,(#f19740,#72adf1); */
+
+    background: linear-gradient(to right, #f9af68,#72adf1);
+  }
+
+/* Navbar background */
+.navbar-custom-theme {
+    /* background: linear-gradient(to left, #f9d1d4, #d3cdec); */
+    background: linear-gradient(to left,#9fcbf7, #f0cca6);
+  }
+  
+  /* Color of the logo */
+  .navbar-custom-theme .navbar-brand {
+    /* color: #4c518d; */
+    color: #4c518d;
+  }
+  
+  /* Color of logo when you hover on it */
+  .navbar-custom-theme .navbar-brand:hover,
+  .navbar-custom-theme .navbar-brand:focus {
+    /* color: white; */
+    color: white;
+  }
+  
+  .navbar-custom-theme .nav-link {
+    /* color: #6b5f93; */
+    color: #6b5f93;
+  }
+  
+  .navbar-custom-theme .nav-link:hover,
+  .navbar-custom-theme .nav-link:focus {
+    /* color: white; */
+    color: white;
+  }
+  
+  .navbar-custom-theme .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(76, 81, 141)' stroke-width='1' stroke-miterlimit='10' d='M4 12h22 M4 17h22 '/%3E%3C/svg%3E");
+  }
+  
+  

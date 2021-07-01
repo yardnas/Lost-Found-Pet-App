@@ -4,27 +4,47 @@
 
 {% block body %}
 
-    <!---------------------------------->
-    <!--------- Welcome Header --------->
-    <!---------------------------------->
-
-    <header>
-        <section align=center class="login-header">
-            <h1>Welcome!</h1>
-            <h2>Please sign in</h2>
-        </section>
-    </header>
-
-    <br>
-    <hr> <!-- Placeholder until css -->
-
     <main>
 
         <!---------------------------------->
-        <!--------- User Login Form -------->
+        <!--------- Welcome Header --------->
         <!---------------------------------->
 
-        <section align=center class="login-form">
+        <div class="container">
+          <div class="col-xs-12 col-md-6 offset-md-3 col-lg-6 offset-lg-3">
+            <div class="pb-2 mt-4 mb-2 border-bottom" align="center">
+              <h1>Welcome!</h1>
+              <h3>Please sign in</h3>
+            </div>
+            </div>
+
+
+            <!---------------------------------->
+            <!--------- User Login Form -------->
+            <!---------------------------------->
+
+            <div class="row">
+              <!-- Using offset classes to center the column -->
+              <div class="col-xs-12 col-md-6 offset-md-3 col-lg-6 offset-lg-3">
+                <form action="/login" method="POST">
+
+                  <div>
+                    <label for="email-input" class="form-label">Email address</label>
+                    <input type="email" class="form-control" placeholder="Enter email" name="email" id="email-input" required />
+                  </div>
+                
+                  <div>
+                    <label for="password-input" class="form-label">Enter Password</label>
+                    <input type="password" class="form-control" placeholder="Password" name="password" id="password-input" required />
+                  </div>
+                
+                  <button type="submit" value ="Submit" class="btn btn-primary">Submit</button>
+                  <!-- <button type="submit" class="btn btn-danger">Delete</button> -->
+                </form>
+              </div>  
+            </div>
+
+        <!-- <section align=center class="login-form">
 
             <form action="/login" method="POST">
                 <h3><label>Login</label></h3>
@@ -32,17 +52,19 @@
                 <div>
                     <label for="email-input">Email:</label>
                     <input type="email" placeholder="Email" name="email" id="email-input" required />
-                </div><br> <!-- Placeholder <br> until css -->
+                </div>
+                <br> 
 
                 <div>
                     <label for="password-input">Password:</label>
                     <input type="password" placeholder="Password" name="password" id="password-input" required />
-                </div><br> <!-- Placeholder <br> until css -->
+                </div>
+                <br> 
                 
                 <button type="submit" value ="Submit" class="btn-login">Submit</button>
             </form>
 
-        </section>
+        </section> -->
     </main>
 
 {% endblock %}

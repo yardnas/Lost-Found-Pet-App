@@ -20,11 +20,12 @@ db = SQLAlchemy()
     # √ Sign-up | Sign-in | Log-out => used flask-login to achieve
     # √ Store pet info (desc, pics, location) => stored in postgres db
     # √ Show pet info & location on the map => utilize the google maps api
+    # √ Handle lost and found pets
 
 # Nice-to-have
     # √ Dynamically pin location by entering location (opposed to filling out the registration page)
-    #   Add Dark mode (page) with Night mode (map)
-    #   Add Pet owner's page (+ to handle found pets)
+    # √ Add Night mode (map)
+    # √ Add form/page/db to handle found pets
     #   Add Search functionality
     #   Add Nearby places: vet clinics, police station
     #   Add messaging/chat feature
@@ -48,12 +49,11 @@ class User(db.Model, UserMixin):
     created_on = db.Column(db.DateTime, default=datetime.now)
     updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
-
     # To handle: NotImplementedError: No 'id' attribute - override 'get_id'
     def get_id(self):
            return (self.user_id)
     
-
+    # To display information about the user when querying
     def __repr__(self):
         """Display information about the user."""
 
@@ -83,31 +83,11 @@ class Pet(db.Model):
     # Add relationship between users and pets
     users = db.relationship("User", backref="pet")
 
+    # To display information about the pet when querying
     def __repr__(self):
         """Show information about the pet."""
 
         return f"<Pet pet_id={self.pet_id} pet_name={self.pet_name} pet_type={self.pet_type} pet_status={self.pet_status}>"
-
-
-# class Status(db.Model):
-#     """Data model for the status of the pet."""
-
-#     __tablename__ = "status"
-
-#     status_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     pet_id = db.Column(db.Integer, db.ForeignKey('pets.pet_id'))
-
-#     status_type = db.Column(db.String(50), nullable=True)
-#     created_on = db.Column(db.DateTime, default=datetime.now)
-#     updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
-
-#     # Add relationship between users and pets
-#     pets = db.relationship("Pet", backref="status")
-
-#     def __repr__(self):
-#         """Show information about the pet."""
-
-#         return f"<Status status_id={self.status_id} pet_id={self.pet_id} status_type={self.status_type}>"
 
 
 #---------------------------------------------------------------------#
@@ -138,7 +118,6 @@ def test_data():
 
     spike = Pet(pet_id=203, 
                 user_id=103,
-                status_id=303,
                 pet_name="Spike", 
                 pet_type="Dog",
                 pet_breed="Pitbull",
@@ -150,7 +129,6 @@ def test_data():
 
     tiger = Pet(pet_id=204,
                 user_id=104,
-                status_id=304,
                 pet_name="Tiger",
                 pet_type="Cat",
                 pet_breed="American Bobtail",
@@ -160,16 +138,6 @@ def test_data():
                 pet_image="/static/img/cat_tiger.jpg",
                 last_address="Golden Gate Bridge")
 
-    # spike_status = Status(status_id=303,
-    #             pet_id=203,
-    #             status_type="Lost")
-
-    # tiger_status = Status(status_id=304,
-    #             pet_id=204,
-    #             status_type="Found")
-
-
-    # db.session.add_all([cathy, david, spike, tiger, spike_status, tiger_status])
     db.session.add_all([cathy, david, spike, tiger])
     db.session.commit()
 
@@ -185,7 +153,7 @@ def connect_to_db(app, db_uri="postgresql:///lost_found_pets"):
     db.app = app
     db.init_app(app)
 
-    print("Connected to thhe db!")
+    print("Connected to the db!")
     
 #---------------------------------------------------------------------#
 
@@ -195,10 +163,3 @@ if __name__ == "__main__":
 
     # Connect to the database
     connect_to_db(app)
-    print("Connected to DB.")
-
-    # # Create all tables
-    # db.create_all()
-
-    # # Insert sample data (adding here for now. will move to tests.py)
-    # test_data()
