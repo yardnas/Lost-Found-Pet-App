@@ -102,7 +102,8 @@ function initMap() {
                   lat: latitude,
                   lng: longitude
               },
-              title: `Pet ID: ${pet.petId}`,
+              // title: `Pet ID: ${pet.petId}`,
+              title: `Pet Name: ${pet.petName}`,
               map: map,
               // animation: google.maps.Animation.DROP,
               icon: { // add a custom icon to mark lost pets
