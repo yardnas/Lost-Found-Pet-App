@@ -44,7 +44,7 @@ Go to ```'localhost:5000/'```
 
 ## Future Features:
 The roadmap for this project includes features such as:
-* Messaging and chat capability within the app
+* Messaging capability within the app
 * Dedicated pet owner's section for all things 'my pet'
 * Password hashing
 * Pin nearby vet clinics and police stations
