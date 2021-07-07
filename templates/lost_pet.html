@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block title %}Lost Pet{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+
+{% block body %}
+  <main>
+    <div class="pb-2 mt-6 mb-4 border-top" align="center"><br></div>
+
+    <div class="bg-overlay-index">
+      <div class="container-fluid">
+        <div class="row">
+            <h3 align="center"><i>Did you lose your pet?</i></h3>
+            <h6 align="center"><i>We're so sorry to hear that. Let's get your pet on the radar.</i></h6>
+        </div>
+        <br>
+        <div class="row" align="center">
+          <div class="col-md-4">
+            <h5 align="center">Please tell us about your pet:</h5>
+
+            <form action="/lost_pet" method="POST">
+              <div>
+                <input type="email" class="form-control" placeholder="Enter email" name="email" id="email-input" required />
+                <label for="email-input" class="form-label">Email</label>
+              </div>
+
+              <div>
+                <input type="text" class="form-control" placeholder="415-555-1111" name="phone" id="phone-input" />
+                <label for="phone-input" class="form-label">Phone Number</label>
+              </div>
+
+              <div>
+                <input type="text" class="form-control" placeholder="Fido" name="pet-name" id="pet-name-input" />
+                <label for="pet-name-input" class="form-label">Pet Name</label>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <select type="text" class="form-select" name="pet-type" id="pet-type-input" />
+                    <option selected>Type...</option>
+                    <option>Cat</option>
+                    <option>Dog</option>
+                    <option>Other</option>
+                  </select>
+                  <label for="pet-type-input" class="form-label">Pet Type</label>
+                </div>
+
+                <div class="col-md-4">
+                  <select type="text" class="form-select" name="pet-gender" id="pet-gender-input" />
+                    <option selected>Gender...</option>
+                    <option>Female</option>
+                    <option>Male</option>
+                  </select>
+                  <label for="pet-gender-input" class="form-label">Pet Gender</label>
+                </div>
+
+                <div class="col-md-4">
+                  <select type="text" class="form-select" name="pet-status" id="pet-status-select" />
+                    <option selected>Status...</option>
+                    <option>Lost</option>
+                    <option>Found</option>
+                  </select>
+                  <label for="pet-status-select" class="form-label">Pet Status</label>
+                </div>
+              </div> <!-- End of inner row-->
+
+              <div>
+                <input type="text" class="form-control" placeholder="Golden Retriever" name="pet-breed" id="pet-breed-input" />
+                <label for="pet-breed-input" class="form-label">Pet Breed</label>
+              </div>
+    
+              <div>
+                <input type="text" class="form-control" placeholder="Brown with dark spots" name="pet-color" id="pet-color-input" />
+                <label for="pet-color-input" class="form-label">Pet Color</label>
+              </div>
+    
+              <div>
+                <input type="text" class="form-control" placeholder="Link to image" name="pet-image" id="pet-image-input" />
+                <label for="pet-image-input" class="form-label">Pet Image</label>
+              </div>
+    
+              <div>
+                <input type="text" class="form-control" placeholder="123 Main St SF CA or Golden Gate Bridge" name="last-address" id="last-address-input" />
+                <label for="last-address-input" class="form-label">Last Seen Location</label>
+              </div>
+
+              <button type="submit" value ="Submit" class="btn btn-info">Submit</button>
+            </form>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </main>
+
+  
+{% endblock %}

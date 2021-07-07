@@ -1,3 +1,5 @@
+"""Seed data to jump start the app with data."""
+
 import os
 import json
 from random import choice, randint
@@ -33,7 +35,7 @@ winston = Pet(pet_id=201,
             pet_color="White with blk spots on ears",
             pet_status="Lost",
             pet_image="/static/img/dog_bulldog.jpg",
-            last_address="1825 4th St, San Mateo, CA")
+            last_address="5455 Geary Blvd, San Francisco, CA 94121")
 
 betty = User(user_id=102, 
             fname="Bobby", 
@@ -145,6 +147,5 @@ blue = Pet(pet_id=207,
 
 #---------------------------------------------------------------------#
 
-# model.db.session.add_all([alice, betty, fido, kitty,  fido_status, kitty_status])
 model.db.session.add_all([alice, betty, winston, kitty, cathy, david, spike, tiger, evan, cloud, fanny, bear, george, blue])
 model.db.session.commit()

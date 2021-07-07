@@ -1,4 +1,4 @@
-"""Server for the lost and found pet app."""
+"""Server for the Neighborhood Lost Pet app."""
 
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
@@ -24,6 +24,7 @@ def display_welcome():
     """Show the welcome page."""
 
     return render_template('index.html')
+    # return render_template('index_test.html')
 
 
 #---------------------------------------------------------------------#
@@ -123,20 +124,19 @@ def welcome():
     return render_template('dashboard.html')
 
 
-
 #---------------------------------------------------------------------#
 #-------------- Routes for Lost Pet Registration Section -------------#
 #---------------------------------------------------------------------#
 
-@app.route('/pet_register')
+@app.route('/lost_pet')
 @login_required
 def show_pet_registration():
     """Show the pet registration page by rendering the page."""
 
-    return render_template('pet_register.html')
+    return render_template('lost_pet.html')
 
 
-@app.route('/pet_register', methods=['POST'])
+@app.route('/lost_pet', methods=['POST'])
 @login_required
 def register_pet_form():
     """To fill out the pet registration form, store in db and redirect back to '/'."""
@@ -208,15 +208,15 @@ def get_all_pets():
 #-------------- Routes for Pet Owner's Page | Found Pets -------------#
 #---------------------------------------------------------------------#
 
-@app.route('/pet_owner')
+@app.route('/found_pet')
 @login_required
 def display_petowner():
     """Pet owner's page for view into owner's pet info"""
 
-    return render_template('pet_owner.html')
+    return render_template('found_pet.html')
 
 
-@app.route('/pet_owner', methods=['POST'])
+@app.route('/found_pet', methods=['POST'])
 @login_required
 def found_pet_form():
     """To view pet owner page and Update database when pet is found"""
@@ -234,25 +234,6 @@ def found_pet_form():
 
     # return render_template('pet_owner.html')
     return redirect('dashboard')
-
-
-#------------------------TRIALs | Playground Section--------------------------#
-
-@app.route('/search')
-@login_required
-def search_info():
-    """Search bar and search results"""
-
-    return render_template('search.html')
-
-
-@app.route('/search')
-@login_required
-def get_current_time():
-    return {'time': time.time()} 
-        # {"time": 1581527730.5866282}
-        # view function can return a dictionary, 
-        # which gets automatically JSONified by Flask
 
 
 #---------------------------------------------------------------------#

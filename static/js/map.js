@@ -71,12 +71,13 @@ function initMap() {
               <img src="${pet.petImage}" width="155" height="130"></img>
             </div>
 
-            <div class="pet-info">
-              <b>Pet Name: </b> ${pet.petName}<br>
+            <div class="pet-info" id="map-text-color">
+              <br>
               <b>Contact: </b> <a href="mailto:${pet.userEmail}"> ${pet.userEmail} </a><br>
               <b>Pet Owner: </b> ${pet.petOwner}<br>
-              <b>Pet Breed: </b> ${pet.petBreed}<br>
-              <b>Pet Color: </b> ${pet.petColor}<br>
+              <b>Pet Name: </b> ${pet.petName}<br>
+              <b>Breed: </b> ${pet.petBreed}<br>
+              <b>Color: </b> ${pet.petColor}<br>
               <b>Last Seen: </b> ${pet.lastAddress}<br>
             </div>
 

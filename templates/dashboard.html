@@ -1,209 +1,152 @@
 {% extends 'base.html' %}
-{% block title %}Neighborhood Lost Pets{% endblock %}
+{% block title %}Dashboard{% endblock %}
 
 {% block head %}
-  <link rel="shortcut icon" href="#"> <!-- To handle the favicon.ico 404 error -->
-  <link rel="stylesheet" href="/static/css/map.css" />
+{{ super() }}
+<!---------------------------------------------->
+<!------------ HEAD: Map Dependencies ---------->
+<!---------------------------------------------->
 
-  <!-- For map code referencing map.js -->
-  <script src="/static/js/map.js"></script>
+<link rel="shortcut icon" href="#"> <!-- To handle the favicon.ico 404 error -->
+<link rel="stylesheet" href="/static/css/map.css" />
 
-  <!-- For Google maps API key and callback to initMap -->
-  <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeDkSlpBZoTC5TToXy1tW3hehvfM3xWHQ&callback=initMap"></script>
+<!-- For map code referencing map.js -->
+<script src="/static/js/map.js"></script>
+
+<!-- For Google maps API key and callback to initMap -->
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeDkSlpBZoTC5TToXy1tW3hehvfM3xWHQ&callback=initMap"></script>
 
 {% endblock %}
 
 
 {% block body %}
 
-  <!---------------------------------------------->
-  <!--------------- Nav Bar Section -------------->
-  <!---------------------------------------------->
-    <br>
-    <nav class="navbar navbar-expand-md navbar-custom-theme">
-    <a class="navbar-brand" href="#"></a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navExpandContent"
-    />
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse" id="navExpandContent">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/">Home</a>
-      </div>
-    </div>
-    <div class="navbar-collapse collapse" id="navExpandContent">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
-      </div>
-    </div>
-    <div class="navbar-collapse collapse" id="navExpandContent">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/pet_register">Lost My Pet</a>
-      </div>
-    </div>
-    <div class="navbar-collapse collapse" id="navExpandContent">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/pet_owner">Found My Pet</a>
-      </div>
-    </div>
-    <div class="navbar-collapse collapse" id="navExpandContent">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/register">Sign-up</a>
-      </div>
-    </div>
-    <div class="navbar-collapse collapse" id="navExpandContent">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/login">Login</a>
-      </div>
-    </div>
-    <div class="navbar-collapse collapse" id="navExpandContent">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/logout">Logout</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Static navbar -->
-  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand mb-2 ms-2" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-2">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success me-2" type="submit">Search</button>
-      </form>
-    </div>
-   </nav> -->
+<main class="container-fluid">
 
   <!---------------------------------------------->
-  <!------------ Welcome User Section ------------>
+  <!------------ BODY: Welcome Section ----------->
   <!---------------------------------------------->
-
-  <div class="pb-2 mt-4 mb-2 border-bottom" align="center">
-    <h2>
-        {% if current_user.is_authenticated %}
-        Welcome, {{ current_user.fname }}
-        {% endif %}
-    </h2>
+  <div class="row text-center">
+    <div class="pb-2 mt-2 mb-4 border-bottom" align="center">
+      <h1 id="h4-heading">
+          {% if current_user.is_authenticated %}
+          Welcome, {{ current_user.fname }}
+          {% endif %}
+      </h1>
+    </div>
   </div>
-  <br>
- 
-  <!---------------------------------------------->
-  <!--------------- Content Section -------------->
-  <!---------------------------------------------->
 
+  <!---------------------------------------------->
+  <!------------ BODY: Content Section ----------->
+  <!---------------------------------------------->
   <div class="container">
     <div class="row">
+  
+      <!------------------------------------->
+      <!------- Card: Lost Pet Section ------>
+      <!------------------------------------->
+      <div class="col-xs-12 col-md-6 col-lg-3">      
+        <section class="lost-pet bg-overlay-index" align=center>
 
-        <!------------------------------------->
-        <!---------- Lost Pet Section --------->
-        <!------------------------------------->
-        <div class="col-xs-12 col-md-6 col-lg-3">
-            <section class="lost-pet" align=center>
-                <h4>Did you lose your pet?</h4>
-                <h6>Register your pet here:</h6>
-                <br>
+          <!-- Card header -->
+          <div class="btn btn-dark">
+            <div class="card-header">
+              <h5 id="h4-heading">Did you <i>lose</i> your pet?</h5>
+            </div>
+          </div>
 
-                  <div class="lost-pet-update">
-                      <button type="button" class="btn btn-warning" id="register-button">
-                          <a href="/pet_register">Fill out this form</a>
-                      </button>
-                  </div>
-
-                  <br>
-                  <p>Marker of your pet's last seen location will be placed on the map</p>
-            </section>
-        </div>
-
-        <!------------------------------------->
-        <!------- Find Pets by Location ------->
-        <!------------------------------------->
-
-        <div class="col-xs-12 col-md-6 col-lg-6">
-          <section class="pet-address" align=center>
-              <h4>Find lost pets in your neighborhood</h4>
-              <h6>Enter your location or address:</h6>
-              <br><br>
-      
-              <div class="geocode-pet-address">
-                  <input id="address" type="textbox" value="San Francisco, CA" />
-                  <input class="submit-button" id="geo_btn" type="button" value="Submit" />
-                  <button id="locate-me">or Locate me!</button>
-              </div>
-
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="lost-pet">
               <br>
-              <p align=center>The map will add a marker and pan to the location</p>
-          </section>
-        </div>
+              <button type="button" class="btn btn-warning" id="register-button">
+                  <a href="/lost_pet" class="link-dark">Register your pet here</a>
+              </button>
+            </div>
 
-        <!------------------------------------->
-        <!--------- Found Pet Section --------->
-        <!------------------------------------->
-        <div class="col-xs-12 col-md-6 col-lg-3">
-            <section class="found-pet" align=center>
-                <h4>Did you find your pet?</h4>
-                <h6>Update pet status here:</h6>
-                <br>
+            <!-- Card note -->
+            <div class="text-black">
+              <br>
+              <br>
+              <p class="card-text"><i>Marker of your pet's last seen location will be placed on the map</i></p>
+            </div>
+          </div>
 
-                <div class="found-pet-update">
-                    <button type="button" class="btn btn-warning" id="register-button">
-                        <a href="/pet_owner">Click here to update</a>
-                    </button>
-                </div>
+        </section>
+      </div> 
 
-                <br>
-                <p>Marker for found pets will be removed from the map</p>
-            </section>
-        </div>
+      <!------------------------------------->
+      <!--- Card: Search Pets by Location --->
+      <!------------------------------------->
+      <div class="col-xs-12 col-md-6 col-lg-6">
+        <section class="search-pet bg-overlay-index" align=center>
 
+          <!-- Card header -->
+          <div class="btn btn-dark">
+            <div class="card-header">
+              <h5 id="h4-heading">Search lost pets in your neighborhood</h5>
+            </div>
+          </div>
+
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="geocode-pet-address">
+              <br>
+              <input id="address" type="textbox" value="Golden Gate Park" />
+              <b><input class="btn btn-warning" id="geo_btn" type="button" value="Submit" /></b>
+              <button class="btn btn-warning" id="locate-me">or Locate me!</button>
+            </div>
+            <br>
+            <br>
+            <p class="card-text"><i>Add an address or location <br> and the map will pan to that area</i></p>
+          </div>
+ 
+        </section>
+      </div>
+
+      <!------------------------------------->
+      <!------ Card: Found Pet Section ------>
+      <!------------------------------------->
+      <div class="col-xs-12 col-md-6 col-lg-3">
+        <section class="found-pet bg-overlay-index" align=center>
+
+          <!-- Card header -->
+          <div class="btn btn-dark">
+            <div class="card-header">
+              <h5 id="h4-heading">Did you <i>find</i> your pet?</h5>
+            </div>
+          </div>
+
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="found-pet">
+              <br>
+              <button type="button" class="btn btn-warning" id="register-button">
+                  <a href="/found_pet" class="link-dark">Update pet status here</a>
+              </button>
+            </div>
+            <br>
+            <br>
+            <p class="card-text"><i>Marker for found pets will be removed from the map</i></p>
+          </div>
+
+        </section>
+      </div>
+    </div> 
+  </div> <!-- End of div class="container" -->
+
+  <!------------------------------------->
+  <!------ Night Mode (Map) Section ----->
+  <!------------------------------------->
+  <div class="pb-2 mt-4 border-top" align="center">
+    <br>
+    <div class="map-night-mode" align="center">
+      <button id="custom-style" class="btn btn-info">
+          Night Mode
+      </button>
     </div>
   </div>
-
-  <div class="pb-2 mt-4 mb-2 border-bottom" align="center"></div><br>
-
-  <!---------------------------------------------->
-  <!--------- Display Night Mode Section --------->
-  <!---------------------------------------------->
-
-  <div class="map-night-mode" align=center>
-    <button id="custom-style">
-        Click for Night Mode
-    </button>
-  </div>
-
-  <br> <!-- Placeholder <br> until css -->
 
   <!---------------------------------------------->
   <!------------- Display Map Section ------------>
@@ -215,22 +158,10 @@
             <div id="map"></div>
         </div>
     </section>
+    <div class="row"><br><br></div> <!-- div for line break-->
+    <div class="row"><br><br></div> <!-- div for line break-->
   </div>
 
-  <br> <!-- Placeholder <br> until css -->
-
-  <!---------------------------------------------->
-  <!------------- Logout User Section ------------>
-  <!---------------------------------------------->
-
-  <!-- <div class="logout-section">
-    <section>
-        <form action=/logout>
-            <label for="logout-submit">Ready to logout?</label>
-            <br><br>
-            <input type="submit" value="Logout" name="logout" id="logout-submit"></p>
-        </form>
-    </section>
-  </div> -->
+</main> <!-- End of main="container-fluid" -->
 
 {% endblock %}

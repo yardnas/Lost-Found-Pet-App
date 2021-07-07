@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Found Pet{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+
+{% block body %}
+  <main>
+    <div class="pb-2 mt-6 mb-4 border-top" align="center"><br></div>
+    
+    <div class="bg-overlay-index">
+      <div class="container-fluid">
+        <div class="row">
+            <h3 align="center"><i>Did you find your pet?</i></h3>
+            <h6 align="center"><i>Awesome! Let's update your pet status</i></h6>
+        </div>
+        <br>
+        <br>
+        <div class="row" align="left">
+          <div class="col-md-4">
+            <h5 align="left">Please update here:</h5>
+
+            <form action="/found_pet" method="POST">
+              <div>
+                <input type="email" class="form-control" placeholder="Enter email" name="email" id="email-input" required />
+                <label for="email-input" class="form-label">Email</label>
+              </div>
+
+              <div>
+                <input type="text" class="form-control" placeholder="Fido" name="pet-name" id="pet-name-input" />
+                <label for="pet-name-input" class="form-label">Pet Name</label>
+              </div>
+
+              <div class="col-md-4">
+                <select type="text" class="form-select" name="pet-status" id="pet-status-select" />
+                  <option selected>Choose...</option>
+                  <option>Lost</option>
+                  <option>Found</option>
+                </select>
+                <label for="pet-status-select" class="form-label">Pet Status</label>
+              </div>
+
+              <button type="submit" value ="Submit" class="btn btn-info">Submit</button>
+            </form>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </main>
+
+{% endblock %}

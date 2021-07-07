@@ -1,4 +1,4 @@
-"""Models for lost and found pets app."""
+"""Models for the Neighborhood Lost Pets app."""
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin # for flask-login
@@ -19,15 +19,14 @@ db = SQLAlchemy()
 # MVP
     # √ Sign-up | Sign-in | Log-out => used flask-login to achieve
     # √ Store pet info (desc, pics, location) => stored in postgres db
-    # √ Show pet info & location on the map => utilize the google maps api
-    # √ Handle lost and found pets
+    # √ Show pet location on the map => utilize the google maps api
+    # √ Show pet & pet owner info on markers => AJAX-josonify-map.js
+    # √ Handle lost and found pets => forms
 
 # Nice-to-have
     # √ Dynamically pin location by entering location (opposed to filling out the registration page)
     # √ Add Night mode (map)
     # √ Add form/page/db to handle found pets
-    #   Add Search functionality
-    #   Add Nearby places: vet clinics, police station
     #   Add messaging/chat feature
 
 #---------------------------------------------------------------------#

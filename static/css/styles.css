@@ -1,75 +1,121 @@
-/* @import url('https://fonts.googleapis.com/css?family=Quicksand|Nunito'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&family=Yellowtail&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Montserrat:ital,wght@0,300;1,300&family=Yellowtail&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Itim&family=Montserrat:ital,wght@0,300;1,300&family=Yellowtail&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Handlee&family=Itim&family=Montserrat:ital,wght@0,300;1,300&family=Yellowtail&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Handlee&family=Itim&family=Montserrat:ital,wght@0,300;1,300&family=Noto+Sans&family=Yellowtail&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand|Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&family=Open+Sans:ital,wght@1,300&display=swap');
 
 
-body {
-  /* font-family: 'Nunito', 'Helvetica', sans-serif; */
-  /* font-family: 'Montserrat', 'Helvetica', sans-serif; */
-  /* font-family: 'Itim', 'Helvetica', sans-serif; */
-  font-family: 'Montserrat', 'Helvetica', sans-serif;
-  /* font-family: 'Montserrat', 'Helvetica', sans-serif; */
-  /* font-family: 'Yellowtail', cursive; */
-  /* font-family: 'Architects Daughter', cursive; */
+.bg-overlay {
+  background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(../img/christian-stahl-8S96OpxSlvg-unsplash.jpg);
+  /* background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(../img/elias-kauerhof-RXjeUppF9LM-unsplash.jpg); */
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  /* padding-top: 30px; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-h1, h2, h3, h4 {
-  /* font-family: 'Quicksand', 'Helvetica', sans-serif; */
-  /* font-family: 'Architects Daughter', cursive; */
-  /* font-family: 'Itim', 'Helvetica', sans-serif; */
-  /* font-family: 'Handlee', 'Helvetica', sans-serif; */
-  /* font-family: 'Noto Sans', 'Helvetica', sans-serif; */
-  font-family: 'Source Sans Pro', sans-serif;
+.bg-overlay-index {
+  background: url(../img/elias-kauerhof-RXjeUppF9LM-unsplash.jpg);
+  /* background: url(../img/christian-stahl-8S96OpxSlvg-unsplash.jpg);  */
+  /* filter: blur(5px); 
+  -webkit-filter: blur(3px); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  padding-top: 15px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} 
+
+body, html {
+  height: 130%
+}
+
+html, body, * {
+  box-sizing: border-box;
 }
 
 body {
-    height: 100%;
-    /* background: linear-gradient(#fff6e6, #ffc9e4, #fcc5e8); */
-    /* background: linear-gradient(#f19740, #93bff2, #72adf1); */
-    /* background: linear-gradient(#72adf1,#fcc899, #72adf1); */
-    /* background: linear-gradient(#f19740,#72adf1); */
-    /* background: radial-gradient(#72adf1,#f19740); */
-    /* background: linear-gradient(#f19740,(#f19740,#72adf1); */
-    background: linear-gradient(to right, #f9af68,#6ca8ee);
-  }
+  font-family: 'Nunito', 'Helvetica', sans-serif;
+  height: 100%;
+  background: linear-gradient(to right, #f19f51,#57a0f3);
+  background: url(../img/christian-stahl-8S96OpxSlvg-unsplash.jpg) no-repeat center center;
+  /* background: url(../img/elias-kauerhof-RXjeUppF9LM-unsplash.jpg) no-repeat center center; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
 
-/* Navbar background */
-  .navbar-custom-theme {
-    background: linear-gradient(to left,#74ade7, #eeb87e);
-  }
+#map-text-color {
+  color: black
+}
+
+#p-text-size {
+  font-size: 14px;
+}
+
+.flash {
+  color: yellow
+}
   
-  /* Color of the logo */
-  .navbar-custom-theme .navbar-brand {
-    /* color: #4c518d; */
-    color: #4064c7;
-  }
-  
-  /* Color of logo when you hover on it */
-  .navbar-custom-theme .navbar-brand:hover,
-  .navbar-custom-theme .navbar-brand:focus {
-    /* color: white; */
-    color: white;
-  }
-  
-  .navbar-custom-theme .nav-link {
-    /* color: #6b5f93; */
-    color: #3850a0;
-  }
-  
-  .navbar-custom-theme .nav-link:hover,
-  .navbar-custom-theme .nav-link:focus {
-    /* color: white; */
-    color: white;
-  }
-  
-  .navbar-custom-theme .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(76, 81, 141)' stroke-width='1' stroke-miterlimit='10' d='M4 12h22 M4 17h22 '/%3E%3C/svg%3E");
-  }
-  
-  
+#h1-heading {
+  font-size: 72px;
+  background: -webkit-linear-gradient(#eee, rgb(80, 180, 241));
+  background-clip: text; /* Add standard rule to fix compatiblity */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#h4-heading {
+  /* color: black */
+  /* background: -webkit-linear-gradient(rgb(238, 239, 241), rgb(241, 241, 245)); */
+  background: -webkit-linear-gradient(#eee, rgb(80, 180, 241));
+  background-clip: text; /* Add standard rule to fix compatiblity */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-link {
+  background: -webkit-linear-gradient(#eee, rgb(53, 171, 245));
+  background-clip: text; /* Add standard rule to fix compatiblity */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom color for the nav "bar" */
+.navbar-custom-theme {
+  background: linear-gradient(to left,#51a4f7, #f1a042, #51a4f7);
+  /* background: linear-gradient(to right,#edeea1, #52cc07); */
+  /* position:absolute; */
+} 
+
+/* Custom color on the nav "link" */
+.navbar-custom-theme .nav-link {
+  /* color: #6b5f93; */
+  /* color: #1e1f22; */
+  font-weight:bold;
+  color: white
+}
+
+/* Custom color on the nav link upon "hover" */
+.navbar-custom-theme .nav-link:hover,
+.navbar-custom-theme .nav-link:focus {
+  /* color: white; */
+  color: white;
+}
+
+.navbar-custom-theme .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(76, 81, 141)' stroke-width='1' stroke-miterlimit='10' d='M4 12h22 M4 17h22 '/%3E%3C/svg%3E");
+}
+

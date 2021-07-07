@@ -1,62 +1,33 @@
 {% extends 'base.html' %}
-{% block title %}Find Lost Neighborhood Pets Splash Page{% endblock %}
+{% block title %}Neighborhood Lost Pets{% endblock %}
 {% block head %}{{ super() }}{% endblock %}
 
 {% block body %}
-
-  <!-- <header>
-      <div class="pb-2 mt-4 mb-2 border-bottom" align="center">
-          <h2>Welcome!</h2>
-      </div>
-
-  </header> -->
-
   <main>
-    <div class="container">
-      <div class="col-xs-12 col-md-6 offset-md-3 col-lg-6 offset-lg-3">
-        <!---------------------------------->
-        <!--------- Welcome Header --------->
-        <!---------------------------------->
+    <div class="pb-2 mt-6 mb-4 border-top" align="center"><br></div>
 
-        <div class="pb-2 mt-4 mb-2 border-bottom" align="center">
-            <h2>Welcome!</h2>
-        </div>
-      </div>
-
-      <br>
-
-      <!---------------------------------->
-      <!------- User Login Section ------->
-      <!---------------------------------->
-
-      <div class="row">
-        <div align="center">
-          <h4><label>Login</label></h4>
-
-          <button id="login-button" class="btn btn-warning">
-              <a href="/login">Login</a>
-          </button>
-        </div>
-      </div>
-
-      <br>
-
-      <!---------------------------------->
-      <!----- Register User Section ------>
-      <!---------------------------------->
-
-      <div class="row">
-        <div align="center">
-          <h4><label>Register</label></h4>
-
-          <button id="register-button" class="btn btn-warning">
-              <a href="/register">Register</a>
-          </button>
-        </div>
-      </div>
-
+    <div class="bg-overlay-index">
+      <div class="container-fluid" align="left">
+        <br>
+        <h3>
+          <i>Want to join a community of pet lovers near you?</i>
+        </h3>
+        <br><br>
+        <h5>
+          <i>If you lost your pet<br>
+          or want to help search for lost pets nearby,<br>
+          you can start here.
+          </i>
+        </h5>
       </div>
     </div>
+    
+    <br><br>
+
+    <div align="center">
+      <b><a href="/login" class="btn btn-info">Come Join Us</a></b>
+    </div>
+    
   </main>
 
 {% endblock %}

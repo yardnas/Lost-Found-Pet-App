@@ -3,57 +3,64 @@
 {% block head %}{{ super() }}{% endblock %}
 
 {% block body %}
+  <main>
+    <div class="pb-2 mt-6 mb-4 border-top" align="center"><br></div>
 
-    <main>
-      <div class="container">
-      <div class="col-xs-12 col-md-6 offset-md-3 col-lg-6 offset-lg-3">
-
-          <!---------------------------------->
-          <!--------- Welcome Header --------->
-          <!---------------------------------->
-          <div class="pb-2 mt-4 mb-2 border-bottom" align="center">
-          <h1>Welcome!</h1>
-          <h3>Please sign up to register</h3>
+    <div class="bg-overlay-index">
+      <div class="container-fluid" align="left">
+        <div class="row">
+          <div align="left" >
+            <h3><i>New member?</i></h3>
           </div>
+        </div>
+        <br>
 
+        <div class="row">
+          <div class="col-sm-4">
+            <h5 align="left">Please register here:</h5>
+
+            <form action="/register" method="POST">
+              <div>
+                  <input type="text" class="form-control" placeholder="First name" name="fname" id="name-input" required />
+                  <label for="name-input" class="form-label">First Name:</label>
+              </div>
+
+              <div>
+                <input type="text" class="form-control" placeholder="Last name" name="lname" id="name-input" />
+                <label for="name-input" class="form-label">Last Name:</label>
+              </div>
+
+              <div>
+                <input type="email" class="form-control" placeholder="Add an email" name="email" id="email-input" required />
+                <label for="email-input" class="form-label">Email</label>
+              </div>
+
+              <div>
+                <input type="password" class="form-control" placeholder="Create a password" name="password" id="password-input" required />
+                <label for="password-input" class="form-label">Password</label>
+              </div>
+
+              <button type="submit" value ="Submit" class="btn btn-info">Submit</button>
+            </form>
+
+          </div>
+        </div>
+      </div> <!-- End of class="container-fluid" -->
+    </div> <!-- End of class="bg-overlay-index" -->
+
+    <div class="row">
+      <div align="center">
+        <br>
+        <p><i><label>Already a member?</label></i></p>
+  
+        <button id="register-button" class="btn btn-info">
+            <a href="/login">Login</a>
+        </button>
+        <br><br>
       </div>
-      <br>
+    </div>
+  </main>
 
-      <div class="row">
-        <!---------------------------------->
-        <!----- User Registration Form ----->
-        <!---------------------------------->
 
-        <!-- Using offset classes to center the column -->
-        <div class="col-xs-12 col-md-6 offset-md-3 col-lg-6 offset-lg-3">
-          <form action="/register" method="POST">
-                
-            <div>
-                <label for="name-input">First Name:</label>
-                <input type="text" class="form-control" placeholder="First Name" name="fname" id="name-input" />
-            </div>
-
-            <div>
-                <label for="name-input">Last Name:</label>
-                <input type="text" class="form-control" placeholder="Last Name" name="lname" id="name-input" />
-            </div>
-
-            <div>
-                <label for="email-input">Email:</label>
-                <input type="email" class="form-control" placeholder="Add email for login use" name="email" id="email-input" />
-            </div>
-
-            <div>
-                <label for="password-input">Password:</label>
-                <input type="password" class="form-control" placeholder="Add a password" name="password" id="password-input" />
-            </div>
-
-            <br>
-            <button type="submit" value ="Submit" class="btn btn-primary">Submit</button>
-            <!-- <button type="submit" value ="Submit" class="btn-register">Submit</button> -->
-          </form>
-
-        </section>
-    </main>
 
 {% endblock %}
