@@ -44,6 +44,7 @@ Go to ```'localhost:5000/'```
 
 ## Future Features:
 The roadmap for this project includes features such as:
+* Leveraging React components
 * Messaging capability within the app
 * Dedicated pet owner's section for all things 'my pet'
 * Password hashing
