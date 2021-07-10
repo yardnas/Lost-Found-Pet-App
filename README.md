@@ -44,10 +44,10 @@ Go to ```'localhost:5000/'```
 
 ## Future Features:
 The roadmap for this project includes features such as:
+* Password hashing (next)
 * Leveraging React components
-* Messaging capability within the app
 * Dedicated pet owner's section for all things 'my pet'
-* Password hashing
+* Messaging capability within the app
 * Pin nearby vet clinics and police stations
 
 ## Credits
