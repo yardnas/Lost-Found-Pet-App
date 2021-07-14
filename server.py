@@ -5,6 +5,7 @@ from flask_login import LoginManager, login_user, login_required, logout_user, c
 from model import connect_to_db, db, Pet, User
 from jinja2 import StrictUndefined
 import crud
+import bcrypt
 
 app = Flask(__name__)
 app.secret_key ='secret_key'
@@ -52,16 +53,20 @@ def display_login():
 def login():
     """Log user in."""
 
-    email = request.form['email']
-    password = request.form['password']
+    # Call .encode() on user input before .checkpw()
+    password = request.form.get('password').encode('utf-8')
+    email = request.form.get('email')
 
+    # Get user by email
     user = crud.get_user_by_email(email)
 
+    # Check if not user, redirect
     if not user:
         flash('Email does not exist. Please try again.')
         return redirect('/')
 
-    if user.password != password:
+    # Check if password match the stored hashed password. If not, redirect
+    if not bcrypt.checkpw(password, user.password.encode('utf-8')):
         flash('Oops. Password is invalid. Please try again.')
         return redirect('/')
 
@@ -84,10 +89,15 @@ def register_user():
 def create_user():
     """Register a new user."""
 
+    # Get password from the form using Flask and encode it before hashing
+    password = request.form.get('password').encode('utf-8')
     fname = request.form.get('fname')
     lname = request.form.get('lname')
     email = request.form.get('email')
-    password = request.form.get('password')
+
+    # Hash the passowrd via bcrypt
+    password_hash = bcrypt.hashpw(password, bcrypt.gensalt()) # hash the password
+    password = password_hash.decode('utf-8') # convert hash password to string for db
 
     user = crud.get_user_by_email(email)
 

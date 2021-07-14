@@ -27,6 +27,7 @@ db = SQLAlchemy()
     # √ Dynamically pin location by entering location (opposed to filling out the registration page)
     # √ Add Night mode (map)
     # √ Add form/page/db to handle found pets
+    # √ Password hashing
     #   Add messaging/chat feature
 
 #---------------------------------------------------------------------#
@@ -106,14 +107,14 @@ def test_data():
                 lname="Cake",
                 phone="415-777-1234",
                 email="cathy@cathy.com",
-                password="cathy")
+                password="$2b$12$f0U95Ng3Atxgx23j7fsTEeROSv.HOYYB6iQBMzrP59wgNzK.lq9l.")
 
     david = User(user_id=104, 
                 fname="David", 
                 lname="Decker",
                 phone="415-777-5678", 
                 email="david@david.com",
-                password="david")
+                password="$2b$12$DfVmMZhCGj13xy7Cf4fSveGx14c54K4Et6L0O9bRjK74QgyyiQSiy")
 
     spike = Pet(pet_id=203, 
                 user_id=103,

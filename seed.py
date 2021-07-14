@@ -24,7 +24,7 @@ alice = User(user_id=101,
             lname="Apple",
             phone="415-555-1234",
             email="alice@alice.com",
-            password="alice")
+            password="$2b$12$8eeLrg3KjAG5LfK5dLRv1OOq3aT7bjVHSleLOaRr9xu7Mt3xpo4py")
 
 winston = Pet(pet_id=201, 
             user_id=101,
@@ -37,12 +37,12 @@ winston = Pet(pet_id=201,
             pet_image="/static/img/dog_bulldog.jpg",
             last_address="5455 Geary Blvd, San Francisco, CA 94121")
 
-betty = User(user_id=102, 
+bobby = User(user_id=102, 
             fname="Bobby", 
             lname="Baker",
             phone="415-555-5678", 
             email="bobby@bobby.com",
-            password="bobby")
+            password="$2b$12$diL5A03FLtXQUmlVULYfYuJPJwcelXK/XpiGhF8T/jy3UB1oC9EFW")
 
 kitty = Pet(pet_id=202,
             user_id=102,
@@ -60,7 +60,7 @@ cathy = User(user_id=103,
             lname="Cake",
             phone="415-777-1234",
             email="cathy@cathy.com",
-            password="cathy")
+            password="$2b$12$f0U95Ng3Atxgx23j7fsTEeROSv.HOYYB6iQBMzrP59wgNzK.lq9l.")
 
 spike = Pet(pet_id=203, 
             user_id=103,
@@ -78,7 +78,7 @@ david = User(user_id=104,
             lname="Decker",
             phone="415-777-5678", 
             email="david@david.com",
-            password="david")
+            password="$2b$12$DfVmMZhCGj13xy7Cf4fSveGx14c54K4Et6L0O9bRjK74QgyyiQSiy")
 
 tiger = Pet(pet_id=204,
             user_id=104,
@@ -96,7 +96,7 @@ evan = User(user_id=105,
             lname="Eats",
             phone="415-777-1111", 
             email="evan@evan.com",
-            password="evan")
+            password="$2b$12$.jm6Ag0OAhl5r1OmeIfo5eKFSRZ66ClcgElftcIqWI7.7BhxfttU2")
 
 cloud = Pet(pet_id=205,
             user_id=105,
@@ -114,7 +114,7 @@ fanny = User(user_id=106,
             lname="Fancy",
             phone="415-777-2222", 
             email="fanny@fanny.com",
-            password="fanny")
+            password="$2b$12$nitMTtP/8dhWEvs/pqMqjOcT7I.2cHwmZUW/kDy1HERN3JU5kFDKW")
 
 bear = Pet(pet_id=206,
             user_id=106,
@@ -132,7 +132,7 @@ george = User(user_id=107,
             lname="Great",
             phone="415-777-3333", 
             email="george@george.com",
-            password="george")
+            password="$2b$12$nkQ.hF9Y.mrKms9P9.4MTO.siEvLOQ2eVHaqMSracoVakV/l19SZO")
 
 blue = Pet(pet_id=207,
             user_id=107,
@@ -147,5 +147,5 @@ blue = Pet(pet_id=207,
 
 #---------------------------------------------------------------------#
 
-model.db.session.add_all([alice, betty, winston, kitty, cathy, david, spike, tiger, evan, cloud, fanny, bear, george, blue])
+model.db.session.add_all([alice, bobby, winston, kitty, cathy, david, spike, tiger, evan, cloud, fanny, bear, george, blue])
 model.db.session.commit()
