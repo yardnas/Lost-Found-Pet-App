@@ -35,7 +35,7 @@ class FlaskTestsBasic(TestCase):
         """Test welcome page."""
 
         result = self.client.get('/') 
-        self.assertIn(b"Welcome", result.data) # "b" byte string
+        self.assertIn(b"Come Join Us", result.data) # "b" byte string
 
 
 #---------------------------------------------------------------------#
@@ -59,7 +59,7 @@ class FlaskTestsLogInLogOut(TestCase):
         """Test that the login page loads properly."""
 
         result = self.client.get('/login')
-        self.assertIn(b'Please sign in', result.data)
+        self.assertIn(b'Please login', result.data)
 
 
     def test_correct_login(self):
