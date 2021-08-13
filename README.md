@@ -3,11 +3,11 @@
 Neighborhood Lost Pets was inspired by wanting a way for pet lovers to come together to support and help each other in their neighborhood. A place where neighbors can report and help find lost pets. Using Google Maps API, when a pet is reported missing, a new marker with the last seen location will be placed on the map with information about the pet and pet owner. Once logged in, members can search for lost pets in their neighborhood and connect with the respective pet owners.
 
 ## Contents
-* [Tech Stack] (#tech-stack)
-* [Features] (#features)
-* [Installation] (#installation)
-* [Future Features] (#future-features)
-* [Credits] (#credits)
+* [Tech Stack](#tech-stack)
+* [Features](#features)
+* [Installation](#installation)
+* [Future Features](#future-features)
+* [Credits](#credits)
 
 ## <a name="tech-stack"></a>Tech Stack
 * Python
