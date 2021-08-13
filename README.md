@@ -34,8 +34,8 @@ Neighborhood Lost Pets was inspired by wanting a way for pet lovers to come toge
 
 ![main-dash](https://user-images.githubusercontent.com/83195797/129280263-0c91a0cb-a781-49ee-93e6-ca5252c451aa.png)
 
-### Marker - Lost Pet Info
-* The data from each marker on the map uses Javascript's AJAX to jsonify the data from a GET request
+### Markers - Lost Pet Info
+* The data from each marker on the map uses Javascript AJAX request to jsonify the data
 > Once a lost pet has been reported missing, a new marker will be placed on the map.
 > When a marker is clicked, users can see more informaion about the pet and how to contact the pet owner
 
@@ -48,37 +48,38 @@ Neighborhood Lost Pets was inspired by wanting a way for pet lovers to come toge
 ## Installation
 To run Neighborhood Lost Pets app on your machine:
 
-Clone this repo:
-```
-https://github.com/yardnas/Neighborhood-Lost-Pets.git
-```
+#### Clone this repo:
+> ```
+> https://github.com/yardnas/Neighborhood-Lost-Pets.git
+> ```
 
-Install PostgresQL
+#### Install PostgresQL
 
-Create and launch a virual environment in your Neighborhood Lost Pets directory:
-```
-virtual env
-source env/bin/activate
-```
-Install the dependencies:
-```pip install -r requirements.txt```
+#### Create and launch a virual environment in your Neighborhood Lost Pets directory:
+> ```
+> virtual env
+> source env/bin/activate
+> ```
 
-Seed the app with starter data:
-```python3 seed.py```
+#### Install the dependencies:
+> ```pip install -r requirements.txt```
 
-Run the app:
-```python3 server.py```
+#### Seed the app with starter data:
+> ```python3 seed.py```
 
-Access the app:
-Go to ```'localhost:5000/'```
+#### Run the app:
+> ```python3 server.py```
+
+#### Access the app via browser:
+> ```'localhost:5000/'```
 
 ## Future Features:
 The roadmap for this project includes features such as:
-* [x] √ Password hashing (Done)
-* [ ] Leveraging React components
-* [ ] Dedicated pet owner's section for all things 'my pet'
-* [ ] Messaging capability within the app
-* [ ] Pin nearby vet clinics and police stations
+> *  [x] √ Password hashing (Done)
+> *  [ ] Leveraging React components
+> *  [ ] Dedicated pet owner's section for all things 'my pet'
+> *  [ ] Messaging capability within the app
+> *  [ ] Pin nearby vet clinics and police stations
 
 ## Credits
 * Google (Google Maps API)
