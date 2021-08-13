@@ -2,7 +2,7 @@
 
 Neighborhood Lost Pets was inspired by wanting a way for pet lovers to come together to support and help each other in their neighborhood. A place where neighbors can report and help find lost pets. Using Google Maps API, when a pet is reported missing, a new marker with the last seen location will be placed on the map with information about the pet and pet owner. Once logged in, members can search for lost pets in their neighborhood and connect with the respective pet owners.
 
-## Technologies
+## Tech Stack
 * Python
 * Javascript
 * HTML
@@ -14,6 +14,36 @@ Neighborhood Lost Pets was inspired by wanting a way for pet lovers to come toge
 * AJAX
 * PostgresQL
 * Google Maps API
+
+## Features
+### Landing Page
+* Flask-login module was used for users login and registration management.
+* Password hashing was implemented using bcrypt.
+
+<img width="1678" alt="landing" src="https://user-images.githubusercontent.com/83195797/129278862-94babe07-028b-4545-a8bc-6dae74168ca2.png">
+
+
+### Main Dashboard
+* After logging in, users land on this main dashboard that was built with Jinja templating and Flask-SQLAlchemy ORM database queries. Here users can:
+> 1) Report a lost pet
+> 2) Search for lost pets
+> 3) Update when a pet is found
+* To search for lost pets in a neighborhood:
+> 1) Users can enter an address or even just a location. Built with Google Maps API and their geocoding capabilities.
+> 2) Users location can also be detected automatically. Built with the geolocation functionality.
+
+![main-dash](https://user-images.githubusercontent.com/83195797/129280263-0c91a0cb-a781-49ee-93e6-ca5252c451aa.png)
+
+### Marker - Lost Pet Info
+* The data from each marker on the map uses Javascript's AJAX to jsonify the data from a GET request
+> Once a lost pet has been reported missing, a new marker will be placed on the map.
+> When a marker is clicked, users can see more informaion about the pet and how to contact the pet owner
+
+![marker-pet](https://user-images.githubusercontent.com/83195797/129281267-5bb412f7-c85f-43bf-92b1-532aca654e42.png)
+
+#### Night Mode
+![marker-pet-night](https://user-images.githubusercontent.com/83195797/129281355-13a345aa-3023-40f1-86fd-00fcd752c910.png)
+
 
 ## Installation
 To run Neighborhood Lost Pets app on your machine:
