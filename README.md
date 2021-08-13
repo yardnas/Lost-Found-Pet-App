@@ -27,8 +27,7 @@ Neighborhood Lost Pets was inspired by wanting a way for pet lovers to come toge
 * Flask-login module was used for users login and registration management.
 * Password hashing was implemented using bcrypt.
 
-<img width="1678" alt="landing" src="https://user-images.githubusercontent.com/83195797/129278862-94babe07-028b-4545-a8bc-6dae74168ca2.png">
-
+<img width="1678" alt="landing2" src="static/img/lost-pet.gif">
 
 ### Main Dashboard
 * After logging in, users land on this main dashboard that was built with Jinja templating and Flask-SQLAlchemy for database queries. Here users can:
