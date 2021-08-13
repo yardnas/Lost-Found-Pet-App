@@ -31,7 +31,7 @@ Neighborhood Lost Pets was inspired by wanting a way for pet lovers to come toge
 
 
 ### Main Dashboard
-* After logging in, users land on this main dashboard that was built with Jinja templating and Flask-SQLAlchemy ORM database queries. Here users can:
+* After logging in, users land on this main dashboard that was built with Jinja templating and Flask-SQLAlchemy for database queries. Here users can:
 > 1) Report a lost pet
 > 2) Search for lost pets
 > 3) Update when a pet is found
