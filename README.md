@@ -24,19 +24,19 @@ Neighborhood Lost Pets was inspired by wanting a way for pet lovers to come toge
 
 ## <a name="features"></a>Features
 ### Landing Page
-* Flask-login module was used for users login and registration management.
+* Users login and registration built with flask-login module for authentication management.
 * Password hashing was implemented using bcrypt.
 
 <img width="1678" alt="landing2" src="static/img/lost-pet.gif">
 
 ### Main Dashboard
 * After logging in, users land on this main dashboard that was built with Jinja templating and Flask-SQLAlchemy for database queries. Here users can:
-> 1) Report a lost pet
-> 2) Search for lost pets
-> 3) Update when a pet is found
+> 1. Report a lost pet
+> 2. Search for lost pets
+> 3. Update when a pet is found
 * To search for lost pets in a neighborhood:
-> 1) Users can enter an address or even just a location. Built with Google Maps API and their geocoding capabilities.
-> 2) Users location can also be detected automatically. Built with the geolocation functionality.
+> 1. Users can enter an address or even just a location. Built with Google Maps API and their geocoding capabilities.
+> 2. Users location can also be detected automatically. Built with the geolocation functionality.
 
 ![main-dash](https://user-images.githubusercontent.com/83195797/129280263-0c91a0cb-a781-49ee-93e6-ca5252c451aa.png)
 
