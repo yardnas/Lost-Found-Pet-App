@@ -82,7 +82,7 @@ To run Neighborhood Lost Pets app on your machine:
 
 ## <a name="future-features"></a>Future Features:
 The roadmap for this project includes features such as:
-> *  [x] √ Password hashing (Done)
+> *  [x] Password hashing (√ Done)
 > *  [ ] Leveraging React components
 > *  [ ] Dedicated pet owner's section for all things 'my pet'
 > *  [ ] Messaging capability within the app
