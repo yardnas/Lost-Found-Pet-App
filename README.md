@@ -5,8 +5,8 @@ Neighborhood Lost Pets was inspired by wanting a way for pet lovers to come toge
 ## Contents
 * [Tech Stack](#tech-stack)
 * [Features](#features)
-* [Installation](#installation)
 * [Future Features](#future-features)
+* [Installation](#installation)
 * [Credits](#credits)
 
 ## <a name="tech-stack"></a>Tech Stack
@@ -43,13 +43,20 @@ Neighborhood Lost Pets was inspired by wanting a way for pet lovers to come toge
 ### Markers - Lost Pet Info
 * The data from each marker on the map uses Javascript AJAX request to jsonify the data
 > Once a lost pet has been reported missing, a new marker will be placed on the map.
-> When a marker is clicked, users can see more informaion about the pet and how to contact the pet owner
+> When a marker is clicked, users can see more informaion about the pet and how to contact the pet owner.
 
 ![marker-pet](https://user-images.githubusercontent.com/83195797/129281267-5bb412f7-c85f-43bf-92b1-532aca654e42.png)
 
 #### Night Mode
 ![marker-pet-night](https://user-images.githubusercontent.com/83195797/129281355-13a345aa-3023-40f1-86fd-00fcd752c910.png)
 
+## <a name="future-features"></a>Future Features:
+The roadmap for this project includes features such as:
+> *  [x] Password hashing (√ Done)
+> *  [ ] Leveraging React components
+> *  [ ] Dedicated pet owner's section for all things 'my pet'
+> *  [ ] Messaging capability within the app
+> *  [ ] Pin nearby vet clinics and police stations
 
 ## <a name="installation"></a>Installation
 To run Neighborhood Lost Pets app on your machine:
@@ -78,14 +85,6 @@ To run Neighborhood Lost Pets app on your machine:
 
 #### Access the app via browser:
 > ```'localhost:5000/'```
-
-## <a name="future-features"></a>Future Features:
-The roadmap for this project includes features such as:
-> *  [x] Password hashing (√ Done)
-> *  [ ] Leveraging React components
-> *  [ ] Dedicated pet owner's section for all things 'my pet'
-> *  [ ] Messaging capability within the app
-> *  [ ] Pin nearby vet clinics and police stations
 
 ## <a name="credits"></a>Credits
 * Google (Google Maps API)
