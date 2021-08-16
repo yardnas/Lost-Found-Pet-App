@@ -24,7 +24,7 @@ Neighborhood Lost Pets was inspired by wanting a way for pet lovers to come toge
 
 ## <a name="features"></a>Features
 ### Landing Page
-* Users login and registration built with flask-login module for authentication management.
+* Users login and registration were built with the flask-login module for authentication management.
 * Password hashing was implemented using bcrypt.
 
 <img width="1678" alt="landing2" src="static/img/lost-pet.gif">
@@ -35,15 +35,15 @@ Neighborhood Lost Pets was inspired by wanting a way for pet lovers to come toge
 > 2. Search for lost pets
 > 3. Update when a pet is found
 * To search for lost pets in a neighborhood:
-> 1. Users can enter an address or even just a location. Built with Google Maps API and their geocoding capabilities.
-> 2. Users location can also be detected automatically. Built with the geolocation functionality.
+> 1. Users can enter an address or even just a location ('London Bridge'). Built with Google Maps API and their geocoding capabilities
+> 2. Users location can also be detected automatically (if allowed by the user). Built with the geolocation functionality.
 
 ![main-dash](https://user-images.githubusercontent.com/83195797/129280263-0c91a0cb-a781-49ee-93e6-ca5252c451aa.png)
 
 ### Markers - Lost Pet Info
-* The data from each marker on the map uses Javascript AJAX request to jsonify the data
+* The data from each marker on the map uses Javascript AJAX to jsonify the data from a GET request.
 > Once a lost pet has been reported missing, a new marker will be placed on the map.
-> When a marker is clicked, users can see more informaion about the pet and how to contact the pet owner.
+> When a marker is clicked, users can see more information about the pet and how to contact the pet owner.
 
 ![marker-pet](https://user-images.githubusercontent.com/83195797/129281267-5bb412f7-c85f-43bf-92b1-532aca654e42.png)
 
@@ -53,7 +53,7 @@ Neighborhood Lost Pets was inspired by wanting a way for pet lovers to come toge
 ## <a name="future-features"></a>Future Features:
 The roadmap for this project includes features such as:
 > *  [x] Password hashing (√ Done)
-> *  [ ] Leveraging React components
+> *  [ ] Leveraging React components (Next)
 > *  [ ] Dedicated pet owner's section for all things 'my pet'
 > *  [ ] Messaging capability within the app
 > *  [ ] Pin nearby vet clinics and police stations
